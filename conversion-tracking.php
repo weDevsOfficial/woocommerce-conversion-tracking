@@ -2,7 +2,7 @@
 /*
 Plugin Name: WooCommerce Conversion Tracking
 Plugin URI: http://wedevs.com/
-Description: Adds various conversion tracking codes to cart, checkout and registration success pages.
+Description: Adds various conversion tracking codes to cart, checkout, registration success and product page on WooCommerce
 Version: 0.1
 Author: Tareq Hasan
 Author URI: http://tareq.wedevs.com/
@@ -90,7 +90,7 @@ class WeDevs_WC_Conversion_Tracking {
 
     /**
      * Register integration
-     * 
+     *
      * @param array $interations
      * @return array
      */

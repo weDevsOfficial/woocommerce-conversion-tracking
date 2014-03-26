@@ -1,4 +1,4 @@
-WooCommerce Conversion Tracking Pixels
+WooCommerce Conversion Tracking
 ====================
 
 Integrates conversion tracking codes from Facebook, Google and various providers.
