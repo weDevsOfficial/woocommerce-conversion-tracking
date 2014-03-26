@@ -72,6 +72,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
     /**
      * Saves tracking code of single product
      * 
+     * @uses woocommerce_process_product_meta
      * @param int $post_id
      */
     function product_options_save( $post_id ) {
@@ -131,6 +132,9 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
     /**
      * Code print handler on HEAD tag
      * 
+     * It prints conversion tracking pixels on cart page, order received page
+     * and single product page
+     * 
      * @uses wp_head
      * @return void
      */
@@ -139,14 +143,25 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
         if ( is_cart() ) {
 
             echo $this->print_conversion_code( $this->get_option( 'cart' ) );
+            
         } elseif ( is_order_received_page() ) {
 
             echo $this->print_conversion_code( $this->get_option( 'checkout' ) );
+            
         } elseif ( is_product() ) {
 
             $code = get_post_meta( get_the_ID(), '_wc_conv_track', true );
             echo $this->print_conversion_code( $code );
         }
+    }
+
+    /**
+     * Registration code print handler
+     * 
+     * @return void
+     */
+    function print_reg_code() {
+        echo $this->print_conversion_code( $this->get_option( 'registration' ) );
     }
 
     /**
@@ -163,15 +178,6 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
         echo "<!-- Tracking pixel by WooCommerce Conversion Tracking plugin -->\n";
         echo $code;
         echo "\n<!-- Tracking pixel by WooCommerce Conversion Tracking plugin -->\n";
-    }
-
-    /**
-     * Registration code print handler
-     * 
-     * @return void
-     */
-    function print_reg_code() {
-        echo $this->print_conversion_code( $this->get_option( 'registration' ) );
     }
 
 }
