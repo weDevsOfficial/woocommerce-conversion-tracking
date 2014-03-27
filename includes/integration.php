@@ -161,7 +161,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
      * @return void
      */
     function print_reg_code() {
-        echo $this->print_conversion_code( $this->get_option( 'registration' ) );
+        echo $this->print_conversion_code( $this->get_option( 'reg' ) );
     }
 
     /**
