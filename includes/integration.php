@@ -24,15 +24,27 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
         add_action( 'woocommerce_registration_redirect', array($this, 'wc_redirect_url') );
         add_action( 'template_redirect', array($this, 'track_registration') );
         add_action( 'wp_head', array($this, 'code_handler') );
+        add_action( 'wp_footer', array($this, 'code_handler') );
     }
 
     /**
      * WooCommerce settings API fields for storing our codes
-     * 
+     *
      * @return void
      */
     function init_form_fields() {
         $this->form_fields = array(
+            'position' => array(
+                'title' => __( 'Script Position', 'wc-conversion-tracking' ),
+                'description' => __( 'Select what position in your page you want to display the tag', 'wc-conversion-tracking' ),
+                'desc_tip' => true,
+                'id' => 'position',
+                'type' => 'select',
+                'options' => array(
+                    'head' => __( 'Inside HEAD tag', 'wc-conversion-tracking' ),
+                    'footer' => __( 'In footer', 'wc-conversion-tracking' ),
+                )
+            ),
             'cart' => array(
                 'title' => __( 'Cart Scripts', 'wc-conversion-tracking' ),
                 'description' => __( 'Adds script on the cart page HEAD tag', 'wc-conversion-tracking' ),
@@ -59,7 +71,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
     /**
      * Save callback of Woo integration code settings API
-     * 
+     *
      * @param string $key
      * @return string
      */
@@ -71,7 +83,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
     /**
      * Saves tracking code of single product
-     * 
+     *
      * @uses woocommerce_process_product_meta
      * @param int $post_id
      */
@@ -85,10 +97,10 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
     /**
      * Textarea input box on product page
-     * 
+     *
      * Creates new textarea on WooCommerce product advanced tab for storing
      * conversion tracking pixel for single product
-     * 
+     *
      * @uses woocommerce_product_options_reviews
      */
     function product_options() {
@@ -102,7 +114,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
     /**
      * Print registration code when particular GET tag exists
-     * 
+     *
      * @uses add_action()
      * @return void
      */
@@ -114,7 +126,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
     /**
      * Adds a url query arg to determine newly registered user
-     * 
+     *
      * @uses woocommerce_registration_redirect action
      * @param string $redirect
      * @return string
@@ -131,23 +143,31 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
     /**
      * Code print handler on HEAD tag
-     * 
+     *
      * It prints conversion tracking pixels on cart page, order received page
      * and single product page
-     * 
+     *
      * @uses wp_head
      * @return void
      */
     function code_handler() {
 
+        $position = $this->get_option( 'position', 'head' );
+
+        if ( 'wp_head' == current_filter() && $position != 'head' ) {
+            return;
+        } elseif ( 'wp_footer' == current_filter() && $position != 'footer' ) {
+            return;
+        }
+
         if ( is_cart() ) {
 
             echo $this->print_conversion_code( $this->get_option( 'cart' ) );
-            
+
         } elseif ( is_order_received_page() ) {
 
             echo $this->print_conversion_code( $this->get_option( 'checkout' ) );
-            
+
         } elseif ( is_product() ) {
 
             $code = get_post_meta( get_the_ID(), '_wc_conv_track', true );
@@ -157,7 +177,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
     /**
      * Registration code print handler
-     * 
+     *
      * @return void
      */
     function print_reg_code() {
@@ -166,7 +186,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
     /**
      * Prints the code
-     * 
+     *
      * @param string $code
      * @return void
      */
