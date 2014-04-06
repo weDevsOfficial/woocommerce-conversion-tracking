@@ -43,6 +43,9 @@ Nothing here right now
 
 == Changelog ==
 
+= 0.1.1 - 06/04/2014 =
+* Added position parameter for display position control
+
 = 0.1 - 27/03/2014 =
 * Initial release
 
