@@ -17,7 +17,11 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
         $this->init_form_fields();
         $this->init_settings();
 
-        add_action( 'woocommerce_update_options_integration', array($this, 'process_admin_options') );
+        // Save settings if the we are in the right section
+        if ( isset( $_POST[ 'section' ] ) && $this->id === $_POST[ 'section' ] ) {
+            add_action( 'woocommerce_update_options_integration', array($this, 'process_admin_options') );
+        }
+
         add_action( 'woocommerce_product_options_reviews', array($this, 'product_options') );
         add_action( 'woocommerce_process_product_meta', array($this, 'product_options_save'), 10, 2 );
 
