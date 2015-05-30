@@ -29,6 +29,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
         add_action( 'template_redirect', array($this, 'track_registration') );
         add_action( 'wp_head', array($this, 'code_handler') );
         add_action( 'wp_footer', array($this, 'code_handler') );
+        add_action( 'woocommerce_thankyou', array($this, 'thankyou_page') );
     }
 
     /**
@@ -176,6 +177,32 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
             $code = get_post_meta( get_the_ID(), '_wc_conv_track', true );
             echo $this->print_conversion_code( $code );
+        }
+    }
+
+    /**
+     * Put product specific conversion tracking pixel in thank you page
+     *
+     * @param  int  $order_id
+     *
+     * @since 0.3
+     *
+     * @return void
+     */
+    public function thankyou_page( $order_id ) {
+        $order = wc_get_order( $order_id );
+
+        if ( $items = $order->get_items() ) {
+            foreach ($items as $item) {
+                $product = $order->get_product_from_item( $item );
+
+                if ( ! $product ) {
+                    continue;
+                }
+
+                $code = get_post_meta( $product->id, '_wc_conv_track', true );
+                echo $this->print_conversion_code( $code );
+            }
         }
     }
 
