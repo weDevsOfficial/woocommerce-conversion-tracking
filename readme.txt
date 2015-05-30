@@ -43,6 +43,9 @@ Nothing here right now
 
 == Changelog ==
 
+= 0.3 - 31/05/2015 =
+* [fix] Product specific code only loads on product page itself, not checkout
+
 = 0.2 - 30/05/2015 =
 * Renamed position option "In Footer" to "Inside Body Tag", may be was confusing to users.
 
