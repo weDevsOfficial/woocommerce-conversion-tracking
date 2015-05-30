@@ -35,36 +35,36 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
     function init_form_fields() {
         $this->form_fields = array(
             'position' => array(
-                'title' => __( 'Script Position', 'wc-conversion-tracking' ),
+                'title'       => __( 'Script Position', 'wc-conversion-tracking' ),
                 'description' => __( 'Select what position in your page you want to display the tag', 'wc-conversion-tracking' ),
-                'desc_tip' => true,
-                'id' => 'position',
-                'type' => 'select',
-                'options' => array(
-                    'head' => __( 'Inside HEAD tag', 'wc-conversion-tracking' ),
-                    'footer' => __( 'In footer', 'wc-conversion-tracking' ),
+                'desc_tip'    => true,
+                'id'          => 'position',
+                'type'        => 'select',
+                'options'     => array(
+                    'head'   => __( 'Inside HEAD tag', 'wc-conversion-tracking' ),
+                    'footer' => __( 'Inside Body Tag', 'wc-conversion-tracking' ),
                 )
             ),
             'cart' => array(
-                'title' => __( 'Cart Scripts', 'wc-conversion-tracking' ),
-                'description' => __( 'Adds script on the cart page HEAD tag', 'wc-conversion-tracking' ),
-                'desc_tip' => true,
-                'id' => 'cart',
-                'type' => 'textarea',
+                'title'       => __( 'Cart Scripts', 'wc-conversion-tracking' ),
+                'description' => __( 'Adds script on the cart page', 'wc-conversion-tracking' ),
+                'desc_tip'    => true,
+                'id'          => 'cart',
+                'type'        => 'textarea',
             ),
             'checkout' => array(
-                'title' => __( 'Checkout Scripts', 'wc-conversion-tracking' ),
-                'description' => __( 'Adds script on the purchase success page HEAD tag', 'wc-conversion-tracking' ),
-                'desc_tip' => true,
-                'id' => 'checkout',
-                'type' => 'textarea',
+                'title'       => __( 'Checkout Scripts', 'wc-conversion-tracking' ),
+                'description' => __( 'Adds script on the purchase success page', 'wc-conversion-tracking' ),
+                'desc_tip'    => true,
+                'id'          => 'checkout',
+                'type'        => 'textarea',
             ),
             'reg' => array(
-                'title' => __( 'Registration Scripts', 'wc-conversion-tracking' ),
-                'description' => __( 'Adds script on the successful registraion page HEAD tag', 'wc-conversion-tracking' ),
-                'desc_tip' => true,
-                'id' => 'registration',
-                'type' => 'textarea',
+                'title'       => __( 'Registration Scripts', 'wc-conversion-tracking' ),
+                'description' => __( 'Adds script on the successful registraion page', 'wc-conversion-tracking' ),
+                'desc_tip'    => true,
+                'id'          => 'registration',
+                'type'        => 'textarea',
             ),
         );
     }

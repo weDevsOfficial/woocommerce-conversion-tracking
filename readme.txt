@@ -3,7 +3,7 @@ Contributors: tareq1988
 Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, adwords, tracking-pixel
 Donate link: http://tareq.wedevs.com/donate/
 Requires at least: 3.8
-Tested up to: 3.8.1
+Tested up to: 4.2.2
 Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -42,6 +42,9 @@ Nothing here right now
 2. Tracking code on single product.
 
 == Changelog ==
+
+= 0.2 - 30/05/2015 =
+* Renamed position option "In Footer" to "Inside Body Tag", may be was confusing to users.
 
 = 0.1.1 - 06/04/2014 =
 * Added position parameter for display position control
