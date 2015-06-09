@@ -227,8 +227,32 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
         }
 
         echo "<!-- Tracking pixel by WooCommerce Conversion Tracking plugin -->\n";
-        echo $code;
+        echo $this->process_markdown($code);
         echo "\n<!-- Tracking pixel by WooCommerce Conversion Tracking plugin -->\n";
+    }
+
+    /**
+    * Filter the code for dynamic data like price
+    * @param string $code
+    * @return string
+    */
+    function process_markdown( $code ){
+        global $wp;
+         if( is_order_received_page() ){
+            if(!isset($wp->query_vars['order-received'])) return;
+
+            $order = wc_get_order( $wp->query_vars['order-received'] );
+            
+            $grand_total = $order->calculate_totals();
+            $order_currency = $order->get_order_currency();
+            $order_total = $order->get_total();
+            $order_subtotal = $order->get_subtotal();
+
+            $code = str_replace('{currency}', $order_currency, $code);
+            $code = str_replace('{order_total}', $order_total, $code);
+            $code = str_replace('{order_subtotal}', $order_subtotal, $code);
+        }
+        return $code;
     }
 
 }
