@@ -59,8 +59,8 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
             ),
             'checkout' => array(
                 'title'       => __( 'Checkout Scripts', 'wc-conversion-tracking' ),
-                'description' => __( 'Adds script on the purchase success page', 'wc-conversion-tracking' ),
-                'desc_tip'    => true,
+                'desc_tip'    => __( 'Adds script on the purchase success page', 'wc-conversion-tracking' ),
+                'description' => __( 'You can use {order_total}, {order_subtotal}, and {currency} for dynamic values', 'wc-conversion-tracking' ),
                 'id'          => 'checkout',
                 'type'        => 'textarea',
             ),
@@ -238,12 +238,10 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
     */
     function process_markdown( $code ){
         global $wp;
-         if( is_order_received_page() ){
-            if(!isset($wp->query_vars['order-received'])) return;
+         if( is_order_received_page() and isset($wp->query_vars['order-received']) ){
 
             $order = wc_get_order( $wp->query_vars['order-received'] );
             
-            $grand_total = $order->calculate_totals();
             $order_currency = $order->get_order_currency();
             $order_total = $order->get_total();
             $order_subtotal = $order->get_subtotal();
