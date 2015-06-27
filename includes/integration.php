@@ -112,7 +112,8 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
         echo '<div class="options_group">';
 
-        woocommerce_wp_textarea_input( array('id' => '_wc_conv_track', 'label' => __( 'Conversion Tracking Code', 'wc-conversion-tracking' ), 'desc_tip' => 'true', 'description' => __( 'Insert conversion tracking code for this product.', 'wc-conversion-tracking' )) );
+        woocommerce_wp_textarea_input( array(
+            'id' => '_wc_conv_track', 'label' => __( 'Conversion Tracking Code', 'wc-conversion-tracking' ), 'desc_tip' => 'true', 'description' => __( 'Insert conversion tracking code for this product. You can use {price}, {sale_price}, {regular_price}, {price_excluding_tax}, and {price_including_tax} for dynamic values.', 'wc-conversion-tracking' )) );
 
         echo '</div>';
     }
@@ -238,7 +239,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
     */
     function process_markdown( $code ){
         global $wp;
-         if( is_order_received_page() and isset($wp->query_vars['order-received']) ){
+         if( is_order_received_page() ){
 
             $order = wc_get_order( $wp->query_vars['order-received'] );
             
@@ -250,6 +251,20 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
             $code = str_replace('{order_total}', $order_total, $code);
             $code = str_replace('{order_subtotal}', $order_subtotal, $code);
         }
+        elseif( is_product() ) {
+            $product = wc_get_product( get_post() );
+            $price = $product->get_price();
+            $sale_price = $product->get_sale_price();
+            $regular_price = $product->get_regular_price();
+            $price_excluding_tax = $product->get_price_excluding_tax();
+            $price_including_tax = $product->get_price_including_tax();
+            $code = str_replace('{price}', $price, $code);
+            $code = str_replace('{sale_price}', $sale_price, $code);
+            $code = str_replace('{regular_price}', $regular_price, $code);
+            $code = str_replace('{price_including_tax}', $price_including_tax, $code);
+            $code = str_replace('{price_excluding_tax}', $price_excluding_tax, $code);
+        }
+
         return $code;
     }
 
