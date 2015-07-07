@@ -43,6 +43,9 @@ Nothing here right now
 
 == Changelog ==
 
+= 1.0 - 08/07/2015 =
+* [fix] Removed product specific codes from product single page, should show only on checkout. My bad!
+
 = 0.3 - 31/05/2015 =
 * [fix] Product specific code only loads on product page itself, not checkout
 
