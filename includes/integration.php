@@ -172,11 +172,6 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
         } elseif ( is_order_received_page() ) {
 
             echo $this->print_conversion_code( $this->get_option( 'checkout' ) );
-
-        } elseif ( is_product() ) {
-
-            $code = get_post_meta( get_the_ID(), '_wc_conv_track', true );
-            echo $this->print_conversion_code( $code );
         }
     }
 
