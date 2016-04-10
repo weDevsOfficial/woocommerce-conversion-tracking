@@ -60,7 +60,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
             'checkout' => array(
                 'title'       => __( 'Checkout Scripts', 'wc-conversion-tracking' ),
                 'desc_tip'    => __( 'Adds script on the purchase success page', 'wc-conversion-tracking' ),
-                'description' => __( 'You can use {order_total}, {order_subtotal}, and {currency} for dynamic values', 'wc-conversion-tracking' ),
+                'description' => __( 'You can use {order_number}, {order_total}, {order_subtotal}, and {currency} for dynamic values', 'wc-conversion-tracking' ),
                 'id'          => 'checkout',
                 'type'        => 'textarea',
             ),
@@ -257,10 +257,12 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
         $order_currency = $order->get_order_currency();
         $order_total    = $order->get_total();
+        $order_number   = $order->get_order_number();
         $order_subtotal = $order->get_subtotal();
 
         $code           = str_replace( '{currency}', $order_currency, $code );
         $code           = str_replace( '{order_total}', $order_total, $code );
+        $code           = str_replace( '{order_number}', $order_number, $code );
         $code           = str_replace( '{order_subtotal}', $order_subtotal, $code );
 
         return $code;

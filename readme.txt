@@ -1,9 +1,9 @@
 === WooCommerce Conversion Tracking ===
 Contributors: tareq1988
 Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, adwords, tracking-pixel
-Donate link: http://tareq.wedevs.com/donate/
+Donate link: https://tareq.co/donate/
 Requires at least: 3.8
-Tested up to: 4.4.1
+Tested up to: 4.4.2
 Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -42,6 +42,9 @@ Nothing here right now
 2. Tracking code on single product.
 
 == Changelog ==
+
+= 1.2 - 10-April-2016 =
+* [new] Order number variable `{order_number}` added on checkout page
 
 = 1.1 - 08-Jan-2016 =
 * [new] Dynamic values on product and checkout script
