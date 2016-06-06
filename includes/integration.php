@@ -253,7 +253,12 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
             return $code;
         }
 
-        $order          = wc_get_order( $wp->query_vars['order-received'] );
+        $order = wc_get_order( $wp->query_vars['order-received'] );
+
+        // bail out if not a valid instance
+        if ( ! is_a( $order, 'WC_Order' ) ) {
+            return $code;
+        }
 
         $order_currency = $order->get_order_currency();
         $order_total    = $order->get_total();
