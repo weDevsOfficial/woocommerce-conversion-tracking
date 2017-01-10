@@ -80,7 +80,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
      * @param string $key
      * @return string
      */
-    function validate_textarea_field( $key ) {
+    function validate_textarea_field( $key, $value ) {
         $text = trim( stripslashes( $_POST[$this->plugin_id . $this->id . '_' . $key] ) );
 
         return $text;
