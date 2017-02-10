@@ -10,8 +10,8 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
     function __construct() {
 
         $this->id = 'wc_conv_tracking';
-        $this->method_title = __( 'Conversion Tracking Pixel', 'wc-conversion-tracking' );
-        $this->method_description = __( 'Various conversion tracking pixel integration like Facebook Ad, Google Adwords, etc. Insert your scripts codes here:', 'wc-conversion-tracking' );
+        $this->method_title = __( 'Conversion Tracking Pixel', 'woocommerce-conversion-tracking' );
+        $this->method_description = __( 'Various conversion tracking pixel integration like Facebook Ad, Google Adwords, etc. Insert your scripts codes here:', 'woocommerce-conversion-tracking' );
 
         // Load the settings.
         $this->init_form_fields();
@@ -40,33 +40,33 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
     function init_form_fields() {
         $this->form_fields = array(
             'position' => array(
-                'title'       => __( 'Script Position', 'wc-conversion-tracking' ),
-                'description' => __( 'Select what position in your page you want to display the tag', 'wc-conversion-tracking' ),
+                'title'       => __( 'Script Position', 'woocommerce-conversion-tracking' ),
+                'description' => __( 'Select what position in your page you want to display the tag', 'woocommerce-conversion-tracking' ),
                 'desc_tip'    => true,
                 'id'          => 'position',
                 'type'        => 'select',
                 'options'     => array(
-                    'head'   => __( 'Inside HEAD tag', 'wc-conversion-tracking' ),
-                    'footer' => __( 'Inside Body Tag', 'wc-conversion-tracking' ),
+                    'head'   => __( 'Inside HEAD tag', 'woocommerce-conversion-tracking' ),
+                    'footer' => __( 'Inside Body Tag', 'woocommerce-conversion-tracking' ),
                 )
             ),
             'cart' => array(
-                'title'       => __( 'Cart Scripts', 'wc-conversion-tracking' ),
-                'description' => __( 'Adds script on the cart page', 'wc-conversion-tracking' ),
+                'title'       => __( 'Cart Scripts', 'woocommerce-conversion-tracking' ),
+                'description' => __( 'Adds script on the cart page', 'woocommerce-conversion-tracking' ),
                 'desc_tip'    => true,
                 'id'          => 'cart',
                 'type'        => 'textarea',
             ),
             'checkout' => array(
-                'title'       => __( 'Checkout Scripts', 'wc-conversion-tracking' ),
-                'desc_tip'    => __( 'Adds script on the purchase success page', 'wc-conversion-tracking' ),
-                'description' => __( 'You can use {order_number}, {order_total}, {order_subtotal}, and {currency} for dynamic values', 'wc-conversion-tracking' ),
+                'title'       => __( 'Checkout Scripts', 'woocommerce-conversion-tracking' ),
+                'desc_tip'    => __( 'Adds script on the purchase success page', 'woocommerce-conversion-tracking' ),
+                'description' => __( 'You can use {order_number}, {order_total}, {order_subtotal}, and {currency} for dynamic values', 'woocommerce-conversion-tracking' ),
                 'id'          => 'checkout',
                 'type'        => 'textarea',
             ),
             'reg' => array(
-                'title'       => __( 'Registration Scripts', 'wc-conversion-tracking' ),
-                'description' => __( 'Adds script on the successful registraion page', 'wc-conversion-tracking' ),
+                'title'       => __( 'Registration Scripts', 'woocommerce-conversion-tracking' ),
+                'description' => __( 'Adds script on the successful registraion page', 'woocommerce-conversion-tracking' ),
                 'desc_tip'    => true,
                 'id'          => 'registration',
                 'type'        => 'textarea',
@@ -114,9 +114,9 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
         woocommerce_wp_textarea_input( array(
             'id'          => '_wc_conv_track',
-            'label'       => __( 'Conversion Tracking Code', 'wc-conversion-tracking' ),
+            'label'       => __( 'Conversion Tracking Code', 'woocommerce-conversion-tracking' ),
             'desc_tip'    => true,
-            'description' => __( 'Insert conversion tracking code for this product. You can use {product_name}, {price}, {sale_price}, {regular_price}, {price_excluding_tax}, and {price_including_tax} for dynamic values.', 'wc-conversion-tracking' )
+            'description' => __( 'Insert conversion tracking code for this product. You can use {product_name}, {price}, {sale_price}, {regular_price}, {price_excluding_tax}, and {price_including_tax} for dynamic values.', 'woocommerce-conversion-tracking' )
         ) );
 
         echo '</div>';
