@@ -11,7 +11,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
         $this->id = 'wc_conv_tracking';
         $this->method_title = __( 'Conversion Tracking Pixel', 'woocommerce-conversion-tracking' );
-        $this->method_description = __( 'Various conversion tracking pixel integration like Facebook Ad, Google Adwords, etc. Insert your scripts codes here:', 'woocommerce-conversion-tracking' );
+        $this->method_description = __( 'Various conversion tracking pixel integration like Facebook Ad, Google AdWords, etc. Insert your scripts codes here:', 'woocommerce-conversion-tracking' );
 
         // Load the settings.
         $this->init_form_fields();
@@ -40,8 +40,8 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
     function init_form_fields() {
         $this->form_fields = array(
             'position' => array(
-                'title'       => __( 'Script Position', 'woocommerce-conversion-tracking' ),
-                'description' => __( 'Select what position in your page you want to display the tag', 'woocommerce-conversion-tracking' ),
+                'title'       => __( 'Tags Position', 'woocommerce-conversion-tracking' ),
+                'description' => __( 'Select which position in your page you want to insert the tag', 'woocommerce-conversion-tracking' ),
                 'desc_tip'    => true,
                 'id'          => 'position',
                 'type'        => 'select',
@@ -54,7 +54,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
             ),
             'cart' => array(
                 'title'       => sprintf( /* translators: %s: page name */
-                                   __( 'Script for %s', 'woocommerce-conversion-tracking' ),
+                                   __( 'Tags for %s', 'woocommerce-conversion-tracking' ),
                                    __( 'View Cart', 'woocommerce-conversion-tracking' )
                                  ),
                 'description' => __( 'Adds script on the cart page', 'woocommerce-conversion-tracking' ),
@@ -64,7 +64,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
             ),
             'checkout' => array(
                 'title'       => sprintf( /* translators: %s: page name */
-                                   __( 'Script for %s', 'woocommerce-conversion-tracking' ),
+                                   __( 'Tags for %s', 'woocommerce-conversion-tracking' ),
                                    __( 'Purchase', 'woocommerce-conversion-tracking' )
                                  ),
                 'desc_tip'    => __( 'Adds script on the purchase success page', 'woocommerce-conversion-tracking' ),
@@ -77,7 +77,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
             ),
             'reg' => array(
                 'title'       => sprintf( /* translators: %s: page name */
-                                   __( 'Script for %s', 'woocommerce-conversion-tracking' ),
+                                   __( 'Tags for %s', 'woocommerce-conversion-tracking' ),
                                    __( 'User Registration', 'woocommerce-conversion-tracking' )
                                  ),
                 'description' => __( 'Adds script on the successful registraion page', 'woocommerce-conversion-tracking' ),
