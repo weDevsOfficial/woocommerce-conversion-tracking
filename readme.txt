@@ -43,6 +43,10 @@ Nothing here right now
 
 == Changelog ==
 
+= 1.2.2 - 10-Feb-2017 =
+* Updated with plugin slug as the textdomain
+* Integration class PHP compatibility
+
 = 1.2.1 - 9-June-2016 =
 * [fix] Fatal error on thank you page when without parameters
 
