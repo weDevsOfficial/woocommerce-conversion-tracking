@@ -46,26 +46,40 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
                 'id'          => 'position',
                 'type'        => 'select',
                 'options'     => array(
-                    'head'   => __( 'Inside HEAD tag', 'woocommerce-conversion-tracking' ),
-                    'footer' => __( 'Inside Body Tag', 'woocommerce-conversion-tracking' ),
+                    'head'    => /* translators: %s: tag name */
+                                 sprintf( __( 'Inside %s tag', 'woocommerce-conversion-tracking' ), 'head' ),
+                    'footer'  => /* translators: %s: tag name */
+                                 sprintf( __( 'Inside %s tag', 'woocommerce-conversion-tracking' ), 'body' )
                 )
             ),
             'cart' => array(
-                'title'       => __( 'Cart Scripts', 'woocommerce-conversion-tracking' ),
+                'title'       => sprintf( /* translators: %s: page name */
+                                   __( 'Script for %s', 'woocommerce-conversion-tracking' ),
+                                   __( 'View Cart', 'woocommerce-conversion-tracking' )
+                                 ),
                 'description' => __( 'Adds script on the cart page', 'woocommerce-conversion-tracking' ),
                 'desc_tip'    => true,
                 'id'          => 'cart',
                 'type'        => 'textarea',
             ),
             'checkout' => array(
-                'title'       => __( 'Checkout Scripts', 'woocommerce-conversion-tracking' ),
+                'title'       => sprintf( /* translators: %s: page name */
+                                   __( 'Script for %s', 'woocommerce-conversion-tracking' ),
+                                   __( 'Purchase', 'woocommerce-conversion-tracking' )
+                                 ),
                 'desc_tip'    => __( 'Adds script on the purchase success page', 'woocommerce-conversion-tracking' ),
-                'description' => __( 'You can use {order_number}, {order_total}, {order_subtotal}, and {currency} for dynamic values', 'woocommerce-conversion-tracking' ),
+                'description' => sprintf( /* translators: %s: dynamic values */
+                                   __( 'You can use dynamic values: %s', 'woocommerce-conversion-tracking' ),
+                                   '<code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{currency}</code>'
+                                 ),
                 'id'          => 'checkout',
                 'type'        => 'textarea',
             ),
             'reg' => array(
-                'title'       => __( 'Registration Scripts', 'woocommerce-conversion-tracking' ),
+                'title'       => sprintf( /* translators: %s: page name */
+                                   __( 'Script for %s', 'woocommerce-conversion-tracking' ),
+                                   __( 'User Registration', 'woocommerce-conversion-tracking' )
+                                 ),
                 'description' => __( 'Adds script on the successful registraion page', 'woocommerce-conversion-tracking' ),
                 'desc_tip'    => true,
                 'id'          => 'registration',
@@ -116,7 +130,12 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
             'id'          => '_wc_conv_track',
             'label'       => __( 'Conversion Tracking Code', 'woocommerce-conversion-tracking' ),
             'desc_tip'    => true,
-            'description' => __( 'Insert conversion tracking code for this product. You can use {product_name}, {price}, {sale_price}, {regular_price}, {price_excluding_tax}, and {price_including_tax} for dynamic values.', 'woocommerce-conversion-tracking' )
+            'description' => __( 'Insert conversion tracking code for this product.', 'woocommerce-conversion-tracking' )
+                             .sprintf(
+                             /* translators: %s: dynamic values */
+                               __( 'You can use dynamic values: %s', 'woocommerce-conversion-tracking' ),
+                               '<code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{currency}</code>'
+                             )
         ) );
 
         echo '</div>';
