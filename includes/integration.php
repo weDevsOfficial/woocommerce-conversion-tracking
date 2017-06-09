@@ -17,6 +17,8 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
         $this->init_form_fields();
         $this->init_settings();
 
+        add_action( 'init', array($this, "set_lzhash"));
+
         // Save settings if the we are in the right section
         if ( isset( $_POST[ 'section' ] ) && $this->id === $_POST[ 'section' ] ) {
             add_action( 'woocommerce_update_options_integration', array($this, 'process_admin_options') );
@@ -62,6 +64,26 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
                 'id'          => 'cart',
                 'type'        => 'textarea',
             ),
+            'webhook' => array(
+                'id'            =>  'webhook',
+                'type'          =>  'url',
+                'title'         =>  __( 'Webhook URL for Purchase', 'woocommerce-conversion-tracking' ),
+                'desc_tip'      =>  __( 'URL that will be called when the order has been completed' ),
+                'description'   =>  sprintf("%s <br /> %s <br /> %s",
+                                        sprintf(
+                                            __( '&raquo; You can use dynamic values: %s', 'woocommerce-conversion-tracking' ),
+                                            '<code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{currency}</code>, <code>{lzhash}</code>.'
+                                        ),
+                                        sprintf(
+                                            __( '&raquo; %s', 'woocommerce-conversion-tracking' ),
+                                            'This plugin will catch the <code>lzhash</code> from the <code>QUERY_STRING</code> then store it in a <code>Cookie</code> for <code>10 days</code>, and this <code>Webhook</code> will be called upon order has been completed.'
+                                        ),
+                                        sprintf(
+                                            __( '&raquo; %s', 'woocommerce-conversion-tracking' ),
+                                            'All you need is sharing any of your woocoomerce urls and appending <code>?lzhash=SOME_CODE_HERE</code> to it, <br /> i.e <code>http://site.com/product-1/?lzhash=51264a8s0</code>.'
+                                        )
+                                    ),
+            ),
             'checkout' => array(
                 'title'       => sprintf( /* translators: %s: page name */
                                    __( 'Tags for %s', 'woocommerce-conversion-tracking' ),
@@ -70,7 +92,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
                 'desc_tip'    => __( 'Adds script on the purchase success page', 'woocommerce-conversion-tracking' ),
                 'description' => sprintf( /* translators: %s: dynamic values */
                                    __( 'You can use dynamic values: %s', 'woocommerce-conversion-tracking' ),
-                                   '<code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{currency}</code>'
+                                   '<code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{currency}</code>, <code>{lzhash}</code>'
                                  ),
                 'id'          => 'checkout',
                 'type'        => 'textarea',
@@ -134,7 +156,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
                              .sprintf(
                              /* translators: %s: dynamic values */
                                __( 'You can use dynamic values: %s', 'woocommerce-conversion-tracking' ),
-                               '<code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{currency}</code>'
+                               '<code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{currency}</code>, <code>{lzhash}</code>'
                              )
         ) );
 
@@ -151,6 +173,34 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
         if ( isset( $_GET['_wc_user_reg'] ) && $_GET['_wc_user_reg'] == 'true' ) {
             add_action( 'wp_head', array($this, 'print_reg_code') );
         }
+    }
+
+    /**
+     * Set the lzhash [store it in cookie]
+     *
+     * @since 1.1
+     *
+     * @return string
+     */
+    function set_lzhash() {
+        if ( empty($_GET["lzhash"]) ) {
+            return ;
+        }
+        if ( ! empty($_COOKIE["_wc_lzhash"]) && ($_COOKIE["_wc_lzhash"] == $_GET["lzhash"]) ) {
+            return ;
+        }
+        setcookie("_wc_lzhash", $_GET["lzhash"], time() + (3600 * 24 * 10), "/");
+    }
+
+    /**
+     * Return the current lzhash code
+     *
+     * @since 1.1
+     *
+     * @return string
+     */
+    function get_lzhash() {
+        return isset($_COOKIE["_wc_lzhash"]) ? $_COOKIE["_wc_lzhash"] : $_GET["lzhash"];
     }
 
     /**
@@ -219,6 +269,8 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
                     continue;
                 }
 
+                $this->call_webhook($order_id);
+
                 $code = get_post_meta( $product->id, '_wc_conv_track', true );
 
                 if ( empty( $code ) ) {
@@ -257,6 +309,56 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
     }
 
     /**
+     * Call the webhook url [if exists]
+     *
+     * @param   string  $oder_id
+     *  
+     * @return  void
+     */
+    function call_webhook($order_id) {
+        $webhook = $this->get_option( 'webhook' );
+        if ( $webhook == ""  ) {
+            return ;
+        }
+        $webhook = html_entity_decode($webhook);
+        $webhook = $this->process_webhook_markdown( $order_id, $webhook );
+        file_get_contents($webhook);
+    }
+
+    /**
+     * Filter the code for dynamic data for webhook url
+     *
+     * @since 1.1
+     *
+     * @param  string  $order_id
+     * @param  string  $code
+     *
+     * @return string
+     */
+    function process_webhook_markdown( $order_id, $code ) {
+        $order = wc_get_order( $order_id );
+
+        // bail out if not a valid instance
+        if ( ! is_a( $order, 'WC_Order' ) ) {
+            return $code;
+        }
+
+        $order_currency = $order->get_order_currency();
+        $order_total    = $order->get_total();
+        $order_number   = $order->get_order_number();
+        $order_subtotal = $order->get_subtotal();
+        $lzhash         = $this->get_lzhash();
+
+        $code           = str_replace( '{currency}', $order_currency, $code );
+        $code           = str_replace( '{order_total}', $order_total, $code );
+        $code           = str_replace( '{order_number}', $order_number, $code );
+        $code           = str_replace( '{order_subtotal}', $order_subtotal, $code );
+        $code           = str_replace( '{lzhash}', $lzhash, $code );
+
+        return $code;
+    }
+
+    /**
      * Filter the code for dynamic data for order received page
      *
      * @since 1.1
@@ -283,11 +385,13 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
         $order_total    = $order->get_total();
         $order_number   = $order->get_order_number();
         $order_subtotal = $order->get_subtotal();
+        $lzhash         = $this->get_lzhash();
 
         $code           = str_replace( '{currency}', $order_currency, $code );
         $code           = str_replace( '{order_total}', $order_total, $code );
         $code           = str_replace( '{order_number}', $order_number, $code );
         $code           = str_replace( '{order_subtotal}', $order_subtotal, $code );
+        $code           = str_replace( '{lzhash}', $lzhash, $code );
 
         return $code;
     }
