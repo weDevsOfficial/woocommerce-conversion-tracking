@@ -34,7 +34,16 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 == Frequently Asked Questions ==
 
-Nothing here right now
+= Does it work with WooCommerce 2.x and 3.x? =
+
+Yes, the plugin works both with the latest v3.x and the older 2.x versions.
+
+= How conversions are tracked? =
+
+We have three different ways of tracking a conversion. The most used one is when a order has been made.
+
+We put the JavaScript scripts provided by you in the page and it fires a conversion event to that scripts site.
+
 
 == Screenshots ==
 
