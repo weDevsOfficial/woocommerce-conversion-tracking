@@ -57,7 +57,8 @@ class WeDevs_WC_Conversion_Tracking {
     public function __construct() {
 
         // Localize our plugin
-        add_action( 'init', array($this, 'localization_setup') );
+        add_action( 'init', array( $this, 'localization_setup' ) );
+        add_action( 'admin_init', array( $this, 'init_tracker' ) );
 
         // register integration
         add_filter( 'woocommerce_integrations', array($this, 'register_integration') );
@@ -86,6 +87,19 @@ class WeDevs_WC_Conversion_Tracking {
      */
     public function localization_setup() {
         load_plugin_textdomain( 'woocommerce-conversion-tracking', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    }
+
+    /**
+     * Initialize the weDevs insights tracker
+     *
+     * @since 1.2.3
+     *
+     * @return void
+     */
+    public function init_tracker() {
+        require_once dirname( __FILE__ ) . '/includes/class-wedevs-insights.php';
+
+        new WeDevs_Insights( 'woocommerce-conversion-tracking', 'WooCommerce Conversion Tracking', __FILE__ );
     }
 
     /**
