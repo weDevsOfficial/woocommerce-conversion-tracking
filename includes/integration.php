@@ -9,8 +9,8 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
     function __construct() {
 
-        $this->id = 'wc_conv_tracking';
-        $this->method_title = __( 'Conversion Tracking Pixel', 'woocommerce-conversion-tracking' );
+        $this->id                 = 'wc_conv_tracking';
+        $this->method_title       = __( 'Conversion Tracking Pixel', 'woocommerce-conversion-tracking' );
         $this->method_description = __( 'Various conversion tracking pixel integration like Facebook Ad, Google AdWords, etc. Insert your scripts codes here:', 'woocommerce-conversion-tracking' );
 
         // Load the settings.
@@ -65,12 +65,12 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
             'checkout' => array(
                 'title'       => sprintf( /* translators: %s: page name */
                                    __( 'Tags for %s', 'woocommerce-conversion-tracking' ),
-                                   __( 'Purchase', 'woocommerce-conversion-tracking' )
+                                   __( 'Successful Order', 'woocommerce-conversion-tracking' )
                                  ),
                 'desc_tip'    => __( 'Adds script on the purchase success page', 'woocommerce-conversion-tracking' ),
                 'description' => sprintf( /* translators: %s: dynamic values */
                                    __( 'You can use dynamic values: %s', 'woocommerce-conversion-tracking' ),
-                                   '<code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{currency}</code>'
+                                   '<code>{customer_id}</code>, <code>{customer_email}</code>, <code>{customer_first_name}</code>, <code>{customer_last_name}</code>, <code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{currency}</code>, <code>{payment_method}</code>'
                                  ),
                 'id'          => 'checkout',
                 'type'        => 'textarea',
@@ -134,7 +134,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
                              .sprintf(
                              /* translators: %s: dynamic values */
                                __( 'You can use dynamic values: %s', 'woocommerce-conversion-tracking' ),
-                               '<code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{currency}</code>'
+                               '<code>{customer_id}</code>, <code>{customer_email}</code>, <code>{customer_first_name}</code>, <code>{customer_last_name}</code>, <code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{currency}</code>, <code>{payment_method}</code>'
                              )
         ) );
 
@@ -219,7 +219,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
                     continue;
                 }
 
-                $code = get_post_meta( $product->id, '_wc_conv_track', true );
+                $code = get_post_meta( $product->get_id(), '_wc_conv_track', true );
 
                 if ( empty( $code ) ) {
                     continue;
@@ -279,15 +279,38 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
             return $code;
         }
 
-        $order_currency = $order->get_order_currency();
+        if ( version_compare( WC()->version, '3.0', '<' ) ) {
+            // older version
+            $order_currency = $order->get_order_currency();
+            $payment_method = $order->payment_method;
+
+        } else {
+            $order_currency = $order->get_currency();
+            $payment_method = $order->get_payment_method();
+        }
+
+        $customer       = $order->get_user();
+        $used_coupons   = $order->get_used_coupons() ? implode(',', $order->get_used_coupons() ) : '';
+        $order_currency = $order_currency;
         $order_total    = $order->get_total();
         $order_number   = $order->get_order_number();
         $order_subtotal = $order->get_subtotal();
 
-        $code           = str_replace( '{currency}', $order_currency, $code );
-        $code           = str_replace( '{order_total}', $order_total, $code );
-        $code           = str_replace( '{order_number}', $order_number, $code );
-        $code           = str_replace( '{order_subtotal}', $order_subtotal, $code );
+        // customer details
+        if ( $customer ) {
+            $code = str_replace( '{customer_id}', $customer->ID, $code );
+            $code = str_replace( '{customer_email}', $customer->user_email, $code );
+            $code = str_replace( '{customer_first_name}', $customer->first_name, $code );
+            $code = str_replace( '{customer_last_name}', $customer->last_name, $code );
+        }
+
+        // order details
+        $code = str_replace( '{used_coupons}', $used_coupons, $code );
+        $code = str_replace( '{payment_method}', $payment_method, $code );
+        $code = str_replace( '{currency}', $order_currency, $code );
+        $code = str_replace( '{order_total}', $order_total, $code );
+        $code = str_replace( '{order_number}', $order_number, $code );
+        $code = str_replace( '{order_subtotal}', $order_subtotal, $code );
 
         return $code;
     }
