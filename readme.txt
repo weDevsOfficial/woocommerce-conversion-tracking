@@ -20,7 +20,7 @@ This plugin inserts those codes on WooCommerce cart page, checkout success page 
 [Github](https://github.com/tareq1988/woocommerce-conversion-tracking)
 
 = Author =
-[Tareq Hasan](http://tareq.weDevs.com)
+[Tareq Hasan](https://tareq.co)
 
 == Installation ==
 
@@ -43,32 +43,47 @@ Nothing here right now
 
 == Changelog ==
 
+= 1.2.3 - 31-July-2017 =
+
+ * [improvement] WooCommerce v3.0 compatibility
+ * [new] Added new shortcodes: `{customer_id}`, `{customer_email}`, `{customer_first_name}`, `{customer_last_name}`, `{payment_method}`
+ * [new] Added weDevs Insights class
+
 = 1.2.2 - 10-Feb-2017 =
+
 * Updated with plugin slug as the textdomain
 * Integration class PHP compatibility
 
 = 1.2.1 - 9-June-2016 =
+
 * [fix] Fatal error on thank you page when without parameters
 
 = 1.2 - 10-April-2016 =
+
 * [new] Order number variable `{order_number}` added on checkout page
 
 = 1.1 - 08-Jan-2016 =
+
 * [new] Dynamic values on product and checkout script
 
 = 1.0 - 08/07/2015 =
+
 * [fix] Removed product specific codes from product single page, should show only on checkout. My bad!
 
 = 0.3 - 31/05/2015 =
+
 * [fix] Product specific code only loads on product page itself, not checkout
 
 = 0.2 - 30/05/2015 =
+
 * Renamed position option "In Footer" to "Inside Body Tag", may be was confusing to users.
 
 = 0.1.1 - 06/04/2014 =
+
 * Added position parameter for display position control
 
 = 0.1 - 27/03/2014 =
+
 * Initial release
 
 == Upgrade Notice ==
