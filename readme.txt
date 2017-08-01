@@ -52,6 +52,10 @@ We put the JavaScript scripts provided by you in the page and it fires a convers
 
 == Changelog ==
 
+= 1.2.4 - 01-Aug-2017 =
+
+ * [fix] The tracker option won't go away. Sorry!
+
 = 1.2.3 - 31-July-2017 =
 
  * [improvement] WooCommerce v3.0 compatibility
