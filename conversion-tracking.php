@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Conversion Tracking
 Plugin URI: https://wedevs.com/products/plugins/woocommerce-conversion-tracking/
 Description: Adds various conversion tracking codes to cart, checkout, registration success and product page on WooCommerce
-Version: 1.2.2
+Version: 1.2.4
 Author: Tareq Hasan
 Author URI: https://tareq.co/
 License: GPL2
@@ -58,7 +58,7 @@ class WeDevs_WC_Conversion_Tracking {
 
         // Localize our plugin
         add_action( 'init', array( $this, 'localization_setup' ) );
-        add_action( 'admin_init', array( $this, 'init_tracker' ) );
+        add_action( 'init', array( $this, 'init_tracker' ) );
 
         // register integration
         add_filter( 'woocommerce_integrations', array($this, 'register_integration') );
