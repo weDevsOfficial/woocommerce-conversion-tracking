@@ -1,0 +1,98 @@
+.switch input {
+    display: none;
+}
+input[type=checkbox] {
+    border: 1px solid #b4b9be;
+    background: #fff;
+    color: #555;
+    clear: none;
+    cursor: pointer;
+    line-height: 0;
+    height: 16px;
+    margin: -4px 4px 0 0;
+    outline: 0;
+    padding: 0!important;
+    text-align: center;
+    vertical-align: middle;
+    width: 16px;
+    min-width: 16px;
+    -webkit-appearance: none;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    transition: .05s border-color ease-in-out;
+}
+.switch input:checked + .slider {
+    background-color: #64b450;
+}
+.switch .slider.round {
+    border-radius: 34px;
+}
+.switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #DD5044;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.switch input:checked + .slider:before {
+    -webkit-transform: translateX(22px);
+    -ms-transform: translateX(22px);
+    transform: translateX(22px);
+}
+.switch .slider.round:before {
+    border-radius: 50%;
+}
+.switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.gateway-text{
+    margin-right: 30px;
+    font-weight:bold;
+}
+.gateway {
+    display: flex;
+    flex-flow: 1 1 auto;
+    flex-wrap: row wrap;
+}
+.gateway label {
+    flex: 1 1 auto;
+    max-width: 7%;
+}
+.gateway label.switch {
+    position: relative;
+    display: inline-block;
+    max-width: 40px;
+    height: 18px;
+    margin-bottom: 10px;
+}
+.integration-settings{
+    margin-left: 25px;
+    margin-bottom: 35px;
+}
+
+.wc-ct-option{
+    margin-left: 50px;
+    margin-top: -17px;
+}
+
+.wc-ct-form-group{
+    margin-top: 15px;
+}
+.integration-settings{
+    display: none;
+}
