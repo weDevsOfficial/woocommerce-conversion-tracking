@@ -56,12 +56,23 @@ class WeDevs_WC_Conversion_Tracking {
      */
     public function __construct() {
 
-        // Localize our plugin
-        add_action( 'init', array( $this, 'localization_setup' ) );
-        add_action( 'init', array( $this, 'init_tracker' ) );
+        $this->init_hooks();
+        $this->define_constants();
+        $this->includes();
+        $this->init_classes();
+    }
 
-        // register integration
-        add_filter( 'woocommerce_integrations', array($this, 'register_integration') );
+    /**
+     * Define the constants
+     *
+     * @return void
+     */
+    public function define_constants() {
+        define( 'WCCT_FILE', __FILE__ );
+        define( 'WCCT_PATH', dirname( WCCT_FILE ) );
+        define( 'WCCT_INCLUDES', WCCT_PATH . '/includes' );
+        define( 'WCCT_URL', plugins_url( '', WCCT_FILE ) );
+        define( 'WCCT_ASSETS', WCCT_URL . '/assets' );
     }
 
     /**
@@ -78,6 +89,57 @@ class WeDevs_WC_Conversion_Tracking {
         }
 
         return $instance;
+    }
+
+    /**
+     * Include required file
+     * @return void
+     */
+    public function includes() {
+        require_once WCCT_INCLUDES . "/class-conversion-manager.php";
+        require_once WCCT_INCLUDES . "/class-ajax.php";
+    }
+
+    /**
+     * Initialize the hooks
+     *
+     * @return void
+     */
+    public function init_hooks() {
+        add_action( 'init', array( $this, 'localization_setup' ) );
+        add_action( 'init', array( $this, 'init_tracker' ) );
+        add_action( 'admin_menu', array( $this, 'admin_menu_page' ) );
+
+        // register integration
+        add_filter( 'woocommerce_integrations', array($this, 'register_integration') );
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+    }
+    /**
+     * Instantiate the required classes
+     * @return void
+     */
+    public function init_classes() {
+        new WC_Conversion_Tracking_Ajax();
+    }
+    /**
+     * Enqueue Script
+     *
+     * @return void
+     */
+    public function enqueue_scripts() {
+        /**
+         * All style goes here
+         */
+        wp_enqueue_style( 'style', plugins_url( 'assets/css/style.css', __FILE__ ), false, date( 'Ymd' ) );
+        /**
+         * All script goes here
+         */
+        wp_enqueue_script( 'wc-tracking-script', plugins_url( 'assets/js/script.js', __FILE__ ), array( 'jquery'), false, true );
+
+        wp_localize_script( 'wc-tracking-script', 'wc_tracking', array(
+                'ajaxurl' => admin_url( 'admin-ajax.php' ),
+            )
+        );
     }
 
     /**
@@ -115,6 +177,24 @@ class WeDevs_WC_Conversion_Tracking {
         $interations[] = 'WeDevs_WC_Tracking_Integration';
 
         return $interations;
+    }
+
+    /**
+     * Add menu page
+     * @return void
+     */
+    public function admin_menu_page() {
+        add_submenu_page( 'woocommerce', 'Conversion Tracking', 'Conversion Tracking', 'manage_options', 'conversion-tracking', array( $this, 'conversion_tracking_template' ) );
+    }
+
+    /**
+     * Conversion Tracking View Page
+     * @return void
+     */
+    public function conversion_tracking_template() {
+        $object = new WC_Conversion_Tracking_Integration_Manager();
+
+        $object->get_active_integrations();
     }
 
 }

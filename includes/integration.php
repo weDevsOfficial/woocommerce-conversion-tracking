@@ -79,7 +79,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
                 'title'       => sprintf( /* translators: %s: page name */
                                    __( 'Tags for %s', 'woocommerce-conversion-tracking' ),
                                    __( 'User Registration', 'woocommerce-conversion-tracking' )
-                                 ),
+                                ),
                 'description' => __( 'Adds script on the successful registraion page', 'woocommerce-conversion-tracking' ),
                 'desc_tip'    => true,
                 'id'          => 'registration',
