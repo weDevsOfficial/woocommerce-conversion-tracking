@@ -32,6 +32,16 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 * PHP version 5.2.4 or greater
 * MySQL version 5.0 or greater
 
+= Tracking Conversions =
+
+If you need to track successful purchases, go to the settings and in the **Tags for Successful Order** box, place the JavaScript code you received from the services (e.g. Facebook, Twitter, AdWords) you want to use.
+
+In the JavaScript snippet, there are places where you can use `order_number`, `order_total`, `order_subtotal`, `currency`, etc.
+
+The plugin provides the following codes: <code>{customer_id}</code>, <code>{customer_email}</code>, <code>{customer_first_name}</code>, <code>{customer_last_name}</code>, <code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{currency}</code>, <code>{payment_method}</code>.
+
+Replace the script tag values with the suitable codes the plugin provides and finally insert the snippet in the boxes.
+
 == Frequently Asked Questions ==
 
 = Does it work with WooCommerce 2.x and 3.x? =
@@ -51,6 +61,12 @@ We put the JavaScript scripts provided by you in the page and it fires a convers
 2. Tracking code on single product.
 
 == Changelog ==
+
+= Version 1.2.5 (28-December-2017) =
+
+ * Added plugin action links for Docs and Settings.
+ * Added a survey for next version features.
+ * Updated WooCommerce compatibility version tags.
 
 = 1.2.4 - 01-Aug-2017 =
 
