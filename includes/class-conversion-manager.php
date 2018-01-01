@@ -14,7 +14,7 @@ class WC_Conversion_Tracking_Integration_Manager {
      */
     public function __construct() {
         $this->includes_integration();
-        $this->render_form();
+        // $this->render_form();
     }
 
     /**
@@ -71,13 +71,13 @@ class WC_Conversion_Tracking_Integration_Manager {
      * @return void
      */
     public function render_form() {
-        $integrations           =   $this->get_active_integrations();
+        $integrations           =   $this->get_integrations();
         $integration_enable     =   get_option( 'integration_enabled' );
         $integration_settings   =   get_option( 'integration_settings' );
         ?>
             <h2>Conversion Tracking</h2>
-            <div id="message" class="updated notice is-dismissible" style="display: none; margin-bottom:35px">
-                <p><strong>Your settings has been saved.</strong></p>
+            <div id="message" class="updated inline" style="display: none; margin-bottom:35px">
+                <p><strong>Your settings has been saved</strong></p>
             </div>
             <form action="" method="POST" id="integration-form">
                 <?php
@@ -90,7 +90,7 @@ class WC_Conversion_Tracking_Integration_Manager {
                     <div class="integration">
                         <div class="integration-name">
                             <div class="gateway">
-                                <label for="" class="gateway-text">
+                                <label for="integration-<?php echo $id?>" class="gateway-text" class="gt-label">
                                     <?php echo $name?>
                                 </label>
                                 <label class="switch tips" title="" data-original-title="Make Inactive">
@@ -108,38 +108,48 @@ class WC_Conversion_Tracking_Integration_Manager {
                             foreach ($settings as $field) {
                                 ?>
                                     <div class="wc-ct-form-group">
-                                        <label for=""><?php echo $field['label']?></label>
+                                        <table class="form-table custom-table">
+                                            <tr>
+                                                <th>
+                                                    <label for="<?php echo $id.'-'.$field['name']?>"><?php echo $field['label']?></label>
+                                                </th>
+
                                 <?php
                                 switch ($field['type']) {
                                     case 'text':
-                                        echo '<input type="text" name="'.$id.'['.$field['name'].']" value="'.$integration_settings[$id][$field['name']].'">';
+                                        echo '<td><input type="text" name="'.$id.'['.$field['name'].']" value="'.$integration_settings[$id][$field['name']].'" id="'.$id.'-'.$field['name'].'"></td>';
                                         break;
 
                                     case 'textarea':
-                                        echo '<textarea name="twitter[pixel_id]" />';
+                                        echo '<td><textarea name="'.$id.'['.$field['name'].']" id="'.$id.'-'.$field['name'].'" cols="30" rows="3">'.$integration_settings[$id][$field['name']].'</textarea></td>';
                                         break;
                                     case 'checkbox':
                                         ?>
-                                        <div class="wc-ct-option" style="">
-                                            <?php
-                                                foreach ( $field['options'] as $key => $option ) {
-                                                    $field_name =   $field['name'];
+                                        <td>
+                                            <div class="wc-ct-option" style="">
+                                                <?php
+                                                    foreach ( $field['options'] as $key => $option ) {
+                                                        $field_name =   $field['name'];
 
-                                                    $checked = isset( $integration_settings[$id][$field_name][$key] ) ? 'on' : '';
-                                                    ?>
-                                                        <label for="">
-                                                            <input type="checkbox" name="<?php echo $id?>[<?php echo $field_name?>][<?php echo $key?>]" <?php checked( 'on', $checked );?>>
-                                                            <?php echo $option ?>
-                                                        </label>
-                                                        <br>
-                                                    <?php
-                                                }
-                                            ?>
-                                        </div>
+                                                        $checked = isset( $integration_settings[$id][$field_name][$key] ) ? 'on' : '';
+                                                        ?>
+                                                            <label for="<?php echo $id.'-'.$key ?>">
+                                                                <input type="checkbox" name="<?php echo $id?>[<?php echo $field_name?>][<?php echo $key?>]" <?php checked( 'on', $checked );?> id="<?php echo $id.'-'.$key ?>">
+                                                                <?php echo $option ?>
+                                                            </label>
+                                                            <br>
+
+                                                        <?php
+                                                    }
+                                                ?>
+                                            </div>
+                                        </td>
                                         <?php
                                 }
                             }
                             ?>
+                                </tr>
+                             </table>
                             </div>
                         </div>
                     </div>
@@ -147,7 +157,9 @@ class WC_Conversion_Tracking_Integration_Manager {
                     <?php
                 }
                 ?>
-                <button class="button button-primary">Save Changes</button>
+                <div class="submit-area">
+                    <button class="button button-primary">Save Changes</button>
+                </div>
             </form>
         <?php
     }

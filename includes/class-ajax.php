@@ -12,6 +12,11 @@ class WC_Conversion_Tracking_Ajax
 		add_action( 'wp_ajax_wc_integration', array( $this, 'integration_enabled' ) );
 	}
 
+	/**
+	 * Save integration settings
+	 *
+	 * @return void
+	 */
 	public function integration_enabled() {
 		if ( !current_user_can( 'manage_options' ) ) {
             return;
@@ -41,7 +46,7 @@ class WC_Conversion_Tracking_Ajax
         }
 
         update_option( 'integration_enabled', $integration_enabled );
-        update_option( 'integration_settings', $integration_settings );
+        update_option( 'integration_settings', stripslashes_deep( $integration_settings ) );
         wp_send_json_success();
 
 	}

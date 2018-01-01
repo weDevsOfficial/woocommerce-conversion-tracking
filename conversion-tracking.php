@@ -97,6 +97,7 @@ class WeDevs_WC_Conversion_Tracking {
      */
     public function includes() {
         require_once WCCT_INCLUDES . "/class-conversion-manager.php";
+        require_once WCCT_INCLUDES . "/class-conversion-event.php";
         require_once WCCT_INCLUDES . "/class-ajax.php";
     }
 
@@ -120,6 +121,7 @@ class WeDevs_WC_Conversion_Tracking {
      */
     public function init_classes() {
         new WC_Conversion_Tracking_Ajax();
+        new WC_Conversion_Event_Dispatcher();
     }
     /**
      * Enqueue Script
@@ -192,9 +194,9 @@ class WeDevs_WC_Conversion_Tracking {
      * @return void
      */
     public function conversion_tracking_template() {
-        $object = new WC_Conversion_Tracking_Integration_Manager();
+        $integrations = new WC_Conversion_Tracking_Integration_Manager();
 
-        $object->get_active_integrations();
+        $integrations->render_form();
     }
 
 }

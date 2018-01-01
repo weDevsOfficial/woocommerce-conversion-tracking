@@ -33,7 +33,7 @@ input[type=checkbox] {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #DD5044;
+    background-color: #CCC;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -86,13 +86,32 @@ input[type=checkbox] {
 }
 
 .wc-ct-option{
-    margin-left: 50px;
-    margin-top: -17px;
+    margin-left: 0px;
+    margin-top: 15px;
 }
 
 .wc-ct-form-group{
-    margin-top: 15px;
 }
 .integration-settings{
     display: none;
+}
+
+.submit-area{
+
+    display: block;
+    overflow: hidden;
+}
+
+.custom-table th{
+    width:150px !important;
+}
+
+.integration-name{
+    margin-bottom: 30px;
+    margin-top:30px
+}
+
+.option-td{
+    width:20px !important;
+    float: none !important;
 }
