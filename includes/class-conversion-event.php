@@ -13,7 +13,6 @@ class WC_Conversion_Event_Dispatcher {
     function __construct() {
         add_action( 'plugins_loaded', array( $this, 'init_integrations'));
         add_action( 'wp_head', array( $this, 'enqueue_scripts'));
-
         add_action( 'woocommerce_add_to_cart', array( $this, 'added_to_cart' ), 11, 4);
         add_action( 'woocommerce_thankyou', array( $this, 'checkout_complete') );
         add_action( 'woocommerce_created_customer', array( $this, 'complete_registration', 11 ) );
@@ -34,7 +33,6 @@ class WC_Conversion_Event_Dispatcher {
     {
         foreach ( $this->integrations as $integration ) {
             if ( $integration->supports( 'add_to_cart' ) ) {
-
                 if( method_exists( $integration, 'add_to_cart' ) ) {
                     $integration->add_to_cart( $cart_item_key, $product_id, $quantity, $variation_id );
                 }
@@ -48,10 +46,8 @@ class WC_Conversion_Event_Dispatcher {
      * @return void
      */
     public function checkout_complete( $order_id ) {
-
         foreach ( $this->integrations as $integration ) {
             if ( $integration->supports( 'checkout' ) ) {
-
                 if( method_exists( $integration, 'checkout' ) ) {
                     $integration->checkout( $order_id );
                 }
@@ -67,7 +63,6 @@ class WC_Conversion_Event_Dispatcher {
     public function complete_registration() {
         foreach ( $this->integrations as $integration ) {
             if ( $integration->supports( 'registration' ) ) {
-
                 if( method_exists( $integration, 'registration' ) ) {
                     $integration->registration();
                 }

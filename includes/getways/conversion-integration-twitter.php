@@ -3,7 +3,9 @@
  * Facebook
  */
 class WC_Conversion_Tracking_Gateway_Twitter extends WC_Conversion_Tracking_Integration {
-
+    /**
+     * Constructor for WC_Conversion_Tracking_Gateway_Twitter class
+     */
     function __construct() {
         $this->id       = 'twitter';
         $this->name     = 'Twitter';

@@ -3,7 +3,9 @@
  * Facebook
  */
 class WC_Conversion_Tracking_Gateway_Custom extends WC_Conversion_Tracking_Integration {
-
+    /**
+     * Constructor for WC_Conversion_Tracking_Gateway_Custom class
+     */
     function __construct() {
         $this->id       = 'custom';
         $this->name     = 'Custom';
@@ -11,9 +13,13 @@ class WC_Conversion_Tracking_Gateway_Custom extends WC_Conversion_Tracking_Integ
         $this->supports = array(
             'add_to_cart', 'checkout', 'registration'
         );
-
-        //var_dump($this->get_integration_settings());
     }
+
+    /**
+     * Get settings integration
+     *
+     * @return array
+     */
     public function get_settings() {
         $settings = array(
             array(

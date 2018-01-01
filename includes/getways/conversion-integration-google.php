@@ -3,7 +3,9 @@
  * Facebook
  */
 class WC_Conversion_Tracking_Gateway_Google extends WC_Conversion_Tracking_Integration {
-
+    /**
+     * Constructor for WC_Conversion_Tracking_Gateway_Google
+     */
     function __construct() {
         $this->id       = 'google';
         $this->name     = 'Google';
@@ -12,6 +14,11 @@ class WC_Conversion_Tracking_Gateway_Google extends WC_Conversion_Tracking_Integ
             'add_to_cart', 'checkout', 'registration'
         );
     }
+    /**
+     * Get settings
+     *
+     * @return array
+     */
     public function get_settings() {
         $settings = array(
             array(

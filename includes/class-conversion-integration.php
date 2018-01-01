@@ -100,9 +100,4 @@ abstract class WC_Conversion_Tracking_Integration {
         }
         return false;
     }
-
-    public function track_purchase()
-    {
-
-    }
 }
