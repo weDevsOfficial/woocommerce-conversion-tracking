@@ -3,7 +3,7 @@
 /**
  * WCCT gate way twitter
  */
-class WCCT_Gateway_Twitter extends WCCT_Integration {
+class WCCT_Integration_Twitter extends WCCT_Integration {
 
     /**
      * Constructor for WC_Conversion_Tracking_Gateway_Twitter class

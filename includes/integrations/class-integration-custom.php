@@ -3,7 +3,7 @@
 /**
  * WCCT gate way custom
  */
-class WCCT_Gateway_Custom extends WCCT_Integration {
+class WCCT_Integration_Custom extends WCCT_Integration {
 
     /**
      * Constructor for WC_Conversion_Tracking_Gateway_Custom class

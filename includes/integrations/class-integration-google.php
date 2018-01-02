@@ -3,7 +3,7 @@
 /**
  * WCCT gate way google
  */
-class WCCT_Gateway_Google extends WCCT_Integration {
+class WCCT_Integration_Google extends WCCT_Integration {
 
     /**
      * Constructor for WC_Conversion_Tracking_Gateway_Google

@@ -3,7 +3,7 @@
 /**
  * WCCT gate way facebook
  */
-class WCCT_Gateway_Facebook extends WCCT_Integration {
+class WCCT_Integration_Facebook extends WCCT_Integration {
 
     /**
      * Constructor for WC_Conversion_Tracking_Gateway_Facebook

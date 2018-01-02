@@ -60,8 +60,6 @@ class WeDevs_WC_Conversion_Tracking {
      * Sets up all the appropriate hooks and actions
      * within our plugin.
      *
-     * @uses add_action()
-     * @uses add_filter()
      */
     public function __construct() {
         $this->define_constants();
@@ -70,18 +68,6 @@ class WeDevs_WC_Conversion_Tracking {
         $this->init_classes();
 
         register_activation_hook( __FILE__, array( $this, 'activate' ) );
-
-        // Localize our plugin
-        add_action( 'init', array( $this, 'localization_setup' ) );
-        add_action( 'init', array( $this, 'init_tracker' ) );
-
-        add_action( 'admin_notices', array( $this, 'display_survey' ) );
-        add_action( 'wp_ajax_wcv_dismiss_survey', array( $this, 'dismiss_survey' ) );
-
-        // register integration
-        add_filter( 'woocommerce_integrations', array($this, 'register_integration') );
-
-        add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
     }
 
     /**
@@ -101,14 +87,15 @@ class WeDevs_WC_Conversion_Tracking {
     }
 
     /**
-     * Include required file
+     * Include required files
+     *
      * @return void
      */
     public function includes() {
-        require_once WCCT_INCLUDES . "/class-conversion-manager.php";
-        require_once WCCT_INCLUDES . "/class-conversion-event.php";
-        require_once WCCT_INCLUDES . "/class-ajax.php";
-        require_once WCCT_INCLUDES . "/class-admin.php";
+        require_once WCCT_INCLUDES . '/class-integration-manager.php';
+        require_once WCCT_INCLUDES . '/class-event-dispatcher.php';
+        require_once WCCT_INCLUDES . '/class-ajax.php';
+        require_once WCCT_INCLUDES . '/class-admin.php';
     }
 
     /**
@@ -150,12 +137,20 @@ class WeDevs_WC_Conversion_Tracking {
      * @return void
      */
     public function init_hooks() {
-        add_action( 'init', array( $this, 'localization_setup' ) );
 
+        // Localize our plugin
+        add_action( 'init', array( $this, 'localization_setup' ) );
         add_action( 'init', array( $this, 'init_tracker' ) );
 
+        add_action( 'admin_notices', array( $this, 'display_survey' ) );
+        add_action( 'wp_ajax_wcv_dismiss_survey', array( $this, 'dismiss_survey' ) );
+
+        // register integration
         add_filter( 'woocommerce_integrations', array($this, 'register_integration') );
+
+        add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
     }
+
     /**
      * Instantiate the required classes
      * @return void
@@ -192,6 +187,7 @@ class WeDevs_WC_Conversion_Tracking {
      * Register integration
      *
      * @param array $interations
+     *
      * @return array
      */
     function register_integration( $interations ) {

@@ -82,6 +82,7 @@ abstract class WCCT_Integration {
      * Integration settings get options
      *
      * @param  string $integration_id
+     *
      * @return array
      */
     public function get_integration_settings() {
@@ -94,12 +95,14 @@ abstract class WCCT_Integration {
      * Check feattures
      *
      * @param  array $feature
+     *
      * @return boolean
      */
     public function supports( $feature ) {
         if ( in_array( $feature, $this->supports ) ) {
             return true;
         }
+
         return false;
     }
 }
