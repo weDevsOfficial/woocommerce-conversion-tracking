@@ -1,0 +1,107 @@
+.wcct-admin .switch input {
+    display: none;
+}
+.wcct-admin input[type="checkbox"] {
+    border: 1px solid #b4b9be;
+    background: #fff;
+    color: #555;
+    clear: none;
+    cursor: pointer;
+    line-height: 0;
+    height: 16px;
+    margin: -4px 4px 0 0;
+    outline: 0;
+    padding: 0!important;
+    text-align: center;
+    vertical-align: middle;
+    width: 16px;
+    min-width: 16px;
+    -webkit-appearance: none;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    transition: .05s border-color ease-in-out;
+}
+.wcct-admin .switch input:checked + .slider {
+    background-color: #64b450;
+}
+.wcct-admin .switch .slider.round {
+    border-radius: 34px;
+}
+.wcct-admin .switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #CCC;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.wcct-admin .switch input:checked + .slider:before {
+    -webkit-transform: translateX(22px);
+    -ms-transform: translateX(22px);
+    transform: translateX(22px);
+}
+.wcct-admin .switch .slider.round:before {
+    border-radius: 50%;
+}
+.wcct-admin .switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.wcct-admin .slider.round:before {
+    border-radius: 50%;
+}
+.wcct-admin .gateway-text {
+    margin-right: 30px;
+    font-weight:bold;
+}
+.wcct-admin .gateway {
+    display: flex;
+    flex-flow: 1 1 auto;
+    flex-wrap: row wrap;
+}
+.wcct-admin .gateway label {
+    flex: 1 1 auto;
+    max-width: 7%;
+}
+.wcct-admin .gateway label.switch {
+    position: relative;
+    display: inline-block;
+    max-width: 40px;
+    height: 18px;
+    margin-bottom: 10px;
+}
+.wcct-admin .integration-settings {
+    margin-left: 25px;
+    margin-bottom: 35px;
+}
+.wc-ct-option {
+    margin-left: 0px;
+    margin-top: 15px;
+}
+.integration-settings {
+    display: none;
+}
+.wcct-admin .submit-area {
+    display: block;
+    overflow: hidden;
+}
+.wcct-admin .custom-table th {
+    width:150px !important;
+}
+.wcct-admin .integration-name {
+    margin-bottom: 30px;
+    margin-top:30px
+}
+.wcct-admin .option-td {
+    width:20px !important;
+    float: none !important;
+}

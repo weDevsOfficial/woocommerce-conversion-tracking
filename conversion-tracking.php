@@ -64,8 +64,10 @@ class WeDevs_WC_Conversion_Tracking {
      * @uses add_filter()
      */
     public function __construct() {
-
         $this->define_constants();
+        $this->init_hooks();
+        $this->includes();
+        $this->init_classes();
 
         register_activation_hook( __FILE__, array( $this, 'activate' ) );
 
@@ -99,6 +101,17 @@ class WeDevs_WC_Conversion_Tracking {
     }
 
     /**
+     * Include required file
+     * @return void
+     */
+    public function includes() {
+        require_once WCCT_INCLUDES . "/class-conversion-manager.php";
+        require_once WCCT_INCLUDES . "/class-conversion-event.php";
+        require_once WCCT_INCLUDES . "/class-ajax.php";
+        require_once WCCT_INCLUDES . "/class-admin.php";
+    }
+
+    /**
      * Define the constants
      *
      * @since 1.2.5
@@ -108,6 +121,10 @@ class WeDevs_WC_Conversion_Tracking {
     public function define_constants() {
         define( 'WCCT_VERSION', $this->version );
         define( 'WCCT_FILE', __FILE__ );
+        define( 'WCCT_PATH', dirname( WCCT_FILE ) );
+        define( 'WCCT_INCLUDES', WCCT_PATH . '/includes' );
+        define( 'WCCT_URL', plugins_url( '', WCCT_FILE ) );
+        define( 'WCCT_ASSETS', WCCT_URL . '/assets' );
     }
 
     /**
@@ -125,6 +142,28 @@ class WeDevs_WC_Conversion_Tracking {
         }
 
         update_option( 'wcct_version', WCCT_VERSION );
+    }
+
+    /**
+     * Initialize the hooks
+     *
+     * @return void
+     */
+    public function init_hooks() {
+        add_action( 'init', array( $this, 'localization_setup' ) );
+
+        add_action( 'init', array( $this, 'init_tracker' ) );
+
+        add_filter( 'woocommerce_integrations', array($this, 'register_integration') );
+    }
+    /**
+     * Instantiate the required classes
+     * @return void
+     */
+    public function init_classes() {
+        new WCCT_Ajax();
+        new WCCT_Event_Dispatcher();
+        new WCCT_Admin();
     }
 
     /**
@@ -298,7 +337,6 @@ class WeDevs_WC_Conversion_Tracking {
 
         return $links;
     }
-
 }
 
 // WeDevs_WC_Conversion_Tracking
