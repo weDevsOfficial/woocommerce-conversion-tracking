@@ -108,7 +108,7 @@ class WeDevs_WC_Conversion_Tracking {
         require_once WCCT_INCLUDES . "/class-conversion-manager.php";
         require_once WCCT_INCLUDES . "/class-conversion-event.php";
         require_once WCCT_INCLUDES . "/class-ajax.php";
-        require_once WCCT_INCLUDES . "/class-admin.php"
+        require_once WCCT_INCLUDES . "/class-admin.php";
     }
 
     /**
