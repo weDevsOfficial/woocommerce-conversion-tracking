@@ -16,6 +16,7 @@ class WCCT_Gateway_Google extends WCCT_Integration {
             'add_to_cart', 'checkout', 'registration'
         );
     }
+
     /**
      * Get settings
      *
@@ -57,11 +58,10 @@ class WCCT_Gateway_Google extends WCCT_Integration {
     public function checkout() {
 
         if ( $this->is_enabled() ) {
-            $integration_settins    =   $this->get_integration_settings();
-            $conversion_id          =   !empty( $integration_settins['conversion_id'] ) ? $integration_settins['conversion_id'] : '';
-            $conversion_label          =   !empty( $integration_settins['conversion_label'] ) ? $integration_settins['conversion_label'] : '';
-
-            $currency = get_option('woocommerce_currency');
+            $integration_settins   =   $this->get_integration_settings();
+            $conversion_id         =   !empty( $integration_settins['conversion_id'] ) ? $integration_settins['conversion_id'] : '';
+            $conversion_label      =   !empty( $integration_settins['conversion_label'] ) ? $integration_settins['conversion_label'] : '';
+            $currency              =   get_option('woocommerce_currency');
             ?>
                 <!-- Google Code for WooCommerce Conversion Page -->
                 <script type="text/javascript">

@@ -56,18 +56,17 @@ class WCCT_Gateway_Twitter extends WCCT_Integration {
 
         if ( count( $events ) > 0 ) {
 
-            if( isset( $events['Purchase'] ) &&  $events['Purchase'] == 'on' ){
+            if ( isset( $events['Purchase'] ) &&  $events['Purchase'] == 'on' ) {
               ?>
                 <script>
-                    twq('track','Purchase', {
-                        //required parameters
-                        value: '',
-                        currency: '<?php echo get_option('woocommerce_currency')?>',
-                        content_ids: [''],
-                        content_type: 'product',
-                        content_name: '',
-                        order_id: '<?php echo $order_id;?>'
-                    });
+                  twq('track','Purchase', {
+                    value: '',
+                    currency: '<?php echo get_option('woocommerce_currency')?>',
+                    content_ids: [''],
+                    content_type: 'product',
+                    content_name: '',
+                    order_id: '<?php echo $order_id;?>'
+                  });
                 </script>
               <?php
             }
@@ -75,11 +74,12 @@ class WCCT_Gateway_Twitter extends WCCT_Integration {
     }
 
     /**
-     * [add_to_cart description]
-     * @param [type] $cart_item_key [description]
-     * @param [type] $product_id    [description]
-     * @param [type] $quantity      [description]
-     * @param [type] $variation_id  [description]
+     * Add to cart
+     *
+     * @param integer $cart_item_key
+     * @param integer $product_id
+     * @param integer $quantity
+     * @param integer $variation_id
      */
     public function add_to_cart( $cart_item_key, $product_id, $quantity, $variation_id ) {
         $integration_settins = $this->get_integration_settings();
@@ -88,24 +88,22 @@ class WCCT_Gateway_Twitter extends WCCT_Integration {
         $product = wc_get_product( $product_id );
 
         if ( count( $events ) > 0 ) {
-
-            if( isset( $events['AddToCart'] ) &&  $events['AddToCart'] == 'on' ){
-                ?>
-                    <script>
-                        twq('track','AddToCart', {
-                            //required parameters
-                            value: '<?php echo $product->get_price() ?>',
-                            currency: '<?php echo get_option('woocommerce_currency')?>',
-                            num_items: '<?php echo $quantity?>',
-                            //optional parameters
-                            content_ids: ['<?php echo $product_id?>'],
-                            content_type: 'product',
-                            content_name: '',
-                            order_id: '<?php echo $product_id;?>'
-                        });
-                    </script>
-                <?php
-            }
+          if ( isset( $events['AddToCart'] ) &&  $events['AddToCart'] == 'on' ) {
+            ?>
+              <script>
+                twq('track','AddToCart', {
+                  value: '<?php echo $product->get_price() ?>',
+                  currency: '<?php echo get_option('woocommerce_currency')?>',
+                  num_items: '<?php echo $quantity?>',
+                  //optional parameters
+                  content_ids: ['<?php echo $product_id?>'],
+                  content_type: 'product',
+                  content_name: '',
+                  order_id: '<?php echo $product_id;?>'
+                });
+              </script>
+            <?php
+          }
         }
     }
 
@@ -118,14 +116,13 @@ class WCCT_Gateway_Twitter extends WCCT_Integration {
         $events = isset( $integration_settins['events'] ) ? $integration_settins['events'] : 0;
 
         if ( count( $events ) > 0 ) {
-
-            if( isset( $events['registration'] ) &&  $events['registration'] == 'on' ){
-              ?>
-                <script>
-                  twq('track', 'CompleteRegistration', {currency: '<?php echo get_option('woocommerce_currency')?>', value: 0.75});
-                </script>
-              <?php
-            }
+          if ( isset( $events['registration'] ) &&  $events['registration'] == 'on' ) {
+            ?>
+            <script>
+              twq('track', 'CompleteRegistration', {currency: '<?php echo get_option('woocommerce_currency')?>', value: 0.75});
+            </script>
+            <?php
+          }
         }
     }
 
@@ -135,16 +132,16 @@ class WCCT_Gateway_Twitter extends WCCT_Integration {
      * @return void
      */
     public function enqueue_script() {
-        if( $this->is_enabled() ){
-            $integration_settins    =   $this->get_integration_settings();
-            $twitter_pixel_id       =   !empty( $integration_settins['pixel_id'] ) ? $integration_settins['pixel_id'] : '';
+        if ( $this->is_enabled() ) {
+          $integration_settins    =   $this->get_integration_settings();
+          $twitter_pixel_id       =   !empty( $integration_settins['pixel_id'] ) ? $integration_settins['pixel_id'] : '';
         ?>
-            <script>
-                !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+          <script>
+            !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
 
-                twq('init','<?php echo $twitter_pixel_id;?>');
-                twq('track', "PageView");
-            </script>
+            twq('init','<?php echo $twitter_pixel_id;?>');
+            twq('track', "PageView");
+          </script>
         <?php }
     }
 }

@@ -83,7 +83,7 @@ class WCCT_Gateway_Facebook extends WCCT_Integration {
         $events = isset( $integration_settins['events'] ) ? $integration_settins['events'] : 0;
         if ( count( $events ) > 0 ) {
 
-            if( isset( $events['Purchase'] ) &&  $events['Purchase'] == 'on' ){
+            if ( isset( $events['Purchase'] ) &&  $events['Purchase'] == 'on' ) {
                 ?>
                 <script>
                   fbq('track', 'Purchase', {
@@ -114,7 +114,7 @@ class WCCT_Gateway_Facebook extends WCCT_Integration {
 
         if ( count( $events ) > 0 ) {
 
-            if( isset( $events['AddToCart'] ) &&  $events['AddToCart'] == 'on' ){
+            if ( isset( $events['AddToCart'] ) &&  $events['AddToCart'] == 'on' ) {
                 ?>
                 <script>
                   fbq('track', 'AddToCart', {
@@ -136,17 +136,17 @@ class WCCT_Gateway_Facebook extends WCCT_Integration {
      * @return void
      */
     public function registration() {
-        $integration_settins = $this->get_integration_settings();
-        $events = isset( $integration_settins['events'] ) ? $integration_settins['events'] : 0;
+        $integration_settins   =    $this->get_integration_settings();
+        $events                =    isset( $integration_settins['events'] ) ? $integration_settins['events'] : 0;
         if ( count( $events ) > 0 ) {
 
-            if ( isset( $events['registration'] ) &&  $events['registration'] == 'on' ) {
-                ?>
-                <script>
-                    fbq('track', 'CompleteRegistration', {currency: 'USD', value: 0.75});
-                </script>
-                <?php
-            }
+          if ( isset( $events['registration'] ) &&  $events['registration'] == 'on' ) {
+            ?>
+            <script>
+              fbq('track', 'CompleteRegistration', {currency: 'USD', value: 0.75});
+            </script>
+            <?php
+          }
         }
     }
 }
