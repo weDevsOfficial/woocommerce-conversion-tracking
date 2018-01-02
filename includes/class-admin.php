@@ -21,11 +21,11 @@ class WCCT_Admin{
         /**
          * All style goes here
          */
-        wp_enqueue_style( 'style', plugins_url( 'assets/css/style.css', __FILE__ ), false, date( 'Ymd' ) );
+        wp_enqueue_style( 'style', plugins_url( '../assets/css/style.css', __FILE__ ), false, date( 'Ymd' ) );
         /**
          * All script goes here
          */
-        wp_enqueue_script( 'wc-tracking-script', plugins_url( 'assets/js/script.js', __FILE__ ), array( 'jquery'), false, true );
+        wp_enqueue_script( 'wc-tracking-script', plugins_url( '../assets/js/script.js', __FILE__ ), array( 'jquery'), false, true );
 
         wp_localize_script( 'wc-tracking-script', 'wc_tracking', array(
                 'ajaxurl' => admin_url( 'admin-ajax.php' ),
