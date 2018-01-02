@@ -1,8 +1,10 @@
 <?php
+
 /**
- * Facebook
+ * WCCT gate way twitter
  */
-class WC_Conversion_Tracking_Gateway_Twitter extends WC_Conversion_Tracking_Integration {
+class WCCT_Gateway_Twitter extends WCCT_Integration {
+
     /**
      * Constructor for WC_Conversion_Tracking_Gateway_Twitter class
      */

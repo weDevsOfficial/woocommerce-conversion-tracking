@@ -1,54 +1,55 @@
 <?php
-/**
- * Facebook
- */
-class WC_Conversion_Tracking_Gateway_Facebook extends WC_Conversion_Tracking_Integration {
 
-  /**
-   * Constructor for WC_Conversion_Tracking_Gateway_Facebook
-   */
+/**
+ * WCCT gate way facebook
+ */
+class WCCT_Gateway_Facebook extends WCCT_Integration {
+
+    /**
+     * Constructor for WC_Conversion_Tracking_Gateway_Facebook
+     */
     function __construct() {
-      $this->id       = 'facebook';
-      $this->name     = 'Facebook';
-      $this->enabled  = true;
-      $this->supports = array(
+      $this->id        =    'facebook';
+      $this->name      =    'Facebook';
+      $this->enabled   =    true;
+      $this->supports  =    array(
         'add_to_cart', 'checkout', 'registration'
       );
     }
 
-  /**
-   * Get Settings
-   *
-   * @return array
-   */
+    /**
+     * Get Settings
+     *
+     * @return array
+     */
     public function get_settings() {
         $settings = array(
-          array(
-            'type'  => 'text',
-            'name'  => 'pixel_id',
-            'label' => 'Pixel ID',
-            'value' => ''
-          ),
-          array(
-            'type'    => 'checkbox',
-            'name'    => 'events',
-            'label'   => 'Events',
-            'value'   => '',
-            'options' => array(
-              'AddToCart'         => 'Add to Cart',
-              'Purchase'          => 'Purchase',
-              'registration'      =>  'Complete Registration'
-            )
-          ),
+            array(
+                'type'  =>  'text',
+                'name'  =>  'pixel_id',
+                'label' =>  'Pixel ID',
+                'value' =>  ''
+            ),
+            array(
+                'type'    =>    'checkbox',
+                'name'    =>    'events',
+                'label'   =>    'Events',
+                'value'   =>    '',
+                'options' =>    array(
+                  'AddToCart'         =>    'Add to Cart',
+                  'Purchase'          =>    'Purchase',
+                  'registration'      =>    'Complete Registration'
+                )
+            ),
         );
         return $settings;
     }
 
-  /**
-   * Enqueue script
-   *
-   * @return void
-   */
+    /**
+     * Enqueue script
+     *
+     * @return void
+     */
     public function enqueue_script() {
         if ( $this->is_enabled() ) {
             $integration_settins    =   $this->get_integration_settings();
@@ -72,12 +73,11 @@ class WC_Conversion_Tracking_Gateway_Facebook extends WC_Conversion_Tracking_Int
         }
     }
 
-  /**
-   * Check Out
-   *
-   * @param  int $order_id
-   * @return void
-   */
+    /**
+     * Check Out
+     * @param  integer $order_id
+     * @return void
+     */
     public function checkout( $order_id ) {
         $integration_settins = $this->get_integration_settings();
         $events = isset( $integration_settins['events'] ) ? $integration_settins['events'] : 0;
@@ -100,39 +100,41 @@ class WC_Conversion_Tracking_Gateway_Facebook extends WC_Conversion_Tracking_Int
         }
     }
 
-  /**
-   * Added to cart
-   *
-   * @return  void
-   */
-  public function add_to_cart( $cart_item_key, $product_id, $quantity, $variation_id ) {
-    $integration_settins = $this->get_integration_settings();
-    $events = isset( $integration_settins['events'] ) ? $integration_settins['events'] : 0;
+    /**
+     * Added to cart
+     *
+     * @param integer $cart_item_key
+     * @param integer $product_id
+     * @param integer $quantity
+     * @param void $variation_id
+     */
+    public function add_to_cart( $cart_item_key, $product_id, $quantity, $variation_id ) {
+        $integration_settins = $this->get_integration_settings();
+        $events = isset( $integration_settins['events'] ) ? $integration_settins['events'] : 0;
 
-    if ( count( $events ) > 0 ) {
+        if ( count( $events ) > 0 ) {
 
-        if( isset( $events['AddToCart'] ) &&  $events['AddToCart'] == 'on' ){
-            ?>
-            <script>
-              fbq('track', 'AddToCart', {
-                content_name: 'Really Fast Running Shoes',
-                content_category: 'Apparel & Accessories > Shoes',
-                content_ids: ['<?php echo $product_id?>'],
-                content_type: 'product',
-                value: 199.50,
-                currency: '<?php echo get_option('woocommerce_currency')?>'
-              });
-            </script>
-            <?php
+            if( isset( $events['AddToCart'] ) &&  $events['AddToCart'] == 'on' ){
+                ?>
+                <script>
+                  fbq('track', 'AddToCart', {
+                    content_name: 'Really Fast Running Shoes',
+                    content_category: 'Apparel & Accessories > Shoes',
+                    content_ids: ['<?php echo $product_id?>'],
+                    content_type: 'product',
+                    value: 199.50,
+                    currency: '<?php echo get_option('woocommerce_currency')?>'
+                  });
+                </script>
+                <?php
+            }
         }
     }
-  }
 
-  /**
-   * Registration script
-   *
-   * @return void
-   */
+    /**
+     * Registration script
+     * @return void
+     */
     public function registration() {
         $integration_settins = $this->get_integration_settings();
         $events = isset( $integration_settins['events'] ) ? $integration_settins['events'] : 0;

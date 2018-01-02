@@ -1,14 +1,14 @@
-(function($) {
+(function( $ ) {
     // Data Save
-    $( "#integration-form" ).on( "submit", function( e ) {
+    $( '#integration-form' ).on( 'submit', function( e ) {
         e.preventDefault();
         var self = $( this );
         $.ajax({
-            url:wc_tracking.ajaxurl,
-            type:'POST',
-            data:{
-                action:'wc_integration',
-                fields:self.serialize(),
+            url: wc_tracking.ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'wcct_save_settings',
+                fields: self.serialize(),
             },
             success: function( response ) {
                 if ( response.success ) {
@@ -19,7 +19,7 @@
     });
 
     // Toggoling the settings
-    $( '.slider' ).on( 'click', function(){
+    $( '.slider' ).on( 'click', function() {
         var id = $( this ).attr( 'data-id' );
         var target = $( '#setting-'+id );
         target.stop().toggle('slow');
@@ -32,7 +32,7 @@
     });
 
     // Default Settings
-    $('.toogle-seller:checked').each( function( index, value ) {
+    $( '.toogle-seller:checked' ).each( function( index, value ) {
         var id =  $( value ).attr( 'data-id' );
         var target = $( '#setting-'+id );
 

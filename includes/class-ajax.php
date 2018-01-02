@@ -1,13 +1,15 @@
 <?php
+
 /**
-*
-*/
-class WC_Conversion_Tracking_Ajax {
+ * Ajax handler class
+ */
+class WCCT_Ajax {
+
     /**
      * WC Conversion Tracking Ajax Class Constructor
      */
     public function __construct() {
-        add_action( 'wp_ajax_wc_integration', array( $this, 'integration_enabled' ) );
+        add_action( 'wp_ajax_wcct_save_settings', array( $this, 'wcct_save_settings' ) );
     }
 
     /**
@@ -15,14 +17,14 @@ class WC_Conversion_Tracking_Ajax {
      *
      * @return void
      */
-    public function integration_enabled() {
+    public function wcct_save_settings() {
         if ( !current_user_can( 'manage_options' ) ) {
             return;
         }
 
         if ( isset( $_POST['fields'] ) ) {
             parse_str( $_POST['fields'], $fields );
-        }else{
+        } else {
             return;
         }
 

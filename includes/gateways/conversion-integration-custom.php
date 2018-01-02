@@ -1,16 +1,18 @@
 <?php
+
 /**
- * Facebook
+ * WCCT gate way custom
  */
-class WC_Conversion_Tracking_Gateway_Custom extends WC_Conversion_Tracking_Integration {
+class WCCT_Gateway_Custom extends WCCT_Integration {
+
     /**
      * Constructor for WC_Conversion_Tracking_Gateway_Custom class
      */
     function __construct() {
-        $this->id       = 'custom';
-        $this->name     = 'Custom';
-        $this->enabled  =  true;
-        $this->supports = array(
+        $this->id           =   'custom';
+        $this->name         =   'Custom';
+        $this->enabled      =   true;
+        $this->supports     =   array(
             'add_to_cart', 'checkout', 'registration'
         );
     }
@@ -23,22 +25,22 @@ class WC_Conversion_Tracking_Gateway_Custom extends WC_Conversion_Tracking_Integ
     public function get_settings() {
         $settings = array(
             array(
-                'type' => 'textarea',
-                'name' => 'cart',
-                'label' => 'Cart Scripts',
-                'value' => ''
+                'type'  =>  'textarea',
+                'name'  =>  'cart',
+                'label' =>  'Cart Scripts',
+                'value' =>  ''
             ),
             array(
-                'type' => 'textarea',
-                'name' => 'checkout',
-                'label' => 'Check Out Scripts',
-                'value' => ''
+                'type'  =>  'textarea',
+                'name'  =>  'checkout',
+                'label' =>  'Check Out Scripts',
+                'value' =>  ''
             ),
             array(
-                'type' => 'textarea',
-                'name' => 'registration',
-                'label' => 'Registration Scripts',
-                'value' => ''
+                'type'  =>  'textarea',
+                'name'  =>  'registration',
+                'label' =>  'Registration Scripts',
+                'value' =>  ''
             )
         );
 

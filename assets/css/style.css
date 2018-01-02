@@ -1,7 +1,7 @@
-.switch input {
+.wcct-admin .switch input {
     display: none;
 }
-input[type=checkbox] {
+.wcct-admin input[type="checkbox"] {
     border: 1px solid #b4b9be;
     background: #fff;
     color: #555;
@@ -20,13 +20,13 @@ input[type=checkbox] {
     box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
     transition: .05s border-color ease-in-out;
 }
-.switch input:checked + .slider {
+.wcct-admin .switch input:checked + .slider {
     background-color: #64b450;
 }
-.switch .slider.round {
+.wcct-admin .switch .slider.round {
     border-radius: 34px;
 }
-.switch .slider {
+.wcct-admin .switch .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -37,15 +37,15 @@ input[type=checkbox] {
     -webkit-transition: .4s;
     transition: .4s;
 }
-.switch input:checked + .slider:before {
+.wcct-admin .switch input:checked + .slider:before {
     -webkit-transform: translateX(22px);
     -ms-transform: translateX(22px);
     transform: translateX(22px);
 }
-.switch .slider.round:before {
+.wcct-admin .switch .slider.round:before {
     border-radius: 50%;
 }
-.switch .slider:before {
+.wcct-admin .switch .slider:before {
     position: absolute;
     content: "";
     height: 14px;
@@ -56,62 +56,52 @@ input[type=checkbox] {
     -webkit-transition: .4s;
     transition: .4s;
 }
-.slider.round:before {
+.wcct-admin .slider.round:before {
     border-radius: 50%;
 }
-
-.gateway-text{
+.wcct-admin .gateway-text {
     margin-right: 30px;
     font-weight:bold;
 }
-.gateway {
+.wcct-admin .gateway {
     display: flex;
     flex-flow: 1 1 auto;
     flex-wrap: row wrap;
 }
-.gateway label {
+.wcct-admin .gateway label {
     flex: 1 1 auto;
     max-width: 7%;
 }
-.gateway label.switch {
+.wcct-admin .gateway label.switch {
     position: relative;
     display: inline-block;
     max-width: 40px;
     height: 18px;
     margin-bottom: 10px;
 }
-.integration-settings{
+.wcct-admin .integration-settings {
     margin-left: 25px;
     margin-bottom: 35px;
 }
-
-.wc-ct-option{
+.wc-ct-option {
     margin-left: 0px;
     margin-top: 15px;
 }
-
-.wc-ct-form-group{
-}
-.integration-settings{
+.integration-settings {
     display: none;
 }
-
-.submit-area{
-
+.wcct-admin .submit-area {
     display: block;
     overflow: hidden;
 }
-
-.custom-table th{
+.wcct-admin .custom-table th {
     width:150px !important;
 }
-
-.integration-name{
+.wcct-admin .integration-name {
     margin-bottom: 30px;
     margin-top:30px
 }
-
-.option-td{
+.wcct-admin .option-td {
     width:20px !important;
     float: none !important;
 }

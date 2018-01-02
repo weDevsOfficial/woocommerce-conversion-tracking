@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Abstract Class
  */
-abstract class WC_Conversion_Tracking_Integration {
+abstract class WCCT_Integration {
+
     /**
      * Store integration's id
      *

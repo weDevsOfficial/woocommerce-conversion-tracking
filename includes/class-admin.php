@@ -1,8 +1,9 @@
 <?php
+
 /**
-* WCCT Admin Class
-*/
-class WCCT_Admin{
+ * The admin page handler class
+ */
+class WCCT_Admin {
 
     /**
      * Constructor for WCCT_Admin class
@@ -39,7 +40,7 @@ class WCCT_Admin{
      * @return void
      */
     public function admin_menu_page() {
-        add_submenu_page( 'woocommerce', 'Conversion Tracking', 'Conversion Tracking', 'manage_options', 'conversion-tracking', array( $this, 'conversion_tracking_template' ) );
+        add_submenu_page( 'woocommerce', __( 'Conversion Tracking', 'wcct' ), __( 'Conversion Tracking', 'wcct' ), 'manage_options', 'conversion-tracking', array( $this, 'conversion_tracking_template' ) );
     }
 
     /**
@@ -47,7 +48,7 @@ class WCCT_Admin{
      * @return void
      */
     public function conversion_tracking_template() {
-        $integrations = new WC_Conversion_Tracking_Integration_Manager();
+        $integrations = new WCCT_Integration_Manager();
         $integrations->render_form();
     }
 }

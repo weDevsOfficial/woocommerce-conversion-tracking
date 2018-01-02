@@ -151,7 +151,9 @@ class WeDevs_WC_Conversion_Tracking {
      */
     public function init_hooks() {
         add_action( 'init', array( $this, 'localization_setup' ) );
+
         add_action( 'init', array( $this, 'init_tracker' ) );
+
         add_filter( 'woocommerce_integrations', array($this, 'register_integration') );
     }
     /**
@@ -159,8 +161,8 @@ class WeDevs_WC_Conversion_Tracking {
      * @return void
      */
     public function init_classes() {
-        new WC_Conversion_Tracking_Ajax();
-        new WC_Conversion_Event_Dispatcher();
+        new WCCT_Ajax();
+        new WCCT_Event_Dispatcher();
         new WCCT_Admin();
     }
 
