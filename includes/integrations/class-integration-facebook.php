@@ -29,18 +29,18 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
             array(
                 'type'  => 'text',
                 'name'  => 'pixel_id',
-                'label' => 'Pixel ID',
+                'label' => __( 'Pixel ID', 'woocommerce-conversion-tracking' ),
                 'value' => ''
             ),
             array(
                 'type'    => 'checkbox',
                 'name'    => 'events',
-                'label'   => 'Events',
+                'label'   => __( 'Events', 'woocommerce-conversion-tracking' ),
                 'value'   => '',
                 'options' => array(
-					'AddToCart'         => 'Add to Cart',
-					'Purchase'          => 'Purchase',
-					'registration'      => 'Complete Registration'
+					'AddToCart'         => __( 'Add to Cart', 'woocommerce-conversion-tracking' ),
+					'Purchase'          => __( 'Purchase', 'woocommerce-conversion-tracking' ),
+					'registration'      => __( 'Complete Registration', 'woocommerce-conversion-tracking' )
                 )
             ),
         );

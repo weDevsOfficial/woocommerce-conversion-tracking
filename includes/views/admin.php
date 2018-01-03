@@ -11,8 +11,6 @@
             $id              = strtolower( $name );
             $settings_fields = $object->get_settings();
             $settings        = $object->get_integration_settings();
-
-            var_dump( $settings );
             ?>
             <div class="integration">
                 <div class="integration-name">

@@ -22,11 +22,11 @@ class WCCT_Admin {
         /**
          * All style goes here
          */
-        wp_enqueue_style( 'style', plugins_url( '../assets/css/style.css', __FILE__ ), false, date( 'Ymd' ) );
+        wp_enqueue_style( 'style', plugins_url( 'assets/css/style.css', WCCT_FILE ), false, date( 'Ymd' ) );
         /**
          * All script goes here
          */
-        wp_enqueue_script( 'wc-tracking-script', plugins_url( '../assets/js/script.js', __FILE__ ), array( 'jquery', 'wp-util' ), false, time() );
+        wp_enqueue_script( 'wc-tracking-script', plugins_url( 'assets/js/admin.js', WCCT_FILE ), array( 'jquery', 'wp-util' ), false, time() );
 
         wp_localize_script(
             'wc-tracking-script', 'wc_tracking', array(
@@ -41,7 +41,7 @@ class WCCT_Admin {
      * @return void
      */
     public function admin_menu_page() {
-        add_submenu_page( 'woocommerce', __( 'Conversion Tracking', 'wcct' ), __( 'Conversion Tracking', 'wcct' ), 'manage_options', 'conversion-tracking', array( $this, 'conversion_tracking_template' ) );
+        add_submenu_page( 'woocommerce', __( 'Conversion Tracking', 'woocommerce-conversion-tracking' ), __( 'Conversion Tracking', 'woocommerce-conversion-tracking' ), 'manage_options', 'conversion-tracking', array( $this, 'conversion_tracking_template' ) );
     }
 
     /**

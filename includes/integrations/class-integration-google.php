@@ -9,8 +9,8 @@ class WCCT_Integration_Google extends WCCT_Integration {
      * Constructor for WC_Conversion_Tracking_Gateway_Google
      */
     function __construct() {
-        $this->id           = 'google';
-        $this->name         = 'Google';
+        $this->id           = 'adwords';
+        $this->name         = __( 'Google Adwords', 'woocommerce-conversion-tracking' );
         $this->enabled      = true;
         $this->supports     = array(
             'add_to_cart',
@@ -29,13 +29,13 @@ class WCCT_Integration_Google extends WCCT_Integration {
             array(
                 'type'  => 'text',
                 'name'  => 'conversion_id',
-                'label' => 'Conversion ID',
+                'label' => __( 'Conversion ID', 'woocommerce-conversion-tracking' ),
                 'value' => ''
             ),
             array(
                 'type'  => 'text',
                 'name'  => 'conversion_label',
-                'label' => 'Conversion Label',
+                'label' => __( 'Conversion Label', 'woocommerce-conversion-tracking' ),
                 'value' => ''
             ),
         );

@@ -10,7 +10,7 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
      */
     function __construct() {
         $this->id       = 'twitter';
-        $this->name     = 'Twitter';
+        $this->name     = __( 'Twitter', 'woocommerce-conversion-tracking' );
         $this->enabled  = true;
         $this->supports = array(
             'add_to_cart',
@@ -29,13 +29,13 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
             array(
                 'type'  => 'text',
                 'name'  => 'pixel_id',
-                'label' => 'Pixel ID',
+                'label' => __( 'Pixel ID', 'woocommerce-conversion-tracking' ),
                 'value' => ''
             ),
             array(
                 'type'  => 'checkbox',
                 'name'  => 'events',
-                'label' => 'Events',
+                'label' => __( 'Events', 'woocommerce-conversion-tracking' ),
                 'value' => '',
                 'options' => array(
                     'AddToCart'     => 'Add to Cart',

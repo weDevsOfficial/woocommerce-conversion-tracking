@@ -70,7 +70,7 @@
 .wcct-admin .gateway label,
 .wcct-admin .gateway .gateway-text {
     flex: 1 1 auto;
-    max-width: 7%;
+    max-width: 15%;
 }
 .wcct-admin .gateway label.switch {
     position: relative;

@@ -10,7 +10,7 @@ class WCCT_Integration_Custom extends WCCT_Integration {
      */
     function __construct() {
         $this->id           = 'custom';
-        $this->name         = 'Custom';
+        $this->name         = __( 'Custom', 'woocommerce-conversion-tracking' );
         $this->enabled      = true;
         $this->supports     = array(
             'add_to_cart',
@@ -29,19 +29,19 @@ class WCCT_Integration_Custom extends WCCT_Integration {
             array(
                 'type'  => 'textarea',
                 'name'  => 'cart',
-                'label' => 'Cart Scripts',
+                'label' => __( 'Cart Scripts', 'woocommerce-conversion-tracking' ),
                 'value' => ''
             ),
             array(
                 'type'  => 'textarea',
                 'name'  => 'checkout',
-                'label' => 'Check Out Scripts',
+                'label' => __( 'Checkout Scripts', 'woocommerce-conversion-tracking' ),
                 'value' => ''
             ),
             array(
                 'type'  => 'textarea',
                 'name'  => 'registration',
-                'label' => 'Registration Scripts',
+                'label' => __( 'Registration Scripts', 'woocommerce-conversion-tracking' ),
                 'value' => ''
             )
         );
@@ -67,7 +67,7 @@ class WCCT_Integration_Custom extends WCCT_Integration {
         if ( $this->is_enabled() ) {
             $code = $this->get_integration_settings();
             if ( isset( $code['cart'] ) && ! empty( $code['cart'] ) ) {
-                echo  $code['cart'] ;
+                echo $code['cart'] ;
             }
         }
     }
