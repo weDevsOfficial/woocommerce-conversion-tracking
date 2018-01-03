@@ -18,7 +18,7 @@ class WCCT_Ajax {
      * @return void
      */
     public function wcct_save_settings() {
-        if ( !current_user_can( 'manage_options' ) ) {
+        if ( ! current_user_can( 'manage_options' ) ) {
             return;
         }
 
@@ -29,16 +29,16 @@ class WCCT_Ajax {
         }
 
         $integration_enabled = array(
-            'facebook'  =>  !empty( $fields['facebook_enabled'] ) ? intval( $fields['facebook_enabled'] ) : 0,
-            'twitter'   =>  !empty( $fields['twitter_enabled'] ) ? intval( $fields['twitter_enabled'] ) : 0,
-            'google'    =>  !empty( $fields['google_enabled'] ) ? intval( $fields['google_enabled'] ) : 0,
-            'custom'    =>  !empty( $fields['custom_enabled'] ) ? intval( $fields['custom_enabled'] ) : 0,
+            'facebook'  => ! empty( $fields['facebook_enabled'] ) ? intval( $fields['facebook_enabled'] ) : 0,
+            'twitter'   => ! empty( $fields['twitter_enabled'] ) ? intval( $fields['twitter_enabled'] ) : 0,
+            'google'    => ! empty( $fields['google_enabled'] ) ? intval( $fields['google_enabled'] ) : 0,
+            'custom'    => ! empty( $fields['custom_enabled'] ) ? intval( $fields['custom_enabled'] ) : 0,
         );
 
         $integration_settings = array();
 
         foreach ( $fields as $key => $field ) {
-            $integration_settings[$key] = $field;
+            $integration_settings[ $key ] = $field;
         }
 
         update_option( 'integration_enabled', $integration_enabled );

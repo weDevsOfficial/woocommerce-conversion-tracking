@@ -9,11 +9,13 @@ class WCCT_Integration_Custom extends WCCT_Integration {
      * Constructor for WC_Conversion_Tracking_Gateway_Custom class
      */
     function __construct() {
-        $this->id           =   'custom';
-        $this->name         =   'Custom';
-        $this->enabled      =   true;
-        $this->supports     =   array(
-            'add_to_cart', 'checkout', 'registration'
+        $this->id           = 'custom';
+        $this->name         = 'Custom';
+        $this->enabled      = true;
+        $this->supports     = array(
+            'add_to_cart',
+			'checkout',
+			'registration'
         );
     }
 
@@ -25,22 +27,22 @@ class WCCT_Integration_Custom extends WCCT_Integration {
     public function get_settings() {
         $settings = array(
             array(
-                'type'  =>  'textarea',
-                'name'  =>  'cart',
-                'label' =>  'Cart Scripts',
-                'value' =>  ''
+                'type'  => 'textarea',
+                'name'  => 'cart',
+                'label' => 'Cart Scripts',
+                'value' => ''
             ),
             array(
-                'type'  =>  'textarea',
-                'name'  =>  'checkout',
-                'label' =>  'Check Out Scripts',
-                'value' =>  ''
+                'type'  => 'textarea',
+                'name'  => 'checkout',
+                'label' => 'Check Out Scripts',
+                'value' => ''
             ),
             array(
-                'type'  =>  'textarea',
-                'name'  =>  'registration',
-                'label' =>  'Registration Scripts',
-                'value' =>  ''
+                'type'  => 'textarea',
+                'name'  => 'registration',
+                'label' => 'Registration Scripts',
+                'value' => ''
             )
         );
 
@@ -58,12 +60,13 @@ class WCCT_Integration_Custom extends WCCT_Integration {
 
     /**
      * Add to cart
+     *
      * @return  void
      */
     public function add_to_cart() {
         if ( $this->is_enabled() ) {
             $code = $this->get_integration_settings();
-            if ( isset( $code['cart'] ) && !empty( $code['cart'] ) ) {
+            if ( isset( $code['cart'] ) && ! empty( $code['cart'] ) ) {
                 echo  $code['cart'] ;
             }
         }
@@ -77,7 +80,7 @@ class WCCT_Integration_Custom extends WCCT_Integration {
     public function checkout() {
         if ( $this->is_enabled() ) {
             $code = $this->get_integration_settings();
-            if ( isset( $code['checkout'] ) && !empty( $code['checkout'] ) ) {
+            if ( isset( $code['checkout'] ) && ! empty( $code['checkout'] ) ) {
                 echo $this->process_order_markdown( $code['checkout'] );
             }
         }
@@ -91,7 +94,7 @@ class WCCT_Integration_Custom extends WCCT_Integration {
     public function registration() {
         if ( $this->is_enabled() ) {
             $code = $this->get_integration_settings();
-            if ( isset( $code['registration'] ) && !empty( $code['registration'] ) ) {
+            if ( isset( $code['registration'] ) && ! empty( $code['registration'] ) ) {
                 echo $code['registration'] ;
             }
         }
@@ -102,7 +105,7 @@ class WCCT_Integration_Custom extends WCCT_Integration {
      *
      * @since 1.1
      *
-     * @param  string  $code
+     * @param  string $code
      *
      * @return string
      */
@@ -131,7 +134,7 @@ class WCCT_Integration_Custom extends WCCT_Integration {
         }
 
         $customer       = $order->get_user();
-        $used_coupons   = $order->get_used_coupons() ? implode(',', $order->get_used_coupons() ) : '';
+        $used_coupons   = $order->get_used_coupons() ? implode( ',', $order->get_used_coupons() ) : '';
         $order_currency = $order_currency;
         $order_total    = $order->get_total();
         $order_number   = $order->get_order_number();

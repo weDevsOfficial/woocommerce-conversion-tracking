@@ -71,7 +71,7 @@ abstract class WCCT_Integration {
     public function is_enabled() {
         $integration_enabled = get_option( 'integration_enabled' );
 
-        if ( $integration_enabled[$this->id] ) {
+        if ( $integration_enabled[ $this->id ] ) {
             return $this->enabled;
         }
 
@@ -88,7 +88,7 @@ abstract class WCCT_Integration {
     public function get_integration_settings() {
         $integration_settings = get_option( 'integration_settings' );
 
-        return $integration_settings[$this->id];
+        return $integration_settings[ $this->id ];
     }
 
     /**

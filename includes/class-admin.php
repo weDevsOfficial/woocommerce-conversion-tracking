@@ -26,10 +26,11 @@ class WCCT_Admin {
         /**
          * All script goes here
          */
-        wp_enqueue_script( 'wc-tracking-script', plugins_url( '../assets/js/script.js', __FILE__ ), array( 'jquery'), false, true );
+        wp_enqueue_script( 'wc-tracking-script', plugins_url( '../assets/js/script.js', __FILE__ ), array( 'jquery' ), false, true );
 
-        wp_localize_script( 'wc-tracking-script', 'wc_tracking', array(
-                'ajaxurl' => admin_url( 'admin-ajax.php' ),
+        wp_localize_script(
+            'wc-tracking-script', 'wc_tracking', array(
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
             )
         );
     }
@@ -45,6 +46,7 @@ class WCCT_Admin {
 
     /**
      * Conversion Tracking View Page
+     *
      * @return void
      */
     public function conversion_tracking_template() {

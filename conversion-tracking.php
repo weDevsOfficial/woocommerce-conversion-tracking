@@ -38,7 +38,9 @@ WC tested up to: 3.2.6
  */
 
 // don't call the file directly
-if ( !defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * WeDevs_WC_Facebook_Tracking_Pixel class
@@ -59,7 +61,6 @@ class WeDevs_WC_Conversion_Tracking {
      *
      * Sets up all the appropriate hooks and actions
      * within our plugin.
-     *
      */
     public function __construct() {
         $this->define_constants();
@@ -79,7 +80,7 @@ class WeDevs_WC_Conversion_Tracking {
     public static function init() {
         static $instance = false;
 
-        if ( !$instance ) {
+        if ( ! $instance ) {
             $instance = new WeDevs_WC_Conversion_Tracking();
         }
 
@@ -146,13 +147,14 @@ class WeDevs_WC_Conversion_Tracking {
         add_action( 'wp_ajax_wcv_dismiss_survey', array( $this, 'dismiss_survey' ) );
 
         // register integration
-        add_filter( 'woocommerce_integrations', array($this, 'register_integration') );
+        add_filter( 'woocommerce_integrations', array( $this, 'register_integration' ) );
 
         add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
     }
 
     /**
      * Instantiate the required classes
+     *
      * @return void
      */
     public function init_classes() {
@@ -336,5 +338,4 @@ class WeDevs_WC_Conversion_Tracking {
 }
 
 // WeDevs_WC_Conversion_Tracking
-
 $wc_tracking = WeDevs_WC_Conversion_Tracking::init();

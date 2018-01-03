@@ -9,11 +9,13 @@ class WCCT_Integration_Google extends WCCT_Integration {
      * Constructor for WC_Conversion_Tracking_Gateway_Google
      */
     function __construct() {
-        $this->id           =   'google';
-        $this->name         =   'Google';
-        $this->enabled      =   true;
-        $this->supports     =   array(
-            'add_to_cart', 'checkout', 'registration'
+        $this->id           = 'google';
+        $this->name         = 'Google';
+        $this->enabled      = true;
+        $this->supports     = array(
+            'add_to_cart',
+			'checkout',
+			'registration'
         );
     }
 
@@ -25,16 +27,16 @@ class WCCT_Integration_Google extends WCCT_Integration {
     public function get_settings() {
         $settings = array(
             array(
-                'type'  =>  'text',
-                'name'  =>  'conversion_id',
-                'label' =>  'Conversion ID',
-                'value' =>  ''
+                'type'  => 'text',
+                'name'  => 'conversion_id',
+                'label' => 'Conversion ID',
+                'value' => ''
             ),
             array(
-                'type'  =>  'text',
-                'name'  =>  'conversion_label',
-                'label' =>  'Conversion Label',
-                'value' =>  ''
+                'type'  => 'text',
+                'name'  => 'conversion_label',
+                'label' => 'Conversion Label',
+                'value' => ''
             ),
         );
 
@@ -58,20 +60,20 @@ class WCCT_Integration_Google extends WCCT_Integration {
     public function checkout() {
 
         if ( $this->is_enabled() ) {
-            $integration_settins   =   $this->get_integration_settings();
-            $conversion_id         =   !empty( $integration_settins['conversion_id'] ) ? $integration_settins['conversion_id'] : '';
-            $conversion_label      =   !empty( $integration_settins['conversion_label'] ) ? $integration_settins['conversion_label'] : '';
-            $currency              =   get_option('woocommerce_currency');
+            $integration_settins   = $this->get_integration_settings();
+            $conversion_id         = ! empty( $integration_settins['conversion_id'] ) ? $integration_settins['conversion_id'] : '';
+            $conversion_label      = ! empty( $integration_settins['conversion_label'] ) ? $integration_settins['conversion_label'] : '';
+            $currency              = get_option( 'woocommerce_currency' );
             ?>
                 <!-- Google Code for WooCommerce Conversion Page -->
                 <script type="text/javascript">
                     /* <![CDATA[ */
-                    var google_conversion_id = <?php echo $conversion_id?>;
+                    var google_conversion_id = <?php echo $conversion_id; ?>;
                     var google_conversion_language = "en";
                     var google_conversion_format = "3";
                     var google_conversion_color = "ffffff";
-                    var google_conversion_label = "<?php echo $conversion_label?>";
-                    var google_conversion_currency = "<?php echo $currency?>";
+                    var google_conversion_label = "<?php echo $conversion_label; ?>";
+                    var google_conversion_currency = "<?php echo $currency; ?>";
                     var google_conversion_value = 3.3;
                     var google_remarketing_only = false;
                     /* ]]> */
@@ -82,7 +84,7 @@ class WCCT_Integration_Google extends WCCT_Integration {
 
                 <noscript>
                     <div style="display:inline;">
-                        <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/<?php echo $conversion_id?>/?value=3.3&amp;currency_code=<?php echo $currency?>&amp;label=<?php echo $conversion_label?>&amp;guid=ON&amp;script=0"/>
+                        <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/<?php echo $conversion_id; ?>/?value=3.3&amp;currency_code=<?php echo $currency; ?>&amp;label=<?php echo $conversion_label; ?>&amp;guid=ON&amp;script=0"/>
                     </div>
                 </noscript>
             <?php
