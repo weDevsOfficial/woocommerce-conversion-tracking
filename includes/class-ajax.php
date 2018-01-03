@@ -22,28 +22,23 @@ class WCCT_Ajax {
             return;
         }
 
-        if ( isset( $_POST['fields'] ) ) {
-            parse_str( $_POST['fields'], $fields );
-        } else {
-            return;
+        if ( ! isset( $_POST['settings'] ) ) {
+            wp_send_json_error();
         }
-
-        $integration_enabled = array(
-            'facebook'  => ! empty( $fields['facebook_enabled'] ) ? intval( $fields['facebook_enabled'] ) : 0,
-            'twitter'   => ! empty( $fields['twitter_enabled'] ) ? intval( $fields['twitter_enabled'] ) : 0,
-            'google'    => ! empty( $fields['google_enabled'] ) ? intval( $fields['google_enabled'] ) : 0,
-            'custom'    => ! empty( $fields['custom_enabled'] ) ? intval( $fields['custom_enabled'] ) : 0,
-        );
 
         $integration_settings = array();
 
-        foreach ( $fields as $key => $field ) {
-            $integration_settings[ $key ] = $field;
+        foreach ( $_POST['settings'] as $field_id => $settings ) {
+            $is_enabled = isset( $settings['enabled'] ) ? true : false;
+
+            $settings = array_merge( $settings, array( 'enabled' => $is_enabled ) );
+            $integration_settings[ $field_id ] = $settings;
         }
 
-        update_option( 'integration_enabled', $integration_enabled );
-        update_option( 'integration_settings', stripslashes_deep( $integration_settings ) );
-        wp_send_json_success();
+        update_option( 'wcct_settings', $integration_settings );
 
+        wp_send_json_success( array(
+            'message' => __( 'Settings has been saved successfully!', 'woocommerce-conversion-tracking' )
+        ) );
     }
 }

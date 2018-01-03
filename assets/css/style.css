@@ -60,15 +60,15 @@
     border-radius: 50%;
 }
 .wcct-admin .gateway-text {
-    margin-right: 30px;
-    font-weight:bold;
+    margin: 0 30px 0 0;
 }
 .wcct-admin .gateway {
     display: flex;
     flex-flow: 1 1 auto;
     flex-wrap: row wrap;
 }
-.wcct-admin .gateway label {
+.wcct-admin .gateway label,
+.wcct-admin .gateway .gateway-text {
     flex: 1 1 auto;
     max-width: 7%;
 }
@@ -80,8 +80,10 @@
     margin-bottom: 10px;
 }
 .wcct-admin .integration-settings {
-    margin-left: 25px;
     margin-bottom: 35px;
+    background: #fff;
+    padding-left: 25px;
+    max-width: 500px;
 }
 .wc-ct-option {
     margin-left: 0px;
@@ -93,12 +95,12 @@
 .wcct-admin .submit-area {
     display: block;
     overflow: hidden;
+    margin-top: 30px;
 }
 .wcct-admin .custom-table th {
     width:150px !important;
 }
 .wcct-admin .integration-name {
-    margin-bottom: 30px;
     margin-top:30px
 }
 .wcct-admin .option-td {

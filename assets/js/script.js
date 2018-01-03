@@ -2,18 +2,19 @@
     // Data Save
     $( '#integration-form' ).on( 'submit', function( e ) {
         e.preventDefault();
-        var self = $( this );
-        $.ajax({
-            url: wc_tracking.ajaxurl,
-            type: 'POST',
-            data: {
-                action: 'wcct_save_settings',
-                fields: self.serialize(),
-            },
+
+        wp.ajax.send( 'wcct_save_settings', {
+            data: $( this ).serialize(),
             success: function( response ) {
-                if ( response.success ) {
-                    $("#message").show();
-                }
+
+                $("#ajax-message")
+                    .html('<p><strong>' + response.message + '</strong></p>')
+                    .show()
+                    .delay(3000)
+                    .slideUp('fast');
+            },
+            error: function(error) {
+                alert('something wrong happend');
             }
         });
     });
@@ -22,7 +23,7 @@
     $( '.slider' ).on( 'click', function() {
         var id = $( this ).attr( 'data-id' );
         var target = $( '#setting-'+id );
-        target.stop().toggle('slow');
+        target.stop().toggle('fast');
 
         var checked = $( '#integration-'+id );
 

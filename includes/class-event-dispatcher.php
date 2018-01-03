@@ -17,7 +17,7 @@ class WCCT_Event_Dispatcher {
      */
     function __construct() {
         add_action( 'plugins_loaded', array( $this, 'init_integrations' ) );
-        add_action( 'wp_head', array( $this, 'enqueue_scripts' ) );
+        add_action( 'wp_footer', array( $this, 'enqueue_scripts' ) );
 
         add_action( 'woocommerce_add_to_cart', array( $this, 'added_to_cart' ), 11, 4 );
         add_action( 'woocommerce_thankyou', array( $this, 'checkout_complete' ) );

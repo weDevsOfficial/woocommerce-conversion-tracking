@@ -70,16 +70,4 @@ class WCCT_Integration_Manager {
         return $active;
     }
 
-    /**
-     * Render Form
-     *
-     * @return void
-     */
-    public function render_form() {
-        $integrations         = $this->get_integrations();
-        $integration_enable   = get_option( 'integration_enabled' );
-        $integration_settings = get_option( 'integration_settings' );
-
-        include dirname( __FILE__ ) . '/views/admin.php';
-    }
 }

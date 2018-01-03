@@ -26,7 +26,7 @@ class WCCT_Admin {
         /**
          * All script goes here
          */
-        wp_enqueue_script( 'wc-tracking-script', plugins_url( '../assets/js/script.js', __FILE__ ), array( 'jquery' ), false, true );
+        wp_enqueue_script( 'wc-tracking-script', plugins_url( '../assets/js/script.js', __FILE__ ), array( 'jquery', 'wp-util' ), false, time() );
 
         wp_localize_script(
             'wc-tracking-script', 'wc_tracking', array(
@@ -50,7 +50,9 @@ class WCCT_Admin {
      * @return void
      */
     public function conversion_tracking_template() {
-        $integrations = new WCCT_Integration_Manager();
-        $integrations->render_form();
+        $manager      = new WCCT_Integration_Manager();
+        $integrations = $manager->get_integrations();
+
+        include dirname( __FILE__ ) . '/views/admin.php';
     }
 }

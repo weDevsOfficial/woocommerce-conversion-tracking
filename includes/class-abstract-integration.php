@@ -69,10 +69,27 @@ abstract class WCCT_Integration {
      * @return boolean
      */
     public function is_enabled() {
-        $integration_enabled = get_option( 'integration_enabled' );
+        $settings = $this->get_integration_settings();
 
-        if ( $integration_enabled[ $this->id ] ) {
-            return $this->enabled;
+        if ( $settings && $settings[ 'enabled' ] == true ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Check if an event is enabled
+     *
+     * @param  string $event
+     *
+     * @return boolean
+     */
+    public function event_enabled( $event ) {
+        $settings = $this->get_integration_settings();
+
+        if ( isset( $settings['events'] ) && array_key_exists( $event, $settings['events'] ) && $settings['events'][ $event ] == 'on' ) {
+            return true;
         }
 
         return false;
@@ -83,12 +100,16 @@ abstract class WCCT_Integration {
      *
      * @param  string $integration_id
      *
-     * @return array
+     * @return array|false
      */
     public function get_integration_settings() {
-        $integration_settings = get_option( 'integration_settings' );
+        $integration_settings = get_option( 'wcct_settings', array() );
 
-        return $integration_settings[ $this->id ];
+        if ( isset( $integration_settings[ $this->id ] ) ) {
+            return $integration_settings[ $this->id ];
+        }
+
+        return false;
     }
 
     /**
