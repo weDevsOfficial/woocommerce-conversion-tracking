@@ -28,15 +28,13 @@ class WCCT_Integration_Custom extends WCCT_Integration {
         $settings = array(
             array(
                 'type'  => 'textarea',
-                'name'  => 'cart',
-                'label' => __( 'Cart Scripts', 'woocommerce-conversion-tracking' ),
-                'value' => ''
-            ),
-            array(
-                'type'  => 'textarea',
                 'name'  => 'checkout',
-                'label' => __( 'Checkout Scripts', 'woocommerce-conversion-tracking' ),
-                'value' => ''
+                'label' => __( 'Successful Order', 'woocommerce-conversion-tracking' ),
+                'value' => '',
+                'help'  => sprintf( /* translators: %s: dynamic values */
+                                   __( 'Put your JavaScript tracking scripts here. You can use dynamic values: %s', 'woocommerce-conversion-tracking' ),
+                    '<code>{customer_id}</code>, <code>{customer_email}</code>, <code>{customer_first_name}</code>, <code>{customer_last_name}</code>, <code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{currency}</code>, <code>{payment_method}</code>'
+                ),
             ),
             array(
                 'type'  => 'textarea',

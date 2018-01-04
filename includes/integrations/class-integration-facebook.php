@@ -33,10 +33,11 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
                 'type'  => 'text',
                 'name'  => 'pixel_id',
                 'label' => __( 'Pixel ID', 'woocommerce-conversion-tracking' ),
-                'value' => ''
+                'value' => '',
+                'help'  => sprintf( __( 'Find the Pixel ID from <a href="%s" target="_blank">here</a>.', 'woocommerce-conversion-tracking' ), 'https://www.facebook.com/ads/manager/pixel/facebook_pixel' )
             ),
             array(
-                'type'    => 'checkbox',
+                'type'    => 'multicheck',
                 'name'    => 'events',
                 'label'   => __( 'Events', 'woocommerce-conversion-tracking' ),
                 'value'   => '',

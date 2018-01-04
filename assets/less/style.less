@@ -1,0 +1,196 @@
+@integrationWidth: 600px;
+
+.wcct-admin {
+
+    .wcct-two-column {
+        display: flex;
+
+        .settings-wrap {
+            width: 70%;
+        }
+
+        .sidebar-wrap {
+            width: 30%;
+        }
+    }
+
+    .switch {
+        input {
+            display: none;
+
+            &:checked {
+
+                & + .slider {
+                    background-color: #64b450;
+
+                    &:before {
+                        -webkit-transform: translateX(22px);
+                        -ms-transform: translateX(22px);
+                        transform: translateX(22px);
+                    }
+                }
+            }
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #CCC;
+            -webkit-transition: .4s;
+            transition: .4s;
+
+            &.round {
+                border-radius: 34px;
+
+                &:before {
+                    border-radius: 50%;
+                }
+            }
+
+            &:before {
+                position: absolute;
+                content: "";
+                height: 14px;
+                width: 14px;
+                left: 2px;
+                bottom: 2px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+        }
+    }
+
+    input[type="checkbox"] {
+        border: 1px solid #b4b9be;
+        background: #fff;
+        color: #555;
+        clear: none;
+        cursor: pointer;
+        line-height: 0;
+        height: 16px;
+        margin: -4px 4px 0 0;
+        outline: 0;
+        padding: 0!important;
+        text-align: center;
+        vertical-align: middle;
+        width: 16px;
+        min-width: 16px;
+        -webkit-appearance: none;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+        transition: .05s border-color ease-in-out;
+    }
+
+    .slider {
+        &.round {
+            &:before {
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .submit-area {
+        display: block;
+        overflow: hidden;
+        margin-top: 30px;
+    }
+
+    .custom-table {
+        margin-top: 0;
+
+        th {
+            width: 150px !important;
+        }
+    }
+
+    /**
+     * Form Settings area
+     */
+    .settings-wrap {
+
+        .integration-wrap {
+            max-width: @integrationWidth;
+            border: 1px solid #dfdfdf;
+            margin-top: 20px;
+
+            .integration-name {
+                background: #f7f7f7;
+                padding: 10px 15px;
+                border-bottom: 1px solid #dfdfdf;
+            }
+
+            .integration-settings {
+                background: #fff;
+                padding-left: 25px;
+                display: none;
+
+                .wc-ct-option {
+                    margin-left: 0px;
+                    margin-top: 15px;
+                }
+
+                textarea {
+                    width: 100%;
+                }
+
+                input[type="text"] {
+                    min-width: 300px;
+                }
+            }
+
+            .gateway {
+                display: flex;
+                flex-flow: 1 1 auto;
+
+                label,
+                .gateway-text {
+                    flex: 1 1 auto;
+                    max-width: 15%;
+                }
+
+                .gateway-text {
+                    margin: 0 30px 0 0;
+                    max-width: 90%;
+                }
+
+                label {
+                    &.switch {
+                        position: relative;
+                        display: inline-block;
+                        max-width: 40px;
+                        height: 18px;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Sidebar Area
+     */
+    .sidebar-wrap {
+
+        .premium-box {
+            width: 100%;
+            min-height: 100px;
+            margin-bottom: 25px;
+            box-sizing: border-box;
+            padding: 10px 15px;
+
+            &.box-green {
+                background: #4CAF50;
+                color: #fff;
+            }
+
+            &.box-blue {
+                background: #673ab7;
+                color: #fff;
+            }
+        }
+    }
+
+}

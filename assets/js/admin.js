@@ -24,12 +24,6 @@
         var id = $( this ).attr( 'data-id' );
         var target = $( '#setting-'+id );
         target.stop().toggle('fast');
-
-        var checked = $( '#integration-'+id );
-
-        if ( $( checked ).prop( 'checked') == false ) {
-            $( target.find( 'input[type=checkbox]' ) ).removeAttr( 'checked' );
-        }
     });
 
     // Default Settings

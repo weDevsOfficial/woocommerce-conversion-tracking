@@ -1,109 +1,152 @@
-.wcct-admin .switch input {
-    display: none;
+/*
+Woocommerce-Conversion-Tracking - v1.0.0
+Generated: 2018-01-04 (1515053760694)
+PLEASE DO NOT MODIFY*/
+.wcct-admin {
+  /**
+     * Form Settings area
+     */
+  /**
+     * Sidebar Area
+     */
 }
-.wcct-admin input[type="checkbox"] {
-    border: 1px solid #b4b9be;
-    background: #fff;
-    color: #555;
-    clear: none;
-    cursor: pointer;
-    line-height: 0;
-    height: 16px;
-    margin: -4px 4px 0 0;
-    outline: 0;
-    padding: 0!important;
-    text-align: center;
-    vertical-align: middle;
-    width: 16px;
-    min-width: 16px;
-    -webkit-appearance: none;
-    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
-    transition: .05s border-color ease-in-out;
+.wcct-admin .wcct-two-column {
+  display: flex;
+}
+.wcct-admin .wcct-two-column .settings-wrap {
+  width: 70%;
+}
+.wcct-admin .wcct-two-column .sidebar-wrap {
+  width: 30%;
+}
+.wcct-admin .switch input {
+  display: none;
 }
 .wcct-admin .switch input:checked + .slider {
-    background-color: #64b450;
-}
-.wcct-admin .switch .slider.round {
-    border-radius: 34px;
-}
-.wcct-admin .switch .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #CCC;
-    -webkit-transition: .4s;
-    transition: .4s;
+  background-color: #64b450;
 }
 .wcct-admin .switch input:checked + .slider:before {
-    -webkit-transform: translateX(22px);
-    -ms-transform: translateX(22px);
-    transform: translateX(22px);
+  -webkit-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  transform: translateX(22px);
+}
+.wcct-admin .switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #CCC;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.wcct-admin .switch .slider.round {
+  border-radius: 34px;
 }
 .wcct-admin .switch .slider.round:before {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 .wcct-admin .switch .slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.wcct-admin input[type="checkbox"] {
+  border: 1px solid #b4b9be;
+  background: #fff;
+  color: #555;
+  clear: none;
+  cursor: pointer;
+  line-height: 0;
+  height: 16px;
+  margin: -4px 4px 0 0;
+  outline: 0;
+  padding: 0!important;
+  text-align: center;
+  vertical-align: middle;
+  width: 16px;
+  min-width: 16px;
+  -webkit-appearance: none;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: 0.05s border-color ease-in-out;
 }
 .wcct-admin .slider.round:before {
-    border-radius: 50%;
-}
-.wcct-admin .gateway-text {
-    margin: 0 30px 0 0;
-}
-.wcct-admin .gateway {
-    display: flex;
-    flex-flow: 1 1 auto;
-    flex-wrap: row wrap;
-}
-.wcct-admin .gateway label,
-.wcct-admin .gateway .gateway-text {
-    flex: 1 1 auto;
-    max-width: 15%;
-}
-.wcct-admin .gateway label.switch {
-    position: relative;
-    display: inline-block;
-    max-width: 40px;
-    height: 18px;
-    margin-bottom: 10px;
-}
-.wcct-admin .integration-settings {
-    margin-bottom: 35px;
-    background: #fff;
-    padding-left: 25px;
-    max-width: 500px;
-}
-.wc-ct-option {
-    margin-left: 0px;
-    margin-top: 15px;
-}
-.integration-settings {
-    display: none;
+  border-radius: 50%;
 }
 .wcct-admin .submit-area {
-    display: block;
-    overflow: hidden;
-    margin-top: 30px;
+  display: block;
+  overflow: hidden;
+  margin-top: 30px;
+}
+.wcct-admin .custom-table {
+  margin-top: 0;
 }
 .wcct-admin .custom-table th {
-    width:150px !important;
+  width: 150px !important;
 }
-.wcct-admin .integration-name {
-    margin-top:30px
+.wcct-admin .settings-wrap .integration-wrap {
+  max-width: 600px;
+  border: 1px solid #dfdfdf;
+  margin-top: 20px;
 }
-.wcct-admin .option-td {
-    width:20px !important;
-    float: none !important;
+.wcct-admin .settings-wrap .integration-wrap .integration-name {
+  background: #f7f7f7;
+  padding: 10px 15px;
+  border-bottom: 1px solid #dfdfdf;
+}
+.wcct-admin .settings-wrap .integration-wrap .integration-settings {
+  background: #fff;
+  padding-left: 25px;
+  display: none;
+}
+.wcct-admin .settings-wrap .integration-wrap .integration-settings .wc-ct-option {
+  margin-left: 0px;
+  margin-top: 15px;
+}
+.wcct-admin .settings-wrap .integration-wrap .integration-settings textarea {
+  width: 100%;
+}
+.wcct-admin .settings-wrap .integration-wrap .integration-settings input[type="text"] {
+  min-width: 300px;
+}
+.wcct-admin .settings-wrap .integration-wrap .gateway {
+  display: flex;
+  flex-flow: 1 1 auto;
+}
+.wcct-admin .settings-wrap .integration-wrap .gateway label,
+.wcct-admin .settings-wrap .integration-wrap .gateway .gateway-text {
+  flex: 1 1 auto;
+  max-width: 15%;
+}
+.wcct-admin .settings-wrap .integration-wrap .gateway .gateway-text {
+  margin: 0 30px 0 0;
+  max-width: 90%;
+}
+.wcct-admin .settings-wrap .integration-wrap .gateway label.switch {
+  position: relative;
+  display: inline-block;
+  max-width: 40px;
+  height: 18px;
+}
+.wcct-admin .sidebar-wrap .premium-box {
+  width: 100%;
+  min-height: 100px;
+  margin-bottom: 25px;
+  box-sizing: border-box;
+  padding: 10px 15px;
+}
+.wcct-admin .sidebar-wrap .premium-box.box-green {
+  background: #4CAF50;
+  color: #fff;
+}
+.wcct-admin .sidebar-wrap .premium-box.box-blue {
+  background: #673ab7;
+  color: #fff;
 }

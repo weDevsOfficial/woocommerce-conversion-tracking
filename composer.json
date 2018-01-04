@@ -1,0 +1,14 @@
+{
+    "name": "tareq1988/woocommerce-conversion-tracking",
+    "description": "Conversion tracking plugin for WooCommerce",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Tareq Hasan",
+            "email": "tareq@wedevs.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
