@@ -15,9 +15,7 @@
             <div class="integration">
                 <div class="integration-name">
                     <div class="gateway">
-                        <h3 class="gateway-text">
-                            <?php echo $name; ?>
-                        </h3>
+                        <h3 class="gateway-text"><?php echo $name; ?></h3>
                         <label class="switch tips" title="" data-original-title="Make Inactive">
                             <input type="checkbox" class="toogle-seller" name="settings[<?php echo $id; ?>][enabled]" id="integration-<?php echo $id; ?>" data-id="<?php echo $id; ?>" value="1" <?php checked( true, $object->is_enabled() ); ?> >
                             <span class="slider round" data-id="<?php echo $id; ?>"></span>
@@ -30,28 +28,30 @@
                     if ( ! $settings_fields ) {
                         continue;
                     }
+                    ?>
 
-                    foreach ( $settings_fields as $field ) {
-                        ?>
+                    <table class="form-table custom-table">
                         <div class="wc-ct-form-group">
-                            <table class="form-table custom-table">
+                            <?php foreach ( $settings_fields as $field ) { ?>
                                 <tr>
                                     <th>
                                         <label for="<?php echo $id . '-' . $field['label']; ?>"><?php echo $field['label']; ?></label>
                                     </th>
 
-                                    <?php
-                                    switch ( $field['type'] ) {
-                                        case 'text':
-                                            echo '<td><input type="text" name="settings[' . $id . '][' . $field['name'] . ']" value="' . $settings[ $field['name'] ] . '" id="' . $id . '-' . $field['label'] . '"></td>';
-                                            break;
+                                    <td>
+                                        <?php
+                                        $placeholder = isset( $field['placeholder'] ) ? $field['placeholder'] : '';
 
-                                        case 'textarea':
-                                            echo '<td><textarea name="settings[' . $id . '][' . $field['name'] . ']" id="' . $id . '-' . $field['label'] . '" cols="30" rows="3">' . $settings[ $field['name'] ] . '</textarea></td>';
-                                            break;
-                                        case 'checkbox':
-                                            ?>
-                                            <td>
+                                        switch ( $field['type'] ) {
+                                            case 'text':
+                                                printf( '<input type="text" name="settings[%s][%s]" placeholder="%s" value="%s" id="%s">', $id, $field['name'], $placeholder, $settings[ $field['name'] ], $id . '-' . $field['name'] );
+                                                break;
+
+                                            case 'textarea':
+                                                printf( '<textarea type="text" name="settings[%s][%s]" placeholder="%s" id="%s" cols="30" rows="3">%s</textarea>', $id, $field['name'], $placeholder, $id . '-' . $field['name'], $settings[ $field['name'] ] );
+                                                break;
+                                            case 'checkbox':
+                                                ?>
                                                 <div class="wc-ct-option" style="">
                                                     <?php
             										foreach ( $field['options'] as $key => $option ) {
@@ -68,14 +68,18 @@
             										}
                                                     ?>
                                                 </div>
-                                            </td>
                                             <?php
-                                    }
-                                }
-                                ?>
-                            </tr>
-                        </table>
-                    </div>
+                                        }
+
+                                        if ( isset( $field['help'] ) && ! empty( $field['help'] ) ) {
+                                            echo '<p class="help">' . $field['help'] . '</p>';
+                                        }
+                                        ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </div>
+                    </table>
                 </div>
             </div>
 

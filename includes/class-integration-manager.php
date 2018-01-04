@@ -45,7 +45,7 @@ class WCCT_Integration_Manager {
             'WCCT_Integration_Custom',
         );
 
-        $this->integrations = apply_filters( 'wcct_gateways', $integrations );
+        $this->integrations = apply_filters( 'wcct_integrations', $integrations );
 
         return $this->integrations;
     }
