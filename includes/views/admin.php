@@ -8,7 +8,7 @@
         foreach ( $integrations as $integration ) {
             $object          = new $integration;
             $name            = $object->get_name();
-            $id              = strtolower( $name );
+            $id              = $object->get_id();
             $settings_fields = $object->get_settings();
             $settings        = $object->get_integration_settings();
             ?>

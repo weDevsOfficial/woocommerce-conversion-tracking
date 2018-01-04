@@ -55,6 +55,15 @@ abstract class WCCT_Integration {
     abstract public function enqueue_script();
 
     /**
+     * Get the integration id
+     *
+     * @return [type] [description]
+     */
+    public function get_id() {
+        return $this->id;
+    }
+
+    /**
      * Get the integration name
      *
      * @return string
