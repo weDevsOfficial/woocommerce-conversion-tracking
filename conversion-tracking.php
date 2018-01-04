@@ -147,7 +147,7 @@ class WeDevs_WC_Conversion_Tracking {
         add_action( 'wp_ajax_wcv_dismiss_survey', array( $this, 'dismiss_survey' ) );
 
         // register integration
-        add_filter( 'woocommerce_integrations', array( $this, 'register_integration' ) );
+        // add_filter( 'woocommerce_integrations', array( $this, 'register_integration' ) );
 
         add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
     }

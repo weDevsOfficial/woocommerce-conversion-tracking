@@ -19,17 +19,19 @@ class WCCT_Admin {
      * @return void
      */
     public function enqueue_scripts() {
+
         /**
          * All style goes here
          */
         wp_enqueue_style( 'style', plugins_url( 'assets/css/style.css', WCCT_FILE ), false, date( 'Ymd' ) );
+
         /**
          * All script goes here
          */
-        wp_enqueue_script( 'wc-tracking-script', plugins_url( 'assets/js/admin.js', WCCT_FILE ), array( 'jquery', 'wp-util' ), false, time() );
+        wp_enqueue_script( 'wcct-admin', plugins_url( 'assets/js/admin.js', WCCT_FILE ), array( 'jquery', 'wp-util' ), false, time() );
 
         wp_localize_script(
-            'wc-tracking-script', 'wc_tracking', array(
+            'wcct-admin', 'wc_tracking', array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
             )
         );

@@ -126,4 +126,21 @@ abstract class WCCT_Integration {
 
         return false;
     }
+
+    /**
+     * Helper function to iterate through a cart and gather all content ids
+     *
+     * @param  array $cart
+     *
+     * @return array
+     */
+    protected function get_content_ids_from_cart( $cart ) {
+        $product_ids = array();
+
+        foreach ($cart as $item) {
+            $product_ids[] = $item['data']->get_id();
+        }
+
+        return $product_ids;
+    }
 }

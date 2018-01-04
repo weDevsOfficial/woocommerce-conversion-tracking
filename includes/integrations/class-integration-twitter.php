@@ -14,8 +14,8 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
         $this->enabled  = true;
         $this->supports = array(
             'add_to_cart',
-			'checkout',
-			'registration'
+            'checkout',
+            'registration'
         );
     }
 
@@ -38,80 +38,27 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
                 'label' => __( 'Events', 'woocommerce-conversion-tracking' ),
                 'value' => '',
                 'options' => array(
-                    'AddToCart'     => 'Add to Cart',
-                    'Purchase'      => 'Purchase',
-                    'registration'  => 'CompleteRegistration',
+                    'AddToCart'     => __( 'Add to Cart', 'woocommerce-conversion-tracking' ),
+                    'Purchase'      => __( 'Purchase', 'woocommerce-conversion-tracking' ),
+                    'Registration'  => __( 'Completes Registration', 'woocommerce-conversion-tracking' ),
                 )
             ),
         );
 
         return $settings;
     }
-    /**
-     * Check Out
-     *
-     * @return [type] [description]
-     */
-    public function checkout( $order_id ) {
-        if ( ! $this->event_enabled( 'Purchase' ) ) {
-            return;
-        }
-        ?>
-        <script>
-          twq('track','Purchase', {
-            value: '',
-            currency: '<?php echo get_option( 'woocommerce_currency' ); ?>',
-            content_ids: [''],
-            content_type: 'product',
-            content_name: '',
-            order_id: '<?php echo $order_id; ?>'
-          });
-        </script>
-		<?php
-    }
 
     /**
-     * Add to cart
+     * Build the event object
      *
-     * @param integer $cart_item_key
-     * @param integer $product_id
-     * @param integer $quantity
-     * @param integer $variation_id
-     */
-    public function add_to_cart( $cart_item_key, $product_id, $quantity, $variation_id ) {
-        if ( ! $this->event_enabled( 'AddToCart' ) ) {
-            return;
-        }
-        ?>
-		<script>
-            twq('track','AddToCart', {
-              value: '<?php echo $product->get_price(); ?>',
-              currency: '<?php echo get_option( 'woocommerce_currency' ); ?>',
-              num_items: '<?php echo $quantity; ?>',
-              //optional parameters
-              content_ids: ['<?php echo $product_id; ?>'],
-              content_type: 'product',
-              content_name: '',
-              order_id: '<?php echo $product_id; ?>'
-            });
-          </script>
-        <?php
-    }
-
-    /**
-     * Registration script
+     * @param  string $event_name
+     * @param  array $params
+     * @param  string $method
      *
-     * @return void
+     * @return string
      */
-    public function registration() {
-        if ( ! $this->event_enabled( 'registration' ) ) {
-            return;
-        }
-        ?>
-		  <script>
-			twq('track', 'CompleteRegistration', {currency: '<?php echo get_option( 'woocommerce_currency' ); ?>', value: 0.75});
-        </script>
-        <?php
+    public function build_event( $event_name, $params = array(), $method = 'track' ) {
+        return sprintf( "twq('%s', '%s', %s);", $method, $event_name, json_encode( $params, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT ) );
     }
 
     /**
@@ -130,9 +77,109 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
         <script>
             !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
 
-            twq('init','<?php echo $twitter_pixel_id; ?>');
-            twq('track', "PageView");
+            <?php echo $this->build_event( $twitter_pixel_id, array(), 'init' ); ?>
+            <?php echo $this->build_event( 'PageView' ); ?>
+        </script>
+        <?php
+
+        $this->add_to_cart_ajax();
+    }
+
+    /**
+     * Check Out
+     *
+     * @param  integer $order_id
+     *
+     * @return void
+     */
+    public function checkout( $order_id ) {
+        if ( ! $this->event_enabled( 'Purchase' ) ) {
+            return;
+        }
+
+        $order        = new WC_Order( $order_id );
+        $content_type = 'product';
+        $product_ids  = array();
+
+        foreach ( $order->get_items() as $item ) {
+            $product = wc_get_product( $item['product_id'] );
+
+            $product_ids[] = $product->get_id();
+
+            if ( $product->get_type() === 'variable' ) {
+                $content_type = 'product_group';
+            }
+        }
+
+        $code = $this->build_event( 'Purchase', array(
+            'content_ids'  => json_encode($product_ids),
+            'content_type' => $content_type,
+            'value'        => $order->get_total(),
+            'currency'     => get_woocommerce_currency()
+        ) );
+
+        wc_enqueue_js( $code );
+    }
+
+    /**
+     * Enqueue add to cart event
+     *
+     * @return void
+     */
+    public function add_to_cart() {
+
+        if ( ! $this->event_enabled( 'AddToCart' ) ) {
+            return;
+        }
+
+        $product_ids = $this->get_content_ids_from_cart( WC()->cart->get_cart() );
+
+        $code = $this->build_event( 'AddToCart', array(
+            'content_ids'  => json_encode( $product_ids ),
+            'content_type' => 'product',
+            'value'        => WC()->cart->total,
+            'currency'     => get_woocommerce_currency()
+        ) );
+
+        wc_enqueue_js( $code );
+    }
+
+    /**
+     * Added to cart
+     *
+     * @return void
+     */
+    public function add_to_cart_ajax() {
+        if ( ! $this->event_enabled( 'AddToCart' ) ) {
+            return;
+        }
+        ?>
+        <script type="text/javascript">
+            jQuery(function($) {
+                $(document).on('added_to_cart', function (event, fragments, hash, button) {
+                    twq('track', 'AddToCart', {
+                       content_ids: [ $(button).data('product_id') ],
+                       content_type: 'product',
+                    });
+                });
+            });
         </script>
         <?php
     }
+
+    /**
+     * Registration script
+     *
+     * @return void
+     */
+    public function registration() {
+        if ( ! $this->event_enabled( 'Registration' ) ) {
+            return;
+        }
+
+        $code = $this->build_event( 'CompleteRegistration' );
+
+        wc_enqueue_js( $code );
+    }
+
 }
