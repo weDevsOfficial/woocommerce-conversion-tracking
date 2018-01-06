@@ -49,12 +49,12 @@
                                                 switch ( $field['type'] ) {
                                                     case 'text':
                                                         $value = isset( $settings[ $field['name'] ] ) ? $settings[ $field['name'] ] : '';
-                                                        printf( '<input type="text" name="settings[%s][%s]" placeholder="%s" value="%s" id="%s">', $id, $field['name'], $placeholder, $value, $id . '-' . $field['name'] );
+                                                        printf( '<input type="text" name="settings[%s][%s]" placeholder="%s" value="%s" id="%s">', $id, $field['name'], $placeholder, stripslashes( $value ), $id . '-' . $field['name'] );
                                                         break;
 
                                                     case 'textarea':
                                                         $value = isset( $settings[ $field['name'] ] ) ? $settings[ $field['name'] ] : '';
-                                                        printf( '<textarea type="text" name="settings[%s][%s]" placeholder="%s" id="%s" cols="30" rows="3">%s</textarea>', $id, $field['name'], $placeholder, $id . '-' . $field['name'], $value );
+                                                        printf( '<textarea type="text" name="settings[%s][%s]" placeholder="%s" id="%s" cols="30" rows="3">%s</textarea>', $id, $field['name'], $placeholder, $id . '-' . $field['name'], stripslashes( $value ) );
                                                         break;
 
                                                     case 'checkbox':
