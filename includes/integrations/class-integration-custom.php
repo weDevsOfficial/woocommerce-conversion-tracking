@@ -13,7 +13,6 @@ class WCCT_Integration_Custom extends WCCT_Integration {
         $this->name         = __( 'Custom', 'woocommerce-conversion-tracking' );
         $this->enabled      = true;
         $this->supports     = array(
-            'add_to_cart',
 			'checkout',
 			'registration'
         );
@@ -57,30 +56,19 @@ class WCCT_Integration_Custom extends WCCT_Integration {
     }
 
     /**
-     * Add to cart
-     *
-     * @return  void
-     */
-    public function add_to_cart() {
-        if ( $this->is_enabled() ) {
-            $code = $this->get_integration_settings();
-            if ( isset( $code['cart'] ) && ! empty( $code['cart'] ) ) {
-                echo $code['cart'] ;
-            }
-        }
-    }
-
-    /**
      * Check Out
      *
      * @return void
      */
-    public function checkout() {
-        if ( $this->is_enabled() ) {
-            $code = $this->get_integration_settings();
-            if ( isset( $code['checkout'] ) && ! empty( $code['checkout'] ) ) {
-                echo $this->process_order_markdown( $code['checkout'] );
-            }
+    public function checkout( $order_id ) {
+        if ( ! $this->is_enabled() ) {
+            return;
+        }
+
+        $code = $this->get_integration_settings();
+
+        if ( isset( $code['checkout'] ) && ! empty( $code['checkout'] ) ) {
+            echo $this->process_order_markdown( $code['checkout'], $order_id );
         }
     }
 
@@ -91,7 +79,9 @@ class WCCT_Integration_Custom extends WCCT_Integration {
      */
     public function registration() {
         if ( $this->is_enabled() ) {
+
             $code = $this->get_integration_settings();
+
             if ( isset( $code['registration'] ) && ! empty( $code['registration'] ) ) {
                 echo $code['registration'] ;
             }
@@ -107,14 +97,9 @@ class WCCT_Integration_Custom extends WCCT_Integration {
      *
      * @return string
      */
-    function process_order_markdown( $code ) {
-        global $wp;
+    function process_order_markdown( $code, $order_id ) {
 
-        if ( ! is_order_received_page() ) {
-            return $code;
-        }
-
-        $order = wc_get_order( $wp->query_vars['order-received'] );
+        $order = wc_get_order( $order_id );
 
         // bail out if not a valid instance
         if ( ! is_a( $order, 'WC_Order' ) ) {

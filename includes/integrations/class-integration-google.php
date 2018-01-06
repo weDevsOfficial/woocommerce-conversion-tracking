@@ -51,7 +51,7 @@ class WCCT_Integration_Google extends WCCT_Integration {
             ),
         );
 
-        return $settings;
+        return apply_filters( 'wcct_settings_adwords', $settings );
     }
 
     /**
@@ -64,7 +64,7 @@ class WCCT_Integration_Google extends WCCT_Integration {
      * @return string
      */
     public function build_event( $event_name, $params = array(), $method = 'event' ) {
-        return sprintf( "gtag('%s', '%s', %s);", $method, $event_name, json_encode( $params, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT ) );
+        return sprintf( "gtag('%s', '%s', %s);", $method, $event_name, json_encode( $params, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT | JSON_UNESCAPED_SLASHES ) );
     }
 
     /**

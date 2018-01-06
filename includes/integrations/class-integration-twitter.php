@@ -46,7 +46,7 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
             ),
         );
 
-        return $settings;
+        return apply_filters( 'wcct_settings_twitter', $settings );
     }
 
     /**

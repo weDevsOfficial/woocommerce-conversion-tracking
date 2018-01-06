@@ -35,7 +35,9 @@ class WCCT_Ajax {
             $integration_settings[ $field_id ] = $settings;
         }
 
-        update_option( 'wcct_settings', $integration_settings );
+        $integration_settings = apply_filters( 'wcct_save_integrations_settings', $integration_settings );
+
+        update_option( 'wcct_settings', stripslashes_deep( $integration_settings ) );
 
         wp_send_json_success( array(
             'message' => __( 'Settings has been saved successfully!', 'woocommerce-conversion-tracking' )
