@@ -52,7 +52,7 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
             ),
         );
 
-        return $settings;
+        return apply_filters( 'wcct_settings_fb', $settings );
     }
 
     /**

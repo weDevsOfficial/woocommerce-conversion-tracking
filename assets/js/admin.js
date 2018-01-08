@@ -12,6 +12,10 @@
                     .show()
                     .delay(3000)
                     .slideUp('fast');
+
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 'fast');
             },
             error: function(error) {
                 alert('something wrong happend');

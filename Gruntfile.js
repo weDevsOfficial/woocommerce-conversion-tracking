@@ -87,6 +87,8 @@ module.exports = function(grunt) {
                     '!package.json',
                     '!debug.log',
                     '!phpunit.xml',
+                    '!phpcs.xml.dist',
+                    '!composer.json',
                     '!.gitignore',
                     '!.gitmodules',
                     '!npm-debug.log',
@@ -112,12 +114,12 @@ module.exports = function(grunt) {
             main: {
                 options: {
                     mode: 'zip',
-                    archive: './build/base-plugin-v<%= pkg.version %>.zip'
+                    archive: './build/woocommerce-conversion-tracking-v<%= pkg.version %>.zip'
                 },
                 expand: true,
                 cwd: 'build/',
                 src: ['**/*'],
-                dest: 'base-plugin'
+                dest: 'woocommerce-conversion-tracking'
             }
         },
 
