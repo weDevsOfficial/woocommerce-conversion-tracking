@@ -69,6 +69,8 @@ class WeDevs_WC_Conversion_Tracking {
         $this->init_classes();
 
         register_activation_hook( __FILE__, array( $this, 'activate' ) );
+
+        do_action( 'wcct_loaded' );
     }
 
     /**
@@ -93,6 +95,7 @@ class WeDevs_WC_Conversion_Tracking {
      * @return void
      */
     public function includes() {
+        require_once WCCT_INCLUDES . '/class-abstract-integration.php';
         require_once WCCT_INCLUDES . '/class-integration-manager.php';
         require_once WCCT_INCLUDES . '/class-event-dispatcher.php';
         require_once WCCT_INCLUDES . '/class-ajax.php';

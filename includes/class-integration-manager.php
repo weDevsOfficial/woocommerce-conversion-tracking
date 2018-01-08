@@ -25,7 +25,6 @@ class WCCT_Integration_Manager {
      * @return void
      */
     public function includes_integration() {
-        require_once WCCT_INCLUDES . '/class-abstract-integration.php';
         require_once WCCT_INCLUDES . '/integrations/class-integration-facebook.php';
         require_once WCCT_INCLUDES . '/integrations/class-integration-custom.php';
         require_once WCCT_INCLUDES . '/integrations/class-integration-google.php';
@@ -42,10 +41,10 @@ class WCCT_Integration_Manager {
             'WCCT_Integration_Facebook',
             'WCCT_Integration_Twitter',
             'WCCT_Integration_Google',
-            'WCCT_Integration_Custom',
         );
 
-        $this->integrations = apply_filters( 'wcct_integrations', $integrations );
+        $this->integrations     = apply_filters( 'wcct_integrations', $integrations );
+        $this->integrations[]   = 'WCCT_Integration_Custom';
 
         return $this->integrations;
     }
