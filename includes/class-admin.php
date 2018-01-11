@@ -32,7 +32,7 @@ class WCCT_Admin {
 
         wp_localize_script(
             'wcct-admin', 'wc_tracking', array(
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+                'ajaxurl' => admin_url( 'admin-ajax.php' ),
             )
         );
     }
@@ -56,5 +56,52 @@ class WCCT_Admin {
         $integrations = $manager->get_integrations();
 
         include dirname( __FILE__ ) . '/views/admin.php';
+    }
+
+    /**
+     * Get navigation tab
+     *
+     * @return array
+     */
+    public function wcct_get_tab() {
+
+        $sections   = array(
+            array(
+                'id'    => 'settings',
+                'title' => __( 'Settings', 'woocommerce-conversion-tracking' ),
+            ),
+        );
+
+        return apply_filters( 'wcct_nav_tab', $sections );
+    }
+
+    /**
+     * Show navigation
+     *
+     * @return void
+     */
+    public function show_navigation() {
+        $html = '<h2 class="nav-tab-wrapper">';
+
+        $count  = count( $this->wcct_get_tab() );
+        $tabs   = $this->wcct_get_tab();
+        $active = isset( $_GET['tab'] ) ? $_GET['tab'] : 'settings';
+
+        if ( $count == 0 ) {
+            return;
+        }
+
+        foreach ( $tabs as $tab ) {
+            $active_class   = ( $tab['id'] == $active ) ? 'nav-tab-active' : '';
+            $html  .= sprintf( '<a href="admin.php?page=conversion-tracking&tab=%s" class="nav-tab %s">%s</a>', $tab['id'], $active_class, $tab['title'] );
+        }
+
+        $html   .= '<h2/>';
+
+        echo $html;
+    }
+
+    public function another_tab_content() {
+        echo "Something";
     }
 }
