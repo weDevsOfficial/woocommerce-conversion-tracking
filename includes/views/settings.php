@@ -1,7 +1,7 @@
 <div class="wcct-two-column">
 
     <div class="settings-wrap">
-
+        <h4>Conversion Settings</h4>
         <form action="" method="POST" id="integration-form">
             <?php
             foreach ( $integrations as $integration ) {

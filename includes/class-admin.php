@@ -100,8 +100,4 @@ class WCCT_Admin {
 
         echo $html;
     }
-
-    public function another_tab_content() {
-        echo "Something";
-    }
 }

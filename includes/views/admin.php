@@ -3,7 +3,6 @@
 
     <?php
         $this->show_navigation();
-
         $tab   = isset( $_GET['tab'] ) ? $_GET['tab'] : 'settings';
     ?>
     <div id="ajax-message" class="updated inline" style="display: none; margin-bottom:35px"></div>

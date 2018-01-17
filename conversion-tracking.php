@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Conversion Tracking
 Plugin URI: https://wedevs.com/products/plugins/woocommerce-conversion-tracking/
 Description: Adds various conversion tracking codes to cart, checkout, registration success and product page on WooCommerce
-Version: 1.2.5
+Version: 2.0
 Author: Tareq Hasan
 Author URI: https://tareq.co/
 License: GPL2
@@ -54,7 +54,7 @@ class WeDevs_WC_Conversion_Tracking {
      *
      * @var string
      */
-    public $version = '1.2.5';
+    public $version = '2.0';
 
     /**
      * Constructor for the WeDevs_WC_Conversion_Tracking class
@@ -100,6 +100,7 @@ class WeDevs_WC_Conversion_Tracking {
         require_once WCCT_INCLUDES . '/class-event-dispatcher.php';
         require_once WCCT_INCLUDES . '/class-ajax.php';
         require_once WCCT_INCLUDES . '/class-admin.php';
+        require_once WCCT_INCLUDES . '/api/class-api.php';
     }
 
     /**
@@ -142,7 +143,7 @@ class WeDevs_WC_Conversion_Tracking {
      */
     public function init_hooks() {
 
-        // Localize our plugin
+        add_action( 'plugins_loaded', array( $this, 'plugin_upgrades' ) );
         add_action( 'init', array( $this, 'localization_setup' ) );
         add_action( 'init', array( $this, 'init_tracker' ) );
 
@@ -164,6 +165,7 @@ class WeDevs_WC_Conversion_Tracking {
         new WCCT_Ajax();
         new WCCT_Event_Dispatcher();
         new WCCT_Admin();
+        new WCCT_API();
     }
 
     /**
@@ -173,6 +175,26 @@ class WeDevs_WC_Conversion_Tracking {
      */
     public function localization_setup() {
         load_plugin_textdomain( 'woocommerce-conversion-tracking', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    }
+
+    /**
+     * Do plugin upgrade
+     *
+     * @since  2.0
+     * @return void
+     */
+    public function plugin_upgrades() {
+        if ( ! is_admin() && ! current_user_can( 'manage_options' ) ) {
+            return;
+        }
+
+        require_once WCCT_INCLUDES . '/class-upgrades.php';
+
+        $upgrader   = new WCCT_Upgrades();
+
+        if ( $upgrader->needs_update() ) {
+            $upgrader->perform_updates();
+        }
     }
 
     /**
