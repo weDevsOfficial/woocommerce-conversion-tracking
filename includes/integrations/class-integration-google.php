@@ -12,6 +12,7 @@ class WCCT_Integration_Google extends WCCT_Integration {
         $this->id           = 'adwords';
         $this->name         = __( 'Google Adwords', 'woocommerce-conversion-tracking' );
         $this->enabled      = true;
+        $this->add_new      = false;
         $this->supports     = array(
 			'checkout',
         );
@@ -24,7 +25,7 @@ class WCCT_Integration_Google extends WCCT_Integration {
      */
     public function get_settings() {
         $settings = array(
-            array(
+            'id'  => array(
                 'type'        => 'text',
                 'name'        => 'account_id',
                 'label'       => __( 'Account ID', 'woocommerce-conversion-tracking' ),
@@ -32,22 +33,19 @@ class WCCT_Integration_Google extends WCCT_Integration {
                 'placeholder' => 'AW-123456789',
                 'help'        => sprintf( __( 'Provide the AdWords Account ID. Usually it\'s something like <code>AW-123456789</code>, <a href="%s" target="_blank">learn more</a>.', 'woocommerce-conversion-tracking' ), 'https://support.google.com/adwords/answer/6095821' )
             ),
-            array(
+            'events'    => array(
                 'type'    => 'multicheck',
                 'name'    => 'events',
                 'label'   => __( 'Events', 'woocommerce-conversion-tracking' ),
                 'value'   => '',
                 'options' => array(
-                    'Purchase' => __( 'Purchase', 'woocommerce-conversion-tracking' ),
+                    'Purchase'  => array(
+                        'event_label_box'   => true,
+                        'label'             => __( 'Purchase', 'woocommerce-conversion-tracking' ),
+                        'label_name'       => 'Purchase-label',
+                        'placeholder'      => 'Add Your Purchase Label'
+                    ),
                 )
-            ),
-            array(
-                'type'        => 'text',
-                'name'        => 'purchase_label',
-                'label'       => __( 'Purchase Label', 'woocommerce-conversion-tracking' ),
-                'value'       => '',
-                'placeholder' => 'Ii0jCKTM320Qwo_m5QM',
-                'help'        => sprintf( __( 'Provide the purchase label for this event, <a href="%s" target="_blank">learn more</a>.', 'woocommerce-conversion-tracking' ), 'https://support.google.com/adwords/answer/6095821' )
             ),
         );
 
@@ -78,7 +76,7 @@ class WCCT_Integration_Google extends WCCT_Integration {
         }
 
         $settings   = $this->get_integration_settings();
-        $account_id = ! empty( $settings['account_id'] ) ? $settings['account_id'] : '';
+        $account_id = ! empty( $settings[0]['account_id'] ) ? $settings[0]['account_id'] : '';
 
         if ( empty( $account_id ) ) {
             return;
@@ -106,8 +104,8 @@ class WCCT_Integration_Google extends WCCT_Integration {
         }
 
         $settings   = $this->get_integration_settings();
-        $account_id = isset( $settings['account_id'] ) ? $settings['account_id'] : '';
-        $label      = isset( $settings['purchase_label'] ) ? $settings['purchase_label'] : '';
+        $account_id = isset( $settings[0]['account_id'] ) ? $settings[0]['account_id'] : '';
+        $label      = isset( $settings[0]['events']['Purchase-label'] ) ? $settings[0]['events']['Purchase-label'] : '';
 
         if ( empty( $account_id ) || empty( $label ) ) {
             return;

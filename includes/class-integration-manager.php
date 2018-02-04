@@ -59,7 +59,7 @@ class WCCT_Integration_Manager {
         $active       = array();
 
         foreach ( $integrations as $integration ) {
-            $object = new $integration();
+            $object = $integration::get_instance();
 
             if ( $object->is_enabled() ) {
                 $active[] = $object;

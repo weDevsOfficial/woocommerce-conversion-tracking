@@ -116,6 +116,7 @@
             max-width: @integrationWidth;
             border: 1px solid #dfdfdf;
             margin-top: 20px;
+            box-shadow: 1px 2px 1px 0px #dfdfdf;
 
             .integration-name {
                 background: #f7f7f7;
@@ -139,6 +140,14 @@
 
                 input[type="text"] {
                     min-width: 300px;
+                }
+
+               .wc-ct-form-group {
+                    border: 1px solid #dfdfdf;
+                    padding: 10px;
+                    margin-right: 25px;
+                    margin-bottom: 15px;
+                    margin-top: 15px;
                 }
             }
 
@@ -165,6 +174,22 @@
                         height: 18px;
                     }
                 }
+            }
+
+            .single-integration {
+                padding-bottom: 15px !important;
+            }
+
+            .event-label{
+                display:none;
+            }
+
+            .event-label-space{
+                margin-top: 8px;
+                margin-bottom: 8px;
+            }
+            .disabled-class{
+                color:#ccc;
             }
         }
     }

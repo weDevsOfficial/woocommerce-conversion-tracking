@@ -12,12 +12,11 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
         $this->id        = 'facebook';
         $this->name      = __( 'Facebook', 'woocommerce-conversion-tracking' );
         $this->enabled   = true;
+        $this->add_new   = true;
         $this->supports  = array(
             'add_to_cart',
             'checkout',
             'initiate_checkout',
-            'product_view',
-            'category_view',
             'registration',
         );
     }
@@ -29,21 +28,20 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
      */
     public function get_settings() {
         $settings = array(
-            array(
-                'type'  => 'text',
-                'name'  => 'pixel_id',
-                'label' => __( 'Pixel ID', 'woocommerce-conversion-tracking' ),
-                'value' => '',
-                'help'  => sprintf( __( 'Find the Pixel ID from <a href="%s" target="_blank">here</a>.', 'woocommerce-conversion-tracking' ), 'https://www.facebook.com/ads/manager/pixel/facebook_pixel' )
+            'id'      => array(
+                'type'      => 'text',
+                'name'      => 'pixel_id',
+                'label'     => __( 'Pixel ID', 'woocommerce-conversion-tracking' ),
+                'required'  => true,
+                'value'     => '',
+                'help'      => sprintf( __( 'Find the Pixel ID from <a href="%s" target="_blank">here</a>.', 'woocommerce-conversion-tracking' ), 'https://www.facebook.com/ads/manager/pixel/facebook_pixel' )
             ),
-            array(
+            'events'    => array(
                 'type'    => 'multicheck',
                 'name'    => 'events',
                 'label'   => __( 'Events', 'woocommerce-conversion-tracking' ),
                 'value'   => '',
                 'options' => array(
-                    'ViewContent'      => __( 'View Product', 'woocommerce-conversion-tracking' ),
-                    'ViewCategory'     => __( 'View Product Category', 'woocommerce-conversion-tracking' ),
                     'AddToCart'        => __( 'Add to Cart', 'woocommerce-conversion-tracking' ),
                     'InitiateCheckout' => __( 'Initiate Checkout', 'woocommerce-conversion-tracking' ),
                     'Purchase'         => __( 'Purchase', 'woocommerce-conversion-tracking' ),
@@ -80,7 +78,7 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
         }
 
         $integration_settins    = $this->get_integration_settings();
-        $facebook_pixel_id      = ! empty( $integration_settins['pixel_id'] ) ? $integration_settins['pixel_id'] : '';
+        $facebook_pixel_id      = ! empty( $integration_settins[0]['pixel_id'] ) ? $integration_settins[0]['pixel_id'] : '';
         ?>
         <script>
             !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -216,85 +214,6 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
     }
 
     /**
-     * Fire the product view event
-     *
-     * @return void
-     */
-    public function product_view() {
-
-        if ( ! $this->event_enabled( 'ViewContent' ) ) {
-            return;
-        }
-
-        $product      = wc_get_product( get_the_ID() );
-        $content_type = 'product';
-
-        if ( ! $product ) {
-            return;
-        }
-
-        // if product is a variant, fire the pixel with content_type: product_group
-        if ( $product->get_type() === 'variable' ) {
-            $content_type = 'product_group';
-        }
-
-        $code = $this->build_event( 'ViewContent', array(
-            'content_name' => $product->get_title(),
-            'content_ids'  => json_encode( array( $product->get_id() ) ),
-            'content_type' => $content_type,
-            'value'        => $product->get_price(),
-            'currency'     => get_woocommerce_currency()
-        ) );
-
-        wc_enqueue_js( $code );
-    }
-
-    /**
-     * View category event
-     *
-     * @return void
-     */
-    public function category_view() {
-        global $wp_query;
-
-        if ( ! $this->event_enabled( 'ViewCategory' ) ) {
-            return;
-        }
-
-        $products = array_values( array_map( function( $item ) {
-            return wc_get_product( $item->ID );
-        }, $wp_query->get_posts() ) );
-
-        // if any product is a variant, fire the pixel with
-        // content_type: product_group
-        $content_type = 'product';
-        $product_ids  = array();
-
-        foreach ( $products as $product ) {
-            if ( ! $product ) {
-                continue;
-            }
-
-            $product_ids[] = $product->get_id();
-
-            if ( $product->get_type() === 'variable' ) {
-                $content_type = 'product_group';
-            }
-        }
-
-        $categories = $this->get_product_categories( get_the_ID() );
-
-        $code = $this->build_event( 'ViewCategory', array(
-            'content_name'     => $categories['name'],
-            'content_category' => $categories['categories'],
-            'content_ids'      => json_encode( array_slice( $product_ids, 0, 10 ) ),
-            'content_type'     => $content_type
-        ), 'trackCustom' );
-
-        wc_enqueue_js( $code );
-    }
-
-    /**
      * Registration script
      *
      * @return void
@@ -305,7 +224,6 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
         }
 
         $code = $this->build_event( 'CompleteRegistration' );
-
         wc_enqueue_js( $code );
     }
 

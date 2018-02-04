@@ -98,9 +98,11 @@ class WeDevs_WC_Conversion_Tracking {
         require_once WCCT_INCLUDES . '/class-abstract-integration.php';
         require_once WCCT_INCLUDES . '/class-integration-manager.php';
         require_once WCCT_INCLUDES . '/class-event-dispatcher.php';
+        require_once WCCT_INCLUDES . '/class-integration-pro-features.php';
         require_once WCCT_INCLUDES . '/class-ajax.php';
         require_once WCCT_INCLUDES . '/class-admin.php';
         require_once WCCT_INCLUDES . '/api/class-api.php';
+
     }
 
     /**
@@ -166,6 +168,11 @@ class WeDevs_WC_Conversion_Tracking {
         new WCCT_Event_Dispatcher();
         new WCCT_Admin();
         new WCCT_API();
+        new WCCT_Integration_Manager();
+
+        if ( ! class_exists( 'WeDevs_WC_Conversion_Tracking_Pro') ) {
+            new WCCT_Pro_Features();
+        }
     }
 
     /**
@@ -347,6 +354,18 @@ class WeDevs_WC_Conversion_Tracking {
     }
 
     /**
+     * Check the pro version
+     *
+     * @return boolean
+     */
+    public function is_pro() {
+        if ( class_exists( 'WeDevs_WC_Conversion_Tracking_Pro' ) ) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Plugin action links
      *
      * @param  array $links
@@ -354,6 +373,9 @@ class WeDevs_WC_Conversion_Tracking {
      * @return array
      */
     function plugin_action_links( $links ) {
+        if ( ! $this->is_pro() ) {
+            $links[] = '<a href="https://wedevs.com" target="_blank" style="color: #389e38;font-weight: bold;">' . __( 'Get PRO', 'woocommerce-conversion-tracking' ) . '</a>';
+        }
 
         $links[] = '<a href="https://wordpress.org/plugins/woocommerce-conversion-tracking/#installation" target="_blank">' . __( 'Installation', 'woocommerce-conversion-tracking' ) . '</a>';
         $links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=integration&section=wc_conv_tracking' ) . '">' . __( 'Settings', 'woocommerce-conversion-tracking' ) . '</a>';

@@ -97,7 +97,7 @@ abstract class WCCT_Integration {
     public function event_enabled( $event ) {
         $settings = $this->get_integration_settings();
 
-        if ( isset( $settings['events'] ) && array_key_exists( $event, $settings['events'] ) && $settings['events'][ $event ] == 'on' ) {
+        if ( isset( $settings[0]['events'] ) && array_key_exists( $event, $settings[0]['events'] ) && $settings[0]['events'][ $event ] == 'on' ) {
             return true;
         }
 
@@ -151,5 +151,19 @@ abstract class WCCT_Integration {
         }
 
         return $product_ids;
+    }
+
+    /**
+     * Get Instance
+     *
+     * @return object
+     */
+    public static function get_instance() {
+        static $instance = false;
+        $class = get_called_class();
+        if ( !$instance ) {
+            $instance = new $class();
+        }
+        return $instance;
     }
 }

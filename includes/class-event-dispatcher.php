@@ -31,6 +31,13 @@ class WCCT_Event_Dispatcher {
         // registration events
         add_action( 'woocommerce_registration_redirect', array( $this, 'wc_redirect_url' ) );
         add_action( 'template_redirect', array( $this, 'track_registration' ) );
+
+        // Search Event
+        add_action( 'pre_get_posts', array( $this, 'product_search' ) );
+
+        // Wishlist Event
+
+        add_filter( 'yith_wcwl_added_to_wishlist', array( $this, 'product_wishlist' ) );
     }
 
     /**
@@ -99,6 +106,24 @@ class WCCT_Event_Dispatcher {
      */
     public function complete_registration() {
         $this->dispatch_event( 'registration' );
+    }
+
+    /**
+     * Product search event
+     *
+     * @return void
+     */
+    public function product_search() {
+        $this->dispatch_event( 'search' );
+    }
+
+    /**
+     * Product wishlist event
+     *
+     * @return void
+     */
+    public function product_wishlist() {
+        $this->dispatch_event( 'add_to_wishlist' );
     }
 
     /**
