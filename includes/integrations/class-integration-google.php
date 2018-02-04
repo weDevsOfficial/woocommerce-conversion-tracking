@@ -12,9 +12,8 @@ class WCCT_Integration_Google extends WCCT_Integration {
         $this->id           = 'adwords';
         $this->name         = __( 'Google Adwords', 'woocommerce-conversion-tracking' );
         $this->enabled      = true;
-        $this->add_new      = false;
         $this->supports     = array(
-			'checkout',
+            'checkout',
         );
     }
 

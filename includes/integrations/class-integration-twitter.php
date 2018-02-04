@@ -12,7 +12,6 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
         $this->id       = 'twitter';
         $this->name     = __( 'Twitter', 'woocommerce-conversion-tracking' );
         $this->enabled  = true;
-        $this->add_new  = false;
         $this->supports = array(
             'checkout',
         );

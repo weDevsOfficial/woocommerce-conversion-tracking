@@ -39,7 +39,7 @@ WC tested up to: 3.2.6
 
 // don't call the file directly
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 /**
@@ -55,6 +55,8 @@ class WeDevs_WC_Conversion_Tracking {
      * @var string
      */
     public $version = '2.0';
+
+    private $container = array();
 
     /**
      * Constructor for the WeDevs_WC_Conversion_Tracking class
@@ -101,8 +103,6 @@ class WeDevs_WC_Conversion_Tracking {
         require_once WCCT_INCLUDES . '/class-integration-pro-features.php';
         require_once WCCT_INCLUDES . '/class-ajax.php';
         require_once WCCT_INCLUDES . '/class-admin.php';
-        require_once WCCT_INCLUDES . '/api/class-api.php';
-
     }
 
     /**
@@ -164,10 +164,9 @@ class WeDevs_WC_Conversion_Tracking {
      * @return void
      */
     public function init_classes() {
-        new WCCT_Ajax();
+        $this->container['ajax'] = new WCCT_Ajax();
         new WCCT_Event_Dispatcher();
         new WCCT_Admin();
-        new WCCT_API();
         new WCCT_Integration_Manager();
 
         if ( ! class_exists( 'WeDevs_WC_Conversion_Tracking_Pro') ) {
@@ -384,5 +383,9 @@ class WeDevs_WC_Conversion_Tracking {
     }
 }
 
+function wcct_init() {
+    return WeDevs_WC_Conversion_Tracking::init();
+}
+
 // WeDevs_WC_Conversion_Tracking
-$wc_tracking = WeDevs_WC_Conversion_Tracking::init();
+wcct_init();
