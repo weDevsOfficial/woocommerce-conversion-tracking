@@ -114,7 +114,9 @@ class WCCT_Event_Dispatcher {
      * @return void
      */
     public function product_search() {
-        $this->dispatch_event( 'search' );
+        if ( is_main_query() ) {
+            $this->dispatch_event( 'search' );
+        }
     }
 
     /**

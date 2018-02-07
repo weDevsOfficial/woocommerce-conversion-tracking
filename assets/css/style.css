@@ -1,6 +1,6 @@
 /*
 Woocommerce-Conversion-Tracking - v1.0.0
-Generated: 2018-02-07 (1517982516239)
+Generated: 2018-02-07 (1518002109390)
 PLEASE DO NOT MODIFY*/
 .wcct-admin {
   /**
@@ -17,7 +17,7 @@ PLEASE DO NOT MODIFY*/
   width: 70%;
 }
 .wcct-admin .wcct-two-column .sidebar-wrap {
-  width: 30%;
+  width: 33%;
 }
 .wcct-admin .switch input {
   display: none;
@@ -174,10 +174,37 @@ PLEASE DO NOT MODIFY*/
   padding: 10px 15px;
 }
 .wcct-admin .sidebar-wrap .premium-box.box-green {
-  background: #4CAF50;
+  background: #00AEFF;
   color: #fff;
 }
 .wcct-admin .sidebar-wrap .premium-box.box-blue {
-  background: #673ab7;
   color: #fff;
+  background: linear-gradient(to right, #F2709C, #FB9E7E);
+  padding-bottom: 27px;
+}
+.wcct-admin .sidebar-wrap .premium-box.box-blue p {
+  font-size: 15px;
+  font-weight: normal;
+}
+.wcct-admin .sidebar-wrap .premium-box.box-blue h3 {
+  color: #fff;
+}
+.wcct-admin .sidebar-wrap .premium-box.box-blue .pro-button {
+  text-decoration: none;
+  padding: 5px 20px;
+  background: #fff;
+  border-radius: 50px;
+  color: #F37599;
+}
+.wcct-admin .sidebar-wrap .premium-box.box-blue .dashicons-yes {
+  color: green;
+  font-size: 1.5em;
+}
+.wcct-admin .sidebar-wrap .premium-box .wcct-doc-title {
+  color: #fff;
+}
+.wcct-admin .sidebar-wrap .premium-box .wcct-doc-list li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
 }

@@ -126,13 +126,15 @@
 
     <div class="sidebar-wrap">
         <div class="premium-box box-green">
-            <h3><?php _e( 'Documentation', 'woocommerce-conversion-tracking' )?></h3>
-            <ul>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/get-started/" target="_blank"><?php _e( 'Getting Started', 'woocommerce-conversion-tracking' ) ?></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/" target="_blank"><?php _e( 'Facebook', 'woocommerce-conversion-tracking' ) ?></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/twitter/" target="_blank"><?php _e( 'Twitter', 'woocommerce-conversion-tracking' ) ?></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/google-adwords/" target="_blank"><?php _e( 'Google Adwords', 'woocommerce-conversion-tracking' ) ?></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/custom/" target="_blank"><?php _e( 'Custom', 'woocommerce-conversion-tracking' ) ?></a></li>
+            <h3 class="wcct-doc-title"><?php _e( 'Documentation', 'woocommerce-conversion-tracking' )?></h3>
+
+            <ul class="wcct-doc-list">
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/get-started/" target="_blank"><?php _e( ' <span class="dashicons dashicons-info"></span> Getting Started', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/" target="_blank"><?php _e( ' <span class="dashicons dashicons-info"></span> Facebook', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/twitter/" target="_blank"><?php _e( ' <span class="dashicons dashicons-info"></span> Twitter', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/google-adwords/" target="_blank"><?php _e( '<span class="dashicons dashicons-info"></span> Google Adwords', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/https://wedevs.com/docs/woocommerce-conversion-tracking/perfect-audience/" target="_blank"><?php _e( '<span class="dashicons dashicons-info"></span> Perfect Audience', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/custom/" target="_blank"><?php _e( ' <span class="dashicons dashicons-info"></span> Custom', 'woocommerce-conversion-tracking' ) ?></a></li>
             </ul>
         </div>
 

@@ -99,10 +99,22 @@ class WCCT_Pro_Features {
     public function profeature_ad() {
         ?>
         <div class="premium-box box-blue">
-            <h3><?php _e( 'Pro-feature', 'woocommerce-conversion-tracking' ) ?></h3>
-            <ul>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/perfect-audience/" target="_blank"><?php _e( 'Perfect Audience', 'woocommerce-conversion-tracking' ) ?></a></li>
+            <h3 style="margin-left: 15px"><?php _e( 'Premium Features', 'woocommerce-conversion-tracking' ) ?></h3>
+            <ul class="premium-feature-list">
+                <li>
+                   <span class="dashicons dashicons-yes"></span> Advance Facebook Events
+                </li>
+                <li>
+                   <span class="dashicons dashicons-yes"></span> Advance Google Adwords Events
+                </li>
+                <li>
+                   <span class="dashicons dashicons-yes"></span> Advance Twitter Events
+                </li>
+                <li>
+                   <span class="dashicons dashicons-yes"></span> Perfect Audience
+                </li>
             </ul>
+            <a href="https://wedevs.com" target="_blank" class="pro-button"><?php _e( 'Get Premium <span class="dashicons dashicons-arrow-right-alt"></span>', 'woocommerce-conversion-tracking' ) ?></a>
         </div>
         <?php
     }

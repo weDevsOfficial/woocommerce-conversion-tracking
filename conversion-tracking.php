@@ -250,17 +250,17 @@ class WeDevs_WC_Conversion_Tracking {
     /**
      * Register integration
      *
-     * @param array $interations
+     * @param array $integrations
      *
      * @return array
      */
-    function register_integration( $interations ) {
+    function register_integration( $integrations ) {
 
         include dirname( __FILE__ ) . '/includes/integration.php';
 
-        $interations[] = 'WeDevs_WC_Tracking_Integration';
+        $integrations[] = 'WeDevs_WC_Tracking_Integration';
 
-        return $interations;
+        return $integrations;
     }
 
     /**
