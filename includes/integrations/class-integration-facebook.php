@@ -248,3 +248,5 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
         );
     }
 }
+
+return new WCCT_Integration_Facebook();

@@ -25,28 +25,14 @@ class WCCT_Integration_Manager {
      * @return void
      */
     public function includes_integration() {
-        require_once WCCT_INCLUDES . '/integrations/class-integration-facebook.php';
-        require_once WCCT_INCLUDES . '/integrations/class-integration-custom.php';
-        require_once WCCT_INCLUDES . '/integrations/class-integration-google.php';
-        require_once WCCT_INCLUDES . '/integrations/class-integration-twitter.php';
-    }
+        $this->integrations['facebook']     = require_once WCCT_INCLUDES . '/integrations/class-integration-facebook.php';
+        $this->integrations['google']       = require_once WCCT_INCLUDES . '/integrations/class-integration-google.php';
+        $this->integrations['twitter']      = require_once WCCT_INCLUDES . '/integrations/class-integration-twitter.php';
 
-    /**
-     * Get all integration
-     *
-     * @return void
-     */
-    public function get_integrations() {
-        $integrations = array(
-            'WCCT_Integration_Facebook',
-            'WCCT_Integration_Twitter',
-            'WCCT_Integration_Google',
-        );
 
-        $this->integrations     = apply_filters( 'wcct_integrations', $integrations );
-        $this->integrations[]   = 'WCCT_Integration_Custom';
+        $this->integrations     = apply_filters( 'wcct_integrations', $this->integrations );
 
-        return $this->integrations;
+        $this->integrations['custom']       = require_once WCCT_INCLUDES . '/integrations/class-integration-custom.php';
     }
 
     /**
@@ -55,18 +41,29 @@ class WCCT_Integration_Manager {
      * @return void
      */
     public function get_active_integrations() {
-        $integrations = $this->get_integrations();
+        $integrations = $this->integrations;
         $active       = array();
 
         foreach ( $integrations as $integration ) {
-            $object = $integration::get_instance();
-
-            if ( $object->is_enabled() ) {
-                $active[] = $object;
+            if ( $integration->is_enabled() ) {
+                $active[] = $integration;
             }
         }
 
         return $active;
+    }
+
+    /**
+     * Get all integration
+     *
+     * @return array
+     */
+    public function get_integrations() {
+        if ( empty( $this->integrations ) ) {
+            return;
+        }
+
+        return $this->integrations;
     }
 
 }

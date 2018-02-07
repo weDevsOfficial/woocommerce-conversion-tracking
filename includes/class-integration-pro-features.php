@@ -13,6 +13,8 @@ class WCCT_Pro_Features {
         add_filter( 'wcct_settings_twitter', array( $this, 'twitter_pro_features' ), 10, 1 );
         add_filter( 'wcct_settings_adwords', array( $this, 'adwords_pro_features' ), 10, 1 );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_script' ) );
+
+        add_action( 'wcct_sidebar', array( $this, 'profeature_ad' ) );
     }
 
     public function enqueue_script() {
@@ -87,5 +89,21 @@ class WCCT_Pro_Features {
         );
 
         return $settings;
+    }
+
+    /**
+     * Show profeature
+     *
+     * @return void
+     */
+    public function profeature_ad() {
+        ?>
+        <div class="premium-box box-blue">
+            <h3><?php _e( 'Pro-feature', 'woocommerce-conversion-tracking' ) ?></h3>
+            <ul>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/perfect-audience/" target="_blank"><?php _e( 'Perfect Audience', 'woocommerce-conversion-tracking' ) ?></a></li>
+            </ul>
+        </div>
+        <?php
     }
 }

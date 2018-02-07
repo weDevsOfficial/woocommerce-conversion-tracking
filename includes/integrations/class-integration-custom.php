@@ -142,3 +142,5 @@ class WCCT_Integration_Custom extends WCCT_Integration {
         return $code;
     }
 }
+
+return new WCCT_Integration_Custom();

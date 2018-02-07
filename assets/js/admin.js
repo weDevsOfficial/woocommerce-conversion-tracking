@@ -1,29 +1,26 @@
 (function( $ ) {
     // Data Save
     $( '#wcct-submit' ).on( 'click', function( e ) {
+        e.preventDefault();
 
-        if ( confirm( 'Are you sure want to save the changes ?' ) ) {
-            e.preventDefault();
+        wp.ajax.send( 'wcct_save_settings', {
+            data: $( '#integration-form' ).serialize(),
+            success: function( response ) {
 
-            wp.ajax.send( 'wcct_save_settings', {
-                data: $( '#integration-form' ).serialize(),
-                success: function( response ) {
+                $("#ajax-message")
+                    .html('<p><strong>' + response.message + '</strong></p>')
+                    .show()
+                    .delay(3000)
+                    .slideUp('fast');
 
-                    $("#ajax-message")
-                        .html('<p><strong>' + response.message + '</strong></p>')
-                        .show()
-                        .delay(3000)
-                        .slideUp('fast');
-
-                    $('html, body').animate({
-                        scrollTop: 0
-                    }, 'fast');
-                },
-                error: function(error) {
-                    alert('something wrong happend');
-                }
-            });
-        }
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 'fast');
+            },
+            error: function(error) {
+                alert('something wrong happend');
+            }
+        });
 
         return false;
     });

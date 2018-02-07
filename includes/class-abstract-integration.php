@@ -152,18 +152,4 @@ abstract class WCCT_Integration {
 
         return $product_ids;
     }
-
-    /**
-     * Get Instance
-     *
-     * @return object
-     */
-    public static function get_instance() {
-        static $instance = false;
-        $class = get_called_class();
-        if ( !$instance ) {
-            $instance = new $class();
-        }
-        return $instance;
-    }
 }

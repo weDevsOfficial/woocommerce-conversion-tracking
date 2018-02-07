@@ -5,18 +5,17 @@
         <form action="" method="POST" id="integration-form">
             <?php
             foreach ( $integrations as $int_key => $integration ) {
-                $object          = $integration::get_instance();
-                $name            = $object->get_name();
-                $id              = $object->get_id();
-                $settings_fields = $object->get_settings();
-                $settings        = $object->get_integration_settings();
+                $name            = $integration->get_name();
+                $id              = $integration->get_id();
+                $settings_fields = $integration->get_settings();
+                $settings        = $integration->get_integration_settings();
                 ?>
                 <div class="integration-wrap">
                     <div class="integration-name">
                         <div class="gateway">
                             <h3 class="gateway-text"><?php echo $name; ?></h3>
                             <label class="switch tips" title="" data-original-title="Make Inactive">
-                                <input type="checkbox" class="toogle-seller" name="settings[<?php echo $id; ?>][enabled]" id="integration-<?php echo $id; ?>" data-id="<?php echo $id; ?>" value="1" <?php checked( true, $object->is_enabled() ); ?> >
+                                <input type="checkbox" class="toogle-seller" name="settings[<?php echo $id; ?>][enabled]" id="integration-<?php echo $id; ?>" data-id="<?php echo $id; ?>" value="1" <?php checked( true, $integration->is_enabled() ); ?> >
                                 <span class="slider round" data-id="<?php echo $id; ?>"></span>
                             </label>
                         </div>
@@ -108,7 +107,7 @@
                         </div>
                     <?php
 
-                        do_action( 'wcct_integration_' . $id, $object );
+                        do_action( 'wcct_integration_' . $id, $integration );
                     ?>
                     </div>
                 </div>
@@ -127,11 +126,16 @@
 
     <div class="sidebar-wrap">
         <div class="premium-box box-green">
-            Green Feature
+            <h3><?php _e( 'Documentation', 'woocommerce-conversion-tracking' )?></h3>
+            <ul>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/get-started/" target="_blank"><?php _e( 'Getting Started', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/" target="_blank"><?php _e( 'Facebook', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/twitter/" target="_blank"><?php _e( 'Twitter', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/google-adwords/" target="_blank"><?php _e( 'Google Adwords', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/custom/" target="_blank"><?php _e( 'Custom', 'woocommerce-conversion-tracking' ) ?></a></li>
+            </ul>
         </div>
 
-        <div class="premium-box box-blue">
-            Blue Feature
-        </div>
+        <?php do_action( 'wcct_sidebar' ) ?>
     </div>
 </div>

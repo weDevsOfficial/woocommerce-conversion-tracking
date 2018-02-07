@@ -1,6 +1,6 @@
 /*
 Woocommerce-Conversion-Tracking - v1.0.0
-Generated: 2018-01-31 (1517380981075)
+Generated: 2018-02-07 (1517982516239)
 PLEASE DO NOT MODIFY*/
 .wcct-admin {
   /**
@@ -91,6 +91,15 @@ PLEASE DO NOT MODIFY*/
 .wcct-admin .custom-table th {
   width: 150px !important;
 }
+.wcct-admin .custom-table td {
+  font-weight: normal;
+}
+.wcct-admin .custom-table textarea {
+  font-family: monospace;
+}
+.wcct-admin .custom-table .help {
+  font-weight: normal;
+}
 .wcct-admin .settings-wrap .integration-wrap {
   max-width: 600px;
   border: 1px solid #dfdfdf;
@@ -136,6 +145,7 @@ PLEASE DO NOT MODIFY*/
 .wcct-admin .settings-wrap .integration-wrap .gateway .gateway-text {
   margin: 0 30px 0 0;
   max-width: 90%;
+  font-size: 1em !important;
 }
 .wcct-admin .settings-wrap .integration-wrap .gateway label.switch {
   position: relative;

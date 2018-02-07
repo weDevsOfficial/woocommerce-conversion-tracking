@@ -56,6 +56,11 @@ class WeDevs_WC_Conversion_Tracking {
      */
     public $version = '2.0';
 
+    /**
+     * Holds various class instances
+     *
+     * @var array
+     */
     private $container = array();
 
     /**
@@ -73,6 +78,32 @@ class WeDevs_WC_Conversion_Tracking {
         register_activation_hook( __FILE__, array( $this, 'activate' ) );
 
         do_action( 'wcct_loaded' );
+    }
+
+    /**
+     * Magic getter to bypass referencing plugin.
+     *
+     * @param $prop
+     *
+     * @return mixed
+     */
+    public function __get( $prop ) {
+        if ( array_key_exists( $prop, $this->container ) ) {
+            return $this->container[ $prop ];
+        }
+
+        return $this->{$prop};
+    }
+
+    /**
+     * Magic isset to bypass referencing plugin.
+     *
+     * @param $prop
+     *
+     * @return mixed
+     */
+    public function __isset( $prop ) {
+        return isset( $this->{$prop} ) || isset( $this->container[ $prop ] );
     }
 
     /**
@@ -164,13 +195,13 @@ class WeDevs_WC_Conversion_Tracking {
      * @return void
      */
     public function init_classes() {
-        $this->container['ajax'] = new WCCT_Ajax();
-        new WCCT_Event_Dispatcher();
-        new WCCT_Admin();
-        new WCCT_Integration_Manager();
+        $this->container['ajax']                = new WCCT_Ajax();
+        $this->container['event_dispatcher']    = new WCCT_Event_Dispatcher();
+        $this->container['admin']               = new WCCT_Admin();
+        $this->container['manager']             = new WCCT_Integration_Manager();
 
         if ( ! class_exists( 'WeDevs_WC_Conversion_Tracking_Pro') ) {
-            new WCCT_Pro_Features();
+            $this->container['pro_feature'] = new WCCT_Pro_Features();
         }
     }
 

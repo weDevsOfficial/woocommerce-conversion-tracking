@@ -117,3 +117,5 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
         wc_enqueue_js( $code );
     }
 }
+
+return new WCCT_Integration_Twitter();

@@ -46,7 +46,7 @@ class WCCT_Event_Dispatcher {
      * @return object
      */
     public function init_integrations() {
-        $manager = new WCCT_Integration_Manager();
+        $manager = wcct_init()->manager;
         $this->integrations = $manager->get_active_integrations();
 
         return $this->integrations;
