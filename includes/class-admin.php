@@ -52,8 +52,7 @@ class WCCT_Admin {
      * @return void
      */
     public function conversion_tracking_template() {
-        $manager      = new WCCT_Integration_Manager();
-        $integrations = $manager->get_integrations();
+        $integrations = wcct_init()->manager->get_integrations();
 
         include dirname( __FILE__ ) . '/views/admin.php';
     }
@@ -99,9 +98,5 @@ class WCCT_Admin {
         $html   .= '<h2/>';
 
         echo $html;
-    }
-
-    public function another_tab_content() {
-        echo "Something";
     }
 }

@@ -13,8 +13,8 @@ class WCCT_Integration_Custom extends WCCT_Integration {
         $this->name         = __( 'Custom', 'woocommerce-conversion-tracking' );
         $this->enabled      = true;
         $this->supports     = array(
-			'checkout',
-			'registration'
+            'checkout',
+            'registration'
         );
     }
 
@@ -142,3 +142,5 @@ class WCCT_Integration_Custom extends WCCT_Integration {
         return $code;
     }
 }
+
+return new WCCT_Integration_Custom();

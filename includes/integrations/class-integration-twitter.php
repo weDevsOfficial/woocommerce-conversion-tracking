@@ -13,9 +13,7 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
         $this->name     = __( 'Twitter', 'woocommerce-conversion-tracking' );
         $this->enabled  = true;
         $this->supports = array(
-            'add_to_cart',
             'checkout',
-            'registration'
         );
     }
 
@@ -26,22 +24,20 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
      */
     public function get_settings() {
         $settings = array(
-            array(
+            'id'  => array(
                 'type'  => 'text',
                 'name'  => 'pixel_id',
                 'label' => __( 'Pixel ID', 'woocommerce-conversion-tracking' ),
                 'value' => '',
                 'help'  => sprintf( __( 'Find the Pixel ID from <a href="%s" target="_blank">here</a>, navigate to Tools &rarr; Conversion Tracking.', 'woocommerce-conversion-tracking' ), 'https://ads.twitter.com/' )
             ),
-            array(
+            'events'    => array(
                 'type'  => 'multicheck',
                 'name'  => 'events',
                 'label' => __( 'Events', 'woocommerce-conversion-tracking' ),
                 'value' => '',
                 'options' => array(
-                    'AddToCart'     => __( 'Add to Cart', 'woocommerce-conversion-tracking' ),
                     'Purchase'      => __( 'Purchase', 'woocommerce-conversion-tracking' ),
-                    'Registration'  => __( 'Completes Registration', 'woocommerce-conversion-tracking' ),
                 )
             ),
         );
@@ -73,17 +69,16 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
         }
 
         $integration_settins = $this->get_integration_settings();
-        $twitter_pixel_id    = ! empty( $integration_settins['pixel_id'] ) ? $integration_settins['pixel_id'] : '';
+        $twitter_pixel_id    = ! empty( $integration_settins[0]['pixel_id'] ) ? $integration_settins[0]['pixel_id'] : '';
         ?>
-        <script>
+        <script type="text/javascript">
             !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
 
             <?php echo $this->build_event( $twitter_pixel_id, array(), 'init' ); ?>
             <?php echo $this->build_event( 'PageView' ); ?>
         </script>
+        <script src="//platform.twitter.com/oct.js" type="text/javascript"></script>
         <?php
-
-        $this->add_to_cart_ajax();
     }
 
     /**
@@ -121,66 +116,6 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
 
         wc_enqueue_js( $code );
     }
-
-    /**
-     * Enqueue add to cart event
-     *
-     * @return void
-     */
-    public function add_to_cart() {
-
-        if ( ! $this->event_enabled( 'AddToCart' ) ) {
-            return;
-        }
-
-        $product_ids = $this->get_content_ids_from_cart( WC()->cart->get_cart() );
-
-        $code = $this->build_event( 'AddToCart', array(
-            'content_ids'  => json_encode( $product_ids ),
-            'content_type' => 'product',
-            'value'        => WC()->cart->total,
-            'currency'     => get_woocommerce_currency()
-        ) );
-
-        wc_enqueue_js( $code );
-    }
-
-    /**
-     * Added to cart
-     *
-     * @return void
-     */
-    public function add_to_cart_ajax() {
-        if ( ! $this->event_enabled( 'AddToCart' ) ) {
-            return;
-        }
-        ?>
-        <script type="text/javascript">
-            jQuery(function($) {
-                $(document).on('added_to_cart', function (event, fragments, hash, button) {
-                    twq('track', 'AddToCart', {
-                       content_ids: [ $(button).data('product_id') ],
-                       content_type: 'product',
-                    });
-                });
-            });
-        </script>
-        <?php
-    }
-
-    /**
-     * Registration script
-     *
-     * @return void
-     */
-    public function registration() {
-        if ( ! $this->event_enabled( 'Registration' ) ) {
-            return;
-        }
-
-        $code = $this->build_event( 'CompleteRegistration' );
-
-        wc_enqueue_js( $code );
-    }
-
 }
+
+return new WCCT_Integration_Twitter();

@@ -1,22 +1,21 @@
 <div class="wcct-two-column">
 
     <div class="settings-wrap">
-
+        <h4>Conversion Settings</h4>
         <form action="" method="POST" id="integration-form">
             <?php
-            foreach ( $integrations as $integration ) {
-                $object          = new $integration;
-                $name            = $object->get_name();
-                $id              = $object->get_id();
-                $settings_fields = $object->get_settings();
-                $settings        = $object->get_integration_settings();
+            foreach ( $integrations as $int_key => $integration ) {
+                $name            = $integration->get_name();
+                $id              = $integration->get_id();
+                $settings_fields = $integration->get_settings();
+                $settings        = $integration->get_integration_settings();
                 ?>
                 <div class="integration-wrap">
                     <div class="integration-name">
                         <div class="gateway">
                             <h3 class="gateway-text"><?php echo $name; ?></h3>
                             <label class="switch tips" title="" data-original-title="Make Inactive">
-                                <input type="checkbox" class="toogle-seller" name="settings[<?php echo $id; ?>][enabled]" id="integration-<?php echo $id; ?>" data-id="<?php echo $id; ?>" value="1" <?php checked( true, $object->is_enabled() ); ?> >
+                                <input type="checkbox" class="toogle-seller" name="settings[<?php echo $id; ?>][enabled]" id="integration-<?php echo $id; ?>" data-id="<?php echo $id; ?>" value="1" <?php checked( true, $integration->is_enabled() ); ?> >
                                 <span class="slider round" data-id="<?php echo $id; ?>"></span>
                             </label>
                         </div>
@@ -28,23 +27,21 @@
                             continue;
                         }
                         ?>
-
                         <div class="wc-ct-form-group">
-                            <table class="form-table custom-table">
-                                <?php foreach ( $settings_fields as $field ) { ?>
+                            <table class="form-table custom-table" style="display: inline;">
+                                <?php foreach ( $settings_fields as $key => $field ) {?>
                                     <tr>
                                         <th>
                                             <label for="<?php echo $id . '-' . $field['label']; ?>"><?php echo $field['label']; ?></label>
                                         </th>
-
                                         <td>
                                             <?php
                                             $placeholder = isset( $field['placeholder'] ) ? $field['placeholder'] : '';
 
                                             switch ( $field['type'] ) {
                                                 case 'text':
-                                                    $value = isset( $settings[ $field['name'] ] ) ? $settings[ $field['name'] ] : '';
-                                                    printf( '<input type="text" name="settings[%s][%s]" placeholder="%s" value="%s" id="%s">', $id, $field['name'], $placeholder, $value, $id . '-' . $field['name'] );
+                                                    $value = isset( $settings[0][ $field['name'] ] ) ? $settings[0][ $field['name'] ] : '';
+                                                    printf( '<input type="text" name="settings[%s][%d][%s]" placeholder="%s" value="%s" id="%s" required >', $id,0, $field['name'], $placeholder, $value, $id . '-' . $field['name'] );
                                                     break;
 
                                                 case 'textarea':
@@ -64,16 +61,37 @@
                                                         foreach ( $field['options'] as $key => $option ) {
                                                             $field_name = $field['name'];
 
-                                                            $checked = isset( $settings[ $field_name ][ $key ] ) ? 'on' : '';
+                                                            $checked = isset( $settings[0][ $field_name ][ $key ] ) ? 'on' : '';
+                                                            $disabled = isset( $option['profeature'] ) ? 'disabled' : '';
+                                                            $class  = isset( $option['profeature'] ) ? 'disabled-class' : '';
+                                                            $feature = isset( $option['profeature'] ) ? ' (Pro-feature)' : '';
                                                             ?>
-                                                                <label for="<?php echo $id . '-' . $key; ?>">
-                                                                    <input type="checkbox" name="settings[<?php echo $id; ?>][<?php echo $field_name; ?>][<?php echo $key; ?>]" <?php checked( 'on', $checked ); ?> id="<?php echo $id . '-' . $key; ?>">
-                                                                    <?php echo $option; ?>
+                                                                <label for="<?php echo $id . '-' . $key; ?>" class="<?php echo $class?>">
+                                                                    <input type="checkbox" name="settings[<?php echo $id; ?>][0][<?php echo $field_name; ?>][<?php echo $key; ?>]" <?php checked( 'on', $checked ); ?> id="<?php echo $id . '-' . $key; ?>" class="event <?php echo $class;?>" <?php echo $disabled ?>>
+                                                                <?php
+
+                                                                    $label  = isset( $option['label'] ) ? $option['label'] : $option;
+                                                                    echo $label . $feature;
+
+                                                                    $input_box  = isset( $option['event_label_box'] ) ?: false;
+
+                                                                    $name  = isset( $option['label_name'] ) ? $option['label_name'] : '';
+                                                                    $placeholder = isset( $option['placeholder'] ) ? $option['placeholder'] : '';
+                                                                    $value = isset( $settings[0][ $field_name ][ $name ] ) ? $settings[0][ $field_name ][ $name ] : '';
+
+                                                                    if ( $input_box ) {
+                                                                        ?>
+                                                                        <input type="text" name="settings[<?php echo $id; ?>][0][<?php echo $field_name; ?>][<?php echo $name; ?>]"  class="event-label" placeholder="<?php echo $placeholder; ?>" value="<?php echo $value ?>">
+                                                                        <?php
+                                                                    }
+                                                                    ?>
+                                                                <?php
+                                                                ?>
                                                                 </label>
                                                                 <br>
                                                                 <?php
-                                                        }
-                                                        ?>
+                                                            }
+                                                            ?>
                                                     </div>
                                                 <?php
                                             }
@@ -87,28 +105,39 @@
                                 <?php } ?>
                             </table>
                         </div>
+                    <?php
+
+                        do_action( 'wcct_integration_' . $id, $integration );
+                    ?>
                     </div>
                 </div>
 
-                <?php
+            <?php
             }
             ?>
             <div class="submit-area">
                 <?php wp_nonce_field( 'wcct-settings' ); ?>
                 <input type="hidden" name="action" value="wcct_save_settings">
 
-                <button class="button button-primary">Save Changes</button>
+                <button class="button button-primary" id="wcct-submit">Save Changes</button>
             </div>
         </form>
     </div>
 
     <div class="sidebar-wrap">
         <div class="premium-box box-green">
-            Green Feature
+            <h3 class="wcct-doc-title"><?php _e( 'Documentation', 'woocommerce-conversion-tracking' )?></h3>
+
+            <ul class="wcct-doc-list">
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/get-started/" target="_blank"><?php _e( ' <span class="dashicons dashicons-info"></span> Getting Started', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/" target="_blank"><?php _e( ' <span class="dashicons dashicons-info"></span> Facebook', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/twitter/" target="_blank"><?php _e( ' <span class="dashicons dashicons-info"></span> Twitter', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/google-adwords/" target="_blank"><?php _e( '<span class="dashicons dashicons-info"></span> Google Adwords', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/https://wedevs.com/docs/woocommerce-conversion-tracking/perfect-audience/" target="_blank"><?php _e( '<span class="dashicons dashicons-info"></span> Perfect Audience', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/custom/" target="_blank"><?php _e( ' <span class="dashicons dashicons-info"></span> Custom', 'woocommerce-conversion-tracking' ) ?></a></li>
+            </ul>
         </div>
 
-        <div class="premium-box box-blue">
-            Blue Feature
-        </div>
+        <?php do_action( 'wcct_sidebar' ) ?>
     </div>
 </div>

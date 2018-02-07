@@ -97,7 +97,7 @@ abstract class WCCT_Integration {
     public function event_enabled( $event ) {
         $settings = $this->get_integration_settings();
 
-        if ( isset( $settings['events'] ) && array_key_exists( $event, $settings['events'] ) && $settings['events'][ $event ] == 'on' ) {
+        if ( isset( $settings[0]['events'] ) && array_key_exists( $event, $settings[0]['events'] ) && $settings[0]['events'][ $event ] == 'on' ) {
             return true;
         }
 

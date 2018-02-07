@@ -31,6 +31,13 @@ class WCCT_Event_Dispatcher {
         // registration events
         add_action( 'woocommerce_registration_redirect', array( $this, 'wc_redirect_url' ) );
         add_action( 'template_redirect', array( $this, 'track_registration' ) );
+
+        // Search Event
+        add_action( 'pre_get_posts', array( $this, 'product_search' ) );
+
+        // Wishlist Event
+
+        add_filter( 'yith_wcwl_added_to_wishlist', array( $this, 'product_wishlist' ) );
     }
 
     /**
@@ -39,7 +46,7 @@ class WCCT_Event_Dispatcher {
      * @return object
      */
     public function init_integrations() {
-        $manager = new WCCT_Integration_Manager();
+        $manager = wcct_init()->manager;
         $this->integrations = $manager->get_active_integrations();
 
         return $this->integrations;
@@ -99,6 +106,26 @@ class WCCT_Event_Dispatcher {
      */
     public function complete_registration() {
         $this->dispatch_event( 'registration' );
+    }
+
+    /**
+     * Product search event
+     *
+     * @return void
+     */
+    public function product_search() {
+        if ( is_main_query() ) {
+            $this->dispatch_event( 'search' );
+        }
+    }
+
+    /**
+     * Product wishlist event
+     *
+     * @return void
+     */
+    public function product_wishlist() {
+        $this->dispatch_event( 'add_to_wishlist' );
     }
 
     /**
