@@ -1,5 +1,5 @@
 <div class="wrap wcct-admin">
-    <h2><?php _e( 'Conversion Tracking', 'woocommerce-conversion-tracking' ); ?></h2>
+    <!-- <h2><?php _e( 'Conversion Tracking', 'woocommerce-conversion-tracking' ); ?></h2> -->
 
     <?php
         $this->show_navigation();

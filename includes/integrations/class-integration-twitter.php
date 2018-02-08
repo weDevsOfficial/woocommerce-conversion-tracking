@@ -27,7 +27,7 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
             'id'  => array(
                 'type'  => 'text',
                 'name'  => 'pixel_id',
-                'label' => __( 'Pixel ID', 'woocommerce-conversion-tracking' ),
+                'label' => __( 'Universal Tag ID', 'woocommerce-conversion-tracking' ),
                 'value' => '',
                 'help'  => sprintf( __( 'Find the Pixel ID from <a href="%s" target="_blank">here</a>, navigate to Tools &rarr; Conversion Tracking.', 'woocommerce-conversion-tracking' ), 'https://ads.twitter.com/' )
             ),

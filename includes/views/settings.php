@@ -1,7 +1,11 @@
 <div class="wcct-two-column">
 
+    <?php _e( '', 'woocommerce-conversion-tracking' ); ?>
+
     <div class="settings-wrap">
-        <h4>Conversion Settings</h4>
+
+        <h4><?php _e( 'Integration Settings', 'woocommerce-conversion-tracking' ); ?></h4>
+
         <form action="" method="POST" id="integration-form">
             <?php
             foreach ( $integrations as $int_key => $integration ) {
