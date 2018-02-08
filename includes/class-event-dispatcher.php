@@ -113,8 +113,8 @@ class WCCT_Event_Dispatcher {
      *
      * @return void
      */
-    public function product_search() {
-        if ( is_main_query() ) {
+    public function product_search( $query ) {
+        if ( ! is_admin() && $query->is_main_query() && $query->is_search() ) {
             $this->dispatch_event( 'search' );
         }
     }

@@ -80,8 +80,6 @@ class WCCT_Admin {
      * @return void
      */
     public function show_navigation() {
-        $html = '<h2 class="nav-tab-wrapper">';
-
         $count  = count( $this->wcct_get_tab() );
         $tabs   = $this->wcct_get_tab();
         $active = isset( $_GET['tab'] ) ? $_GET['tab'] : 'settings';
@@ -90,12 +88,13 @@ class WCCT_Admin {
             return;
         }
 
+        $html = '<h2 class="nav-tab-wrapper">';
         foreach ( $tabs as $tab ) {
             $active_class   = ( $tab['id'] == $active ) ? 'nav-tab-active' : '';
             $html  .= sprintf( '<a href="admin.php?page=conversion-tracking&tab=%s" class="nav-tab %s">%s</a>', $tab['id'], $active_class, $tab['title'] );
         }
 
-        $html   .= '<h2/>';
+        $html   .= '</h2>';
 
         echo $html;
     }
