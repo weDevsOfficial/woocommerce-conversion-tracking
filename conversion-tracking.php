@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Conversion Tracking
 Plugin URI: https://wedevs.com/products/plugins/woocommerce-conversion-tracking/
 Description: Adds various conversion tracking codes to cart, checkout, registration success and product page on WooCommerce
-Version: 1.2.5
+Version: 2.0
 Author: Tareq Hasan
 Author URI: https://tareq.co/
 License: GPL2
@@ -38,7 +38,9 @@ WC tested up to: 3.2.6
  */
 
 // don't call the file directly
-if ( !defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 /**
  * WeDevs_WC_Facebook_Tracking_Pixel class
@@ -52,34 +54,56 @@ class WeDevs_WC_Conversion_Tracking {
      *
      * @var string
      */
-    public $version = '1.2.5';
+    public $version = '2.0';
+
+    /**
+     * Holds various class instances
+     *
+     * @var array
+     */
+    private $container = array();
 
     /**
      * Constructor for the WeDevs_WC_Conversion_Tracking class
      *
      * Sets up all the appropriate hooks and actions
      * within our plugin.
-     *
-     * @uses add_action()
-     * @uses add_filter()
      */
     public function __construct() {
-
         $this->define_constants();
+        $this->init_hooks();
+        $this->includes();
+        $this->init_classes();
 
         register_activation_hook( __FILE__, array( $this, 'activate' ) );
 
-        // Localize our plugin
-        add_action( 'init', array( $this, 'localization_setup' ) );
-        add_action( 'init', array( $this, 'init_tracker' ) );
+        do_action( 'wcct_loaded' );
+    }
 
-        add_action( 'admin_notices', array( $this, 'display_survey' ) );
-        add_action( 'wp_ajax_wcv_dismiss_survey', array( $this, 'dismiss_survey' ) );
+    /**
+     * Magic getter to bypass referencing plugin.
+     *
+     * @param $prop
+     *
+     * @return mixed
+     */
+    public function __get( $prop ) {
+        if ( array_key_exists( $prop, $this->container ) ) {
+            return $this->container[ $prop ];
+        }
 
-        // register integration
-        add_filter( 'woocommerce_integrations', array($this, 'register_integration') );
+        return $this->{$prop};
+    }
 
-        add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
+    /**
+     * Magic isset to bypass referencing plugin.
+     *
+     * @param $prop
+     *
+     * @return mixed
+     */
+    public function __isset( $prop ) {
+        return isset( $this->{$prop} ) || isset( $this->container[ $prop ] );
     }
 
     /**
@@ -91,11 +115,25 @@ class WeDevs_WC_Conversion_Tracking {
     public static function init() {
         static $instance = false;
 
-        if ( !$instance ) {
+        if ( ! $instance ) {
             $instance = new WeDevs_WC_Conversion_Tracking();
         }
 
         return $instance;
+    }
+
+    /**
+     * Include required files
+     *
+     * @return void
+     */
+    public function includes() {
+        require_once WCCT_INCLUDES . '/class-abstract-integration.php';
+        require_once WCCT_INCLUDES . '/class-integration-manager.php';
+        require_once WCCT_INCLUDES . '/class-event-dispatcher.php';
+        require_once WCCT_INCLUDES . '/class-integration-pro-features.php';
+        require_once WCCT_INCLUDES . '/class-ajax.php';
+        require_once WCCT_INCLUDES . '/class-admin.php';
     }
 
     /**
@@ -108,6 +146,10 @@ class WeDevs_WC_Conversion_Tracking {
     public function define_constants() {
         define( 'WCCT_VERSION', $this->version );
         define( 'WCCT_FILE', __FILE__ );
+        define( 'WCCT_PATH', dirname( WCCT_FILE ) );
+        define( 'WCCT_INCLUDES', WCCT_PATH . '/includes' );
+        define( 'WCCT_URL', plugins_url( '', WCCT_FILE ) );
+        define( 'WCCT_ASSETS', WCCT_URL . '/assets' );
     }
 
     /**
@@ -128,12 +170,68 @@ class WeDevs_WC_Conversion_Tracking {
     }
 
     /**
+     * Initialize the hooks
+     *
+     * @return void
+     */
+    public function init_hooks() {
+
+        add_action( 'plugins_loaded', array( $this, 'plugin_upgrades' ) );
+        add_action( 'init', array( $this, 'localization_setup' ) );
+        add_action( 'init', array( $this, 'init_tracker' ) );
+
+        add_action( 'admin_notices', array( $this, 'display_survey' ) );
+        add_action( 'wp_ajax_wcv_dismiss_survey', array( $this, 'dismiss_survey' ) );
+
+        // register integration
+        // add_filter( 'woocommerce_integrations', array( $this, 'register_integration' ) );
+
+        add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
+    }
+
+    /**
+     * Instantiate the required classes
+     *
+     * @return void
+     */
+    public function init_classes() {
+        $this->container['ajax']                = new WCCT_Ajax();
+        $this->container['event_dispatcher']    = new WCCT_Event_Dispatcher();
+        $this->container['admin']               = new WCCT_Admin();
+        $this->container['manager']             = new WCCT_Integration_Manager();
+
+        if ( ! class_exists( 'WeDevs_WC_Conversion_Tracking_Pro') ) {
+            $this->container['pro_feature'] = new WCCT_Pro_Features();
+        }
+    }
+
+    /**
      * Initialize plugin for localization
      *
      * @uses load_plugin_textdomain()
      */
     public function localization_setup() {
         load_plugin_textdomain( 'woocommerce-conversion-tracking', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    }
+
+    /**
+     * Do plugin upgrade
+     *
+     * @since  2.0
+     * @return void
+     */
+    public function plugin_upgrades() {
+        if ( ! is_admin() && ! current_user_can( 'manage_options' ) ) {
+            return;
+        }
+
+        require_once WCCT_INCLUDES . '/class-upgrades.php';
+
+        $upgrader   = new WCCT_Upgrades();
+
+        if ( $upgrader->needs_update() ) {
+            $upgrader->perform_updates();
+        }
     }
 
     /**
@@ -152,16 +250,17 @@ class WeDevs_WC_Conversion_Tracking {
     /**
      * Register integration
      *
-     * @param array $interations
+     * @param array $integrations
+     *
      * @return array
      */
-    function register_integration( $interations ) {
+    function register_integration( $integrations ) {
 
         include dirname( __FILE__ ) . '/includes/integration.php';
 
-        $interations[] = 'WeDevs_WC_Tracking_Integration';
+        $integrations[] = 'WeDevs_WC_Tracking_Integration';
 
-        return $interations;
+        return $integrations;
     }
 
     /**
@@ -285,6 +384,18 @@ class WeDevs_WC_Conversion_Tracking {
     }
 
     /**
+     * Check the pro version
+     *
+     * @return boolean
+     */
+    public function is_pro() {
+        if ( class_exists( 'WeDevs_WC_Conversion_Tracking_Pro' ) ) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Plugin action links
      *
      * @param  array $links
@@ -292,15 +403,20 @@ class WeDevs_WC_Conversion_Tracking {
      * @return array
      */
     function plugin_action_links( $links ) {
+        if ( ! $this->is_pro() ) {
+            $links[] = '<a href="https://wedevs.com" target="_blank" style="color: #389e38;font-weight: bold;">' . __( 'Get PRO', 'woocommerce-conversion-tracking' ) . '</a>';
+        }
 
         $links[] = '<a href="https://wordpress.org/plugins/woocommerce-conversion-tracking/#installation" target="_blank">' . __( 'Installation', 'woocommerce-conversion-tracking' ) . '</a>';
         $links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=integration&section=wc_conv_tracking' ) . '">' . __( 'Settings', 'woocommerce-conversion-tracking' ) . '</a>';
 
         return $links;
     }
+}
 
+function wcct_init() {
+    return WeDevs_WC_Conversion_Tracking::init();
 }
 
 // WeDevs_WC_Conversion_Tracking
-
-$wc_tracking = WeDevs_WC_Conversion_Tracking::init();
+wcct_init();

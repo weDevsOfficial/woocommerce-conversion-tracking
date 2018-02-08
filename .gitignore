@@ -1,0 +1,4 @@
+/plugin-deploy.sh
+/.gitignore
+node_modules
+build
