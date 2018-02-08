@@ -98,6 +98,11 @@
         overflow: hidden;
         margin-top: 30px;
         padding-bottom: 10px;
+        max-width: 600px;
+
+        #wcct-submit {
+            float: right;
+        }
     }
 
     .custom-table {
@@ -161,11 +166,14 @@
                 }
 
                .wc-ct-form-group {
-                    border: 1px solid #dfdfdf;
                     padding: 10px;
                     margin-right: 25px;
                     margin-bottom: 15px;
                     margin-top: 15px;
+                }
+
+                .multiple {
+                    border: 1px solid #dfdfdf;
                 }
             }
 
@@ -199,7 +207,7 @@
                 padding-bottom: 15px !important;
             }
 
-            .event-label{
+            .event-label-box {
                 display:none;
             }
 
@@ -275,4 +283,46 @@
         }
     }
 
+    .wcct-tooltip {
+        position: relative;
+        display: inline-block;
+
+        .wcct-tooltiptext {
+            visibility: hidden;
+            background-color: #24292E;
+            font-size:10px;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 3px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .integration-tooltip{
+            margin-left: -40px;
+            padding: 7px 0px;
+            font-size: 13px;
+            width: 75px;
+        }
+
+        .wcct-tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #24292E transparent transparent transparent;
+        }
+    }
+    .wcct-tooltip:hover .wcct-tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
 }

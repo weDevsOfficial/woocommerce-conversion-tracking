@@ -1,6 +1,6 @@
 /*
 Woocommerce-Conversion-Tracking - v1.0.0
-Generated: 2018-02-08 (1518065347968)
+Generated: 2018-02-08 (1518086807388)
 PLEASE DO NOT MODIFY*/
 .wcct-admin {
   /**
@@ -85,6 +85,10 @@ PLEASE DO NOT MODIFY*/
   overflow: hidden;
   margin-top: 30px;
   padding-bottom: 10px;
+  max-width: 600px;
+}
+.wcct-admin .submit-area #wcct-submit {
+  float: right;
 }
 .wcct-admin .custom-table {
   margin-top: 0;
@@ -132,11 +136,13 @@ PLEASE DO NOT MODIFY*/
   min-width: 300px;
 }
 .wcct-admin .settings-wrap .integration-wrap .integration-settings .wc-ct-form-group {
-  border: 1px solid #dfdfdf;
   padding: 10px;
   margin-right: 25px;
   margin-bottom: 15px;
   margin-top: 15px;
+}
+.wcct-admin .settings-wrap .integration-wrap .integration-settings .multiple {
+  border: 1px solid #dfdfdf;
 }
 .wcct-admin .settings-wrap .integration-wrap .gateway {
   display: flex;
@@ -161,7 +167,7 @@ PLEASE DO NOT MODIFY*/
 .wcct-admin .settings-wrap .integration-wrap .single-integration {
   padding-bottom: 15px !important;
 }
-.wcct-admin .settings-wrap .integration-wrap .event-label {
+.wcct-admin .settings-wrap .integration-wrap .event-label-box {
   display: none;
 }
 .wcct-admin .settings-wrap .integration-wrap .event-label-space {
@@ -212,4 +218,43 @@ PLEASE DO NOT MODIFY*/
   text-decoration: none;
   color: #fff;
   font-size: 15px;
+}
+.wcct-admin .wcct-tooltip {
+  position: relative;
+  display: inline-block;
+}
+.wcct-admin .wcct-tooltip .wcct-tooltiptext {
+  visibility: hidden;
+  background-color: #24292E;
+  font-size: 10px;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.wcct-admin .wcct-tooltip .integration-tooltip {
+  margin-left: -40px;
+  padding: 7px 0px;
+  font-size: 13px;
+  width: 75px;
+}
+.wcct-admin .wcct-tooltip .wcct-tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #24292E transparent transparent transparent;
+}
+.wcct-admin .wcct-tooltip:hover .wcct-tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }

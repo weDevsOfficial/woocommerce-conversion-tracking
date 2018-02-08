@@ -13,6 +13,8 @@
                 $id              = $integration->get_id();
                 $settings_fields = $integration->get_settings();
                 $settings        = $integration->get_integration_settings();
+                $border          = ( $integration->multiple ) ? 'multiple' : '';
+                $active          = ( $integration->is_enabled() ) ? 'Activate' : 'Deactivate';
                 ?>
                 <div class="integration-wrap">
                     <div class="integration-name">
@@ -20,7 +22,9 @@
                             <h3 class="gateway-text"><?php echo $name; ?></h3>
                             <label class="switch tips" title="" data-original-title="Make Inactive">
                                 <input type="checkbox" class="toogle-seller" name="settings[<?php echo $id; ?>][enabled]" id="integration-<?php echo $id; ?>" data-id="<?php echo $id; ?>" value="1" <?php checked( true, $integration->is_enabled() ); ?> >
-                                <span class="slider round" data-id="<?php echo $id; ?>"></span>
+                                <span class="slider round wcct-tooltip" data-id="<?php echo $id; ?>">
+                                    <span class="wcct-tooltiptext integration-tooltip"><?php echo $active; ?> </span>
+                                </span>
                             </label>
                         </div>
                     </div>
@@ -31,7 +35,7 @@
                             continue;
                         }
                         ?>
-                        <div class="wc-ct-form-group">
+                        <div class="wc-ct-form-group <?php echo $border; ?>">
                             <table class="form-table custom-table" style="display: inline;">
                                 <?php foreach ( $settings_fields as $key => $field ) {?>
                                     <tr>
@@ -85,7 +89,15 @@
 
                                                                     if ( $input_box ) {
                                                                         ?>
+                                                                        <div class="event-label-box">
                                                                         <input type="text" name="settings[<?php echo $id; ?>][0][<?php echo $field_name; ?>][<?php echo $name; ?>]"  class="event-label" placeholder="<?php echo $placeholder; ?>" value="<?php echo $value ?>">
+                                                                        <?php
+
+                                                                        if ( isset( $option['help'] ) && ! empty( $option['help'] ) ) {
+                                                                            echo '<p class="help">' . $option['help'] . '</p>';
+                                                                        }
+                                                                        ?>
+                                                                        </div>
                                                                         <?php
                                                                     }
                                                                     ?>
