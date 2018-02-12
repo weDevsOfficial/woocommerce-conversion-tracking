@@ -12,7 +12,7 @@
                 $settings_fields = $integration->get_settings();
                 $settings        = $integration->get_integration_settings();
                 $active          = ( $integration->is_enabled() ) ? 'Deactivate' : 'Activate';
-                $border          = ( $integration->multiple ) ? 'wcct-border' : '';
+                $border          = ( isset( $integration->multiple ) ) ? 'wcct-border' : '';
                 ?>
                 <div class="integration-wrap">
                     <div class="integration-name">
