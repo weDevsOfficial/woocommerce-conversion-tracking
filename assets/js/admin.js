@@ -2,7 +2,7 @@
     // Data Save
     $( '#wcct-submit' ).on( 'click', function( e ) {
         e.preventDefault();
-
+        $( '#wcct-submit' ).addClass( 'updating-message' );
         wp.ajax.send( 'wcct_save_settings', {
             data: $( '#integration-form' ).serialize(),
             success: function( response ) {
@@ -16,6 +16,8 @@
                 $('html, body').animate({
                     scrollTop: 0
                 }, 'fast');
+
+                $( '#wcct-submit' ).removeClass( 'updating-message' );
             },
             error: function(error) {
                 alert('something wrong happend');
@@ -41,15 +43,15 @@
     } );
 
     $('.event').on( 'change', function() {
-        var target = $( this ).next('.event-label');
+        var target = $( this ).next('.event-label-box');
         target.addClass( 'event-label-space' );
         target.stop().toggle();
 
     } );
 
     $( '.event:checked' ).each( function( index, value ) {
-        $( value ).next( '.event-label' ).addClass( 'event-label-space' );
-        $( value ).next( '.event-label' ).css( 'display', 'block' );
+        $( value ).next( '.event-label-box' ).addClass( 'event-label-space' );
+        $( value ).next( '.event-label-box' ).css( 'display', 'block' );
     } );
 
     // Pro-Feature Message
@@ -67,6 +69,21 @@
               window.open('http://www.wedevs.com', '_blank');
             }
         }, function() {});
+    } );
+
+    // Change Tooltip Text
+    $( '.toogle-seller' ).on( 'change', function() {
+        var tooltipText = $( this ).parents( '.switch' ).find( '.integration-tooltip' );
+        var text = $( tooltipText ).text().trim();
+        var newText = '';
+
+        if ( text == 'Activate' ) {
+            newText = 'Deactivate'
+        } else if( text == 'Deactivate' ) {
+           newText = 'Activate';
+        }
+
+        $( tooltipText ).text( newText );
     } );
 
 })( jQuery );

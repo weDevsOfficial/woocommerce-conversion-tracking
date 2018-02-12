@@ -24,20 +24,20 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
      */
     public function get_settings() {
         $settings = array(
-            'id'  => array(
-                'type'  => 'text',
-                'name'  => 'pixel_id',
-                'label' => __( 'Universal Tag ID', 'woocommerce-conversion-tracking' ),
-                'value' => '',
-                'help'  => sprintf( __( 'Find the Pixel ID from <a href="%s" target="_blank">here</a>, navigate to Tools &rarr; Conversion Tracking.', 'woocommerce-conversion-tracking' ), 'https://ads.twitter.com/' )
-            ),
+
             'events'    => array(
                 'type'  => 'multicheck',
                 'name'  => 'events',
                 'label' => __( 'Events', 'woocommerce-conversion-tracking' ),
                 'value' => '',
                 'options' => array(
-                    'Purchase'      => __( 'Purchase', 'woocommerce-conversion-tracking' ),
+                    'Purchase'  => array(
+                        'event_label_box'  => true,
+                        'label'            => __( 'Purchase', 'woocommerce-conversion-tracking' ),
+                        'label_name'       => 'universal_tag_id',
+                        'placeholder'      => 'Universal Tag ID',
+                        'help'             => sprintf( __( 'Find the Universal Tag ID from <a href="%s" target="_blank">here</a>, navigate to Tools &rarr; Conversion Tracking.', 'woocommerce-conversion-tracking' ), 'https://ads.twitter.com/' )
+                    ),
                 )
             ),
         );
@@ -69,15 +69,19 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
         }
 
         $integration_settins = $this->get_integration_settings();
-        $twitter_pixel_id    = ! empty( $integration_settins[0]['pixel_id'] ) ? $integration_settins[0]['pixel_id'] : '';
+        $universal_tag_id    = ! empty( $integration_settins[0]['events']['universal_tag_id'] ) ? $integration_settins[0]['events']['universal_tag_id'] : '';
+        $advance_event       = ( isset( $integration_settins[0]['events']['AddToCart'] ) ||isset( $integration_settins[0]['events']['Registration'] ) ) ? true : false;
         ?>
         <script type="text/javascript">
             !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
 
-            <?php echo $this->build_event( $twitter_pixel_id, array(), 'init' ); ?>
+            <?php echo $this->build_event( $universal_tag_id, array(), 'init' ); ?>
             <?php echo $this->build_event( 'PageView' ); ?>
         </script>
-        <script src="//platform.twitter.com/oct.js" type="text/javascript"></script>
+
+        <?php if ( $advance_event ): ?>
+            <script src="//platform.twitter.com/oct.js" type="text/javascript"></script>
+        <?php endif;?>
         <?php
     }
 
