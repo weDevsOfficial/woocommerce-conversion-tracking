@@ -138,13 +138,12 @@
             max-width: @integrationWidth;
             border: 1px solid #dfdfdf;
             margin-top: 20px;
-            box-shadow: 1px 2px 1px 0px #dfdfdf;
             background: #fff;
 
             .integration-name {
-                background: #f7f7f7;
-                padding: 10px 15px;
-                border-bottom: 1px solid #dfdfdf;
+                background: #ffffff;
+                padding: 21px 15px;
+                border-bottom: 1px solid #f1f1f1;
             }
 
             .integration-settings {
@@ -180,6 +179,12 @@
             .gateway {
                 display: flex;
                 flex-flow: 1 1 auto;
+
+                img {
+                    height: 35px;
+                    margin-right: 15px;
+                    margin-top: -9px;
+                }
 
                 label,
                 .gateway-text {
@@ -232,16 +237,16 @@
             min-height: 100px;
             margin-bottom: 25px;
             box-sizing: border-box;
-            padding: 10px 15px;
+            padding: 10px 20px;
+            border: 1px solid #dfdfdf;
 
             &.box-green {
-                background: #00AEFF;
-                color: #fff;
+                background: #ffffff;
             }
 
             &.box-blue {
-                color: #fff;
-                background: linear-gradient(to right, #F2709C, #FB9E7E);
+                color: #444;
+                background: #fff;
                 padding-bottom: 27px;
 
                 p {
@@ -250,7 +255,7 @@
                 }
 
                 h3{
-                    color: #fff;
+                    color: #444;
                 }
 
                 .pro-button {
@@ -264,23 +269,49 @@
                     color: green;
                     font-size: 1.5em;
                 }
+
+                .premium-feature-list li img {
+                    width: 17px;
+                    margin-right: 10px;
+                }
             }
 
             .wcct-doc-title{
-                color: #fff;
+                color: #444;
             }
 
             .wcct-doc-list {
+                display: flex;
+                flex-flow: row wrap;
 
+                li {
+                    list-style:none;
+                    text-align:center;
+                    margin:5px;
+                    flex: 0 1 calc(36.333% - 5px);
+                    box-sizing: border-box;
+                    display:list-item;
+                    box-sizing: border-box;
+                    border:1px solid #ddd;
+
+                    a {
+                        text-decoration: none;
+                        font-size: 13px;
+                        color: #444;
+                        padding: 10px;
+                        display:flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        transition: all ease .3s;
+                        text-decoration:none;
+                        outline: 0 !important;
+                    }
+                    .doc-list-icon {
+                        width: 25px;
+                        margin: 10px auto;
+                    }
+                }
             }
-
-            .wcct-doc-list li a {
-                text-decoration: none;
-                color: #fff;
-                font-size: 15px;
-            }
-
-
         }
     }
 

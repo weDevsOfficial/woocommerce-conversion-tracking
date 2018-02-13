@@ -38,6 +38,8 @@ class WCCT_Event_Dispatcher {
         // Wishlist Event
 
         add_filter( 'yith_wcwl_added_to_wishlist', array( $this, 'product_wishlist' ) );
+
+        add_action( 'woocommerce_wishlist_add_item', array( $this, 'product_wishlist' ) );
     }
 
     /**

@@ -17,6 +17,7 @@
                 <div class="integration-wrap">
                     <div class="integration-name">
                         <div class="gateway">
+                           <img src="<?php echo plugins_url( 'assets/images/'. $id .'.png', WCCT_FILE )?>" alt="" class="doc-list-icon">
                             <h3 class="gateway-text"><?php echo $name; ?></h3>
                             <label class="switch tips" title="" data-original-title="Make Inactive">
                                 <input type="checkbox" class="toogle-seller" name="settings[<?php echo $id; ?>][enabled]" id="integration-<?php echo $id; ?>" data-id="<?php echo $id; ?>" value="1" <?php checked( true, $integration->is_enabled() ); ?> >
@@ -143,12 +144,16 @@
             <h3 class="wcct-doc-title"><?php _e( 'Documentation', 'woocommerce-conversion-tracking' )?></h3>
 
             <ul class="wcct-doc-list">
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/get-started/" target="_blank"><?php _e( ' <span class="dashicons dashicons-info"></span> Getting Started', 'woocommerce-conversion-tracking' ) ?></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/" target="_blank"><?php _e( ' <span class="dashicons dashicons-info"></span> Facebook', 'woocommerce-conversion-tracking' ) ?></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/twitter/" target="_blank"><?php _e( ' <span class="dashicons dashicons-info"></span> Twitter', 'woocommerce-conversion-tracking' ) ?></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/google-adwords/" target="_blank"><?php _e( '<span class="dashicons dashicons-info"></span> Google Adwords', 'woocommerce-conversion-tracking' ) ?></a></li>
-                <li><a href="https://wedevs.com/docs/https://wedevs.com/docs/woocommerce-conversion-tracking/perfect-audience/" target="_blank"><?php _e( '<span class="dashicons dashicons-info"></span> Perfect Audience', 'woocommerce-conversion-tracking' ) ?></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/custom/" target="_blank"><?php _e( ' <span class="dashicons dashicons-info"></span> Custom', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/get-started/" target="_blank"><img src="<?php echo plugins_url( 'assets/images/getting_started.png', WCCT_FILE )?>" alt="" class="doc-list-icon"><?php _e( 'Getting Started', 'woocommerce-conversion-tracking' ) ?></a></li>
+
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/" target="_blank"><img src="<?php echo plugins_url( 'assets/images/facebook.png', WCCT_FILE )?>" alt="" class="doc-list-icon"><?php _e( 'Facebook', 'woocommerce-conversion-tracking' ) ?></a></li>
+
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/twitter/" target="_blank"><img src="<?php echo plugins_url( 'assets/images/twitter.png', WCCT_FILE )?>" alt="" class="doc-list-icon"><?php _e( 'Twitter', 'woocommerce-conversion-tracking' ) ?></a></li>
+
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/google-adwords/" target="_blank"><img src="<?php echo plugins_url( 'assets/images/adwords.png', WCCT_FILE )?>" alt="" class="doc-list-icon"><?php _e( 'Google Adwords', 'woocommerce-conversion-tracking' ) ?></a></li>
+
+                <li><a href="https://wedevs.com/docs/https://wedevs.com/docs/woocommerce-conversion-tracking/perfect-audience/" target="_blank"><img src="<?php echo plugins_url( 'assets/images/perfect_audience.png', WCCT_FILE )?>" alt="" class="doc-list-icon"><?php _e( 'Perfect Audience', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/custom/" target="_blank"><img src="<?php echo plugins_url( 'assets/images/custom.png', WCCT_FILE )?>" alt="" class="doc-list-icon"><?php _e( 'Custom', 'woocommerce-conversion-tracking' ) ?></a></li>
             </ul>
         </div>
 
