@@ -102,19 +102,19 @@ class WCCT_Pro_Features {
             <h3 style="margin-left: 15px"><?php _e( 'Premium Features', 'woocommerce-conversion-tracking' ) ?></h3>
             <ul class="premium-feature-list">
                 <li>
-                   <span class="dashicons dashicons-yes"></span> Advance Facebook Events
+                   <img src="<?php echo plugins_url( 'assets/images/done.png', WCCT_FILE )?>" alt="" class=""> Advance Facebook Events
                 </li>
                 <li>
-                   <span class="dashicons dashicons-yes"></span> Advance Google Adwords Events
+                   <img src="<?php echo plugins_url( 'assets/images/done.png', WCCT_FILE )?>" alt="" class=""> Advance Google Adwords Events
                 </li>
                 <li>
-                   <span class="dashicons dashicons-yes"></span> Advance Twitter Events
+                   <img src="<?php echo plugins_url( 'assets/images/done.png', WCCT_FILE )?>" alt="" class=""> Advance Twitter Events
                 </li>
                 <li>
-                   <span class="dashicons dashicons-yes"></span> Perfect Audience
+                   <img src="<?php echo plugins_url( 'assets/images/done.png', WCCT_FILE )?>" alt="" class=""> Perfect Audience
                 </li>
             </ul>
-            <a href="https://wedevs.com" target="_blank" class="pro-button"><?php _e( 'Get Premium <span class="dashicons dashicons-arrow-right-alt"></span>', 'woocommerce-conversion-tracking' ) ?></a>
+            <a href="https://wedevs.com" target="_blank" class="button button-primary"><?php _e( 'Get Premium', 'woocommerce-conversion-tracking' ) ?></a>
         </div>
         <?php
     }
