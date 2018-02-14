@@ -420,3 +420,12 @@ function wcct_init() {
 
 // WeDevs_WC_Conversion_Tracking
 wcct_init();
+
+/**
+ * Manage Capability
+ *
+ * @return void
+ */
+function wcct_manage_cap() {
+    return apply_filters( 'wcct_capability', 'manage_options' );
+}

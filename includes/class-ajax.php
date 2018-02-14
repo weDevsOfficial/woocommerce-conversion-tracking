@@ -18,7 +18,7 @@ class WCCT_Ajax {
      * @return void
      */
     public function wcct_save_settings() {
-        if ( ! current_user_can( 'manage_options' ) ) {
+        if ( ! current_user_can( wcct_manage_cap() ) ) {
             return;
         }
 
