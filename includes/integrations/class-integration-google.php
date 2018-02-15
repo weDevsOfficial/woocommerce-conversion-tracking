@@ -30,7 +30,7 @@ class WCCT_Integration_Google extends WCCT_Integration {
                 'label'       => __( 'Account ID', 'woocommerce-conversion-tracking' ),
                 'value'       => '',
                 'placeholder' => 'AW-123456789',
-                'help'        => sprintf( __( 'Provide the AdWords Account ID. Usually it\'s something like <code>AW-123456789</code>, <a href="%s" target="_blank">learn more</a>.', 'woocommerce-conversion-tracking' ), 'https://support.google.com/adwords/answer/6095821' )
+                'help'        => sprintf( __( 'Provide the AdWords Account ID. Usually it\'s something like <code>AW-123456789</code>, <a href="%s" target="_blank">learn more</a>.', 'woocommerce-conversion-tracking' ), 'https://wedevs.com/docs/woocommerce-conversion-tracking/google-adwords/account-id/' )
             ),
             'events'    => array(
                 'type'    => 'multicheck',

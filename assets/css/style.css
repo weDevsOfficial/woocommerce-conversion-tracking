@@ -1,6 +1,6 @@
 /*
 Woocommerce-Conversion-Tracking - v1.0.0
-Generated: 2018-02-13 (1518522122945)
+Generated: 2018-02-14 (1518606608340)
 PLEASE DO NOT MODIFY*/
 .wcct-admin {
   /**
@@ -181,6 +181,11 @@ PLEASE DO NOT MODIFY*/
 .wcct-admin .settings-wrap .integration-wrap .disabled-class {
   color: #ccc;
 }
+@media (max-width: 1024px) {
+  .wcct-admin .settings-wrap {
+    margin-right: 40px;
+  }
+}
 .wcct-admin .sidebar-wrap {
   margin-top: 15px;
 }
@@ -252,6 +257,21 @@ PLEASE DO NOT MODIFY*/
 .wcct-admin .sidebar-wrap .premium-box .wcct-doc-list li .doc-list-icon {
   width: 25px;
   margin: 10px auto;
+}
+@media (max-width: 1366px) {
+  .wcct-admin .sidebar-wrap .premium-box .wcct-doc-list li {
+    flex: 0 1 calc(30%);
+  }
+}
+@media (max-width: 1280px) {
+  .wcct-admin .sidebar-wrap .premium-box .wcct-doc-list li {
+    flex: 0 1 calc(29.5%);
+  }
+}
+@media (max-width: 1024px) {
+  .wcct-admin .sidebar-wrap .premium-box .wcct-doc-list li {
+    flex: 0 2 calc(45%);
+  }
 }
 .wcct-admin .wcct-tooltip {
   position: relative;

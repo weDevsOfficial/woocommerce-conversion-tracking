@@ -43,7 +43,10 @@ class WCCT_Admin {
      * @return void
      */
     public function admin_menu_page() {
-        add_submenu_page( 'woocommerce', __( 'Conversion Tracking', 'woocommerce-conversion-tracking' ), __( 'Conversion Tracking', 'woocommerce-conversion-tracking' ), 'manage_options', 'conversion-tracking', array( $this, 'conversion_tracking_template' ) );
+        $menu_page      = apply_filters( 'wcct_menu_page', 'woocommerce' );
+        $capability     = wcct_manage_cap();
+
+        add_submenu_page( $menu_page, __( 'Conversion Tracking', 'woocommerce-conversion-tracking' ), __( 'Conversion Tracking', 'woocommerce-conversion-tracking' ), $capability, 'conversion-tracking', array( $this, 'conversion_tracking_template' ) );
     }
 
     /**
@@ -66,8 +69,8 @@ class WCCT_Admin {
 
         $sections   = array(
             array(
-                'id'    => 'settings',
-                'title' => __( 'Settings', 'woocommerce-conversion-tracking' ),
+                'id'    => 'integrations',
+                'title' => __( 'Integrations', 'woocommerce-conversion-tracking' ),
             ),
         );
 
@@ -82,7 +85,7 @@ class WCCT_Admin {
     public function show_navigation() {
         $count  = count( $this->wcct_get_tab() );
         $tabs   = $this->wcct_get_tab();
-        $active = isset( $_GET['tab'] ) ? $_GET['tab'] : 'settings';
+        $active = isset( $_GET['tab'] ) ? $_GET['tab'] : 'integrations';
 
         if ( $count == 0 ) {
             return;

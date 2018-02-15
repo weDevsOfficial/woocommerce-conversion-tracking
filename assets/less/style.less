@@ -226,6 +226,12 @@
         }
     }
 
+    @media (max-width: 1024px) {
+        .settings-wrap {
+            margin-right: 40px;
+        }
+    }
+
     /**
      * Sidebar Area
      */
@@ -309,6 +315,24 @@
                     .doc-list-icon {
                         width: 25px;
                         margin: 10px auto;
+                    }
+                }
+
+                @media (max-width: 1366px) {
+                    li {
+                        flex: 0 1 calc(35% - 5px);
+                    }
+                }
+
+                @media (max-width: 1280px) {
+                    li {
+                        flex: 0 1 calc(34.5% - 5px);
+                    }
+                }
+
+                @media (max-width: 1024px) {
+                    li {
+                        flex: 0 2 calc(50% - 5px);
                     }
                 }
             }
