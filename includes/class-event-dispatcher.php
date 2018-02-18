@@ -27,6 +27,7 @@ class WCCT_Event_Dispatcher {
         // view events
         add_action( 'woocommerce_after_single_product', array( $this, 'product_view' ) );
         add_action( 'woocommerce_after_shop_loop', array( $this, 'category_view' ) );
+        add_action( 'template_redirect', array( $this, 'singular_view' ) );
 
         // registration events
         add_action( 'woocommerce_registration_redirect', array( $this, 'wc_redirect_url' ) );
@@ -36,9 +37,7 @@ class WCCT_Event_Dispatcher {
         add_action( 'pre_get_posts', array( $this, 'product_search' ) );
 
         // Wishlist Event
-
         add_filter( 'yith_wcwl_added_to_wishlist', array( $this, 'product_wishlist' ) );
-
         add_action( 'woocommerce_wishlist_add_item', array( $this, 'product_wishlist' ) );
     }
 
@@ -90,6 +89,22 @@ class WCCT_Event_Dispatcher {
      */
     public function product_view() {
         $this->dispatch_event( 'product_view' );
+    }
+
+    /**
+     * Singular posts/pages view
+     *
+     * @return void
+     */
+    public function singular_view() {
+
+        if ( is_order_received_page() || is_checkout() ) {
+            return;
+        }
+
+        if ( is_singular() && !is_singular( 'product' ) ) {
+            $this->dispatch_event( 'singular_view' );
+        }
     }
 
     /**

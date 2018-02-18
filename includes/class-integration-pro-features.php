@@ -41,6 +41,11 @@ class WCCT_Pro_Features {
             'profeature'    => true,
         );
 
+        $settings['events']['options']['ViewSingle-pro'] = array(
+            'label'         => __( 'View Posts / Pages / Custom Post Types', 'woocommerce-conversion-tracking' ),
+            'profeature'    => true,
+        );
+
         $settings['events']['options']['Search-pro'] = array(
             'label'         => __( 'Search', 'woocommerce-conversion-tracking' ),
             'profeature'    => true,
