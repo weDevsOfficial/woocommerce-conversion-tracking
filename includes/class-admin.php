@@ -23,12 +23,12 @@ class WCCT_Admin {
         /**
          * All style goes here
          */
-        wp_enqueue_style( 'style', plugins_url( 'assets/css/style.css', WCCT_FILE ), false, date( 'Ymd' ) );
+        wp_enqueue_style( 'style', plugins_url( 'assets/css/style.css', WCCT_FILE ), false, filemtime( WCCT_PATH . '/assets/css/style.css' ) );
 
         /**
          * All script goes here
          */
-        wp_enqueue_script( 'wcct-admin', plugins_url( 'assets/js/admin.js', WCCT_FILE ), array( 'jquery', 'wp-util' ), false, time() );
+        wp_enqueue_script( 'wcct-admin', plugins_url( 'assets/js/admin.js', WCCT_FILE ), array( 'jquery', 'wp-util' ), filemtime( WCCT_PATH . '/assets/js/admin.js' ), true );
 
         wp_localize_script(
             'wcct-admin', 'wc_tracking', array(
