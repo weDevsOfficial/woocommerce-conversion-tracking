@@ -1,6 +1,6 @@
 /*
 Woocommerce-Conversion-Tracking - v1.0.0
-Generated: 2018-02-14 (1518606608340)
+Generated: 2018-02-19 (1519031925585)
 PLEASE DO NOT MODIFY*/
 .wcct-admin {
   /**
@@ -187,7 +187,7 @@ PLEASE DO NOT MODIFY*/
   }
 }
 .wcct-admin .sidebar-wrap {
-  margin-top: 15px;
+  margin-top: 50px;
 }
 .wcct-admin .sidebar-wrap .premium-box {
   width: 100%;
