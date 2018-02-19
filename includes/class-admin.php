@@ -23,7 +23,7 @@ class WCCT_Admin {
         /**
          * All style goes here
          */
-        wp_enqueue_style( 'style', plugins_url( 'assets/css/style.css', WCCT_FILE ), filemtime( WCCT_PATH . '/assets/css/style.css' ), true );
+        wp_enqueue_style( 'style', plugins_url( 'assets/css/style.css', WCCT_FILE ), false, filemtime( WCCT_PATH . '/assets/css/style.css' ) );
 
         /**
          * All script goes here
