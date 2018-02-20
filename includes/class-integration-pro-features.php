@@ -14,6 +14,8 @@ class WCCT_Pro_Features {
         add_filter( 'wcct_settings_adwords', array( $this, 'adwords_pro_features' ), 10, 1 );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_script' ) );
 
+        add_filter( 'wcct_nav_tab', array( $this, 'pro_tabs' ) );
+
         add_action( 'wcct_sidebar', array( $this, 'profeature_ad' ) );
     }
 
@@ -21,6 +23,28 @@ class WCCT_Pro_Features {
 
         wp_enqueue_script( 'sweetalert', plugins_url( 'assets/js/sweetalert.min.js', WCCT_FILE ), array(), false, false );
 
+    }
+
+    /**
+     * Add facebook product catalog tab
+     *
+     * @param  array $sections
+     *
+     * @return array
+     */
+    public function pro_tabs( $sections ) {
+
+        $sections[] = array(
+            'id'    => '',
+            'title' => __( 'Facebook Product Catalog (Pro)', 'woocommerce-conversion-tracking' ),
+        );
+
+        $sections[] = array(
+            'id'    => '',
+            'title' => __( 'Settings (Pro)', 'woocommerce-conversion-tracking' ),
+        );
+
+        return $sections;
     }
 
     /**

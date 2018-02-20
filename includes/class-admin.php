@@ -94,7 +94,12 @@ class WCCT_Admin {
         $html = '<h2 class="nav-tab-wrapper">';
         foreach ( $tabs as $tab ) {
             $active_class   = ( $tab['id'] == $active ) ? 'nav-tab-active' : '';
-            $html  .= sprintf( '<a href="admin.php?page=conversion-tracking&tab=%s" class="nav-tab %s">%s</a>', $tab['id'], $active_class, $tab['title'] );
+
+            if ( !empty( $tab['id'] ) ) {
+                $html  .= sprintf( '<a href="admin.php?page=conversion-tracking&tab=%s" class="nav-tab %s">%s</a>', $tab['id'], $active_class, $tab['title'] );
+            } else {
+                $html  .= sprintf( '<a href="#" class="nav-tab disabled">%s</a>', $tab['title'] );
+            }
         }
 
         $html   .= '</h2>';

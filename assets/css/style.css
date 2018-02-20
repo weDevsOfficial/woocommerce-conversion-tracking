@@ -1,6 +1,6 @@
 /*
 Woocommerce-Conversion-Tracking - v1.0.0
-Generated: 2018-02-20 (1519108668998)
+Generated: 2018-02-20 (1519126580166)
 PLEASE DO NOT MODIFY*/
 .wcct-admin {
   /**
@@ -9,6 +9,9 @@ PLEASE DO NOT MODIFY*/
   /**
      * Sidebar Area
      */
+}
+.wcct-admin .nav-tab.disabled {
+  color: #b1b1b1;
 }
 .wcct-admin .wcct-two-column {
   display: flex;
