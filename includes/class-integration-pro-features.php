@@ -99,21 +99,17 @@ class WCCT_Pro_Features {
     public function profeature_ad() {
         ?>
         <div class="premium-box box-blue">
-            <h3 style="margin-left: 15px"><?php _e( 'Premium Features', 'woocommerce-conversion-tracking' ) ?></h3>
+            <h3><?php _e( 'Premium Features', 'woocommerce-conversion-tracking' ) ?></h3>
+
             <ul class="premium-feature-list">
-                <li>
-                   <img src="<?php echo plugins_url( 'assets/images/done.png', WCCT_FILE )?>" alt="" class=""> Advance Facebook Events
-                </li>
-                <li>
-                   <img src="<?php echo plugins_url( 'assets/images/done.png', WCCT_FILE )?>" alt="" class=""> Advance Google Adwords Events
-                </li>
-                <li>
-                   <img src="<?php echo plugins_url( 'assets/images/done.png', WCCT_FILE )?>" alt="" class=""> Advance Twitter Events
-                </li>
-                <li>
-                   <img src="<?php echo plugins_url( 'assets/images/done.png', WCCT_FILE )?>" alt="" class=""> Perfect Audience
-                </li>
+                <li>Advanced Facebook Events and Tracking</li>
+                <li>Facebook Product Catalog</li>
+                <li>Multiple Facebook Pixels</li>
+                <li>Advanced Google Adwords Events</li>
+                <li>Advanced Twitter Events</li>
+                <li>Perfect Audience Integration</li>
             </ul>
+
             <a href="https://wedevs.com/woocommerce-conversion-tracking/upgrade-to-pro/?utm_source=wp-admin&utm_medium=pro-upgrade&utm_campaign=wcct_upgrade&utm_content=Get_Premium" target="_blank" class="button button-primary"><?php _e( 'Get Premium', 'woocommerce-conversion-tracking' ) ?></a>
         </div>
         <?php

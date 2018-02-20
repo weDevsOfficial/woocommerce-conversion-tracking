@@ -2,7 +2,9 @@
     // Data Save
     $( '#wcct-submit' ).on( 'click', function( e ) {
         e.preventDefault();
+
         $( '#wcct-submit' ).addClass( 'updating-message' );
+
         wp.ajax.send( 'wcct_save_settings', {
             data: $( '#integration-form' ).serialize(),
             success: function( response ) {
@@ -58,15 +60,15 @@
     $( '.disabled-class' ).on( 'click', function() {
         var title =  $( this ).text();
         swal({
-            title:title+' is available in Pro version',
-            text:'Please upgrade to the Pro version to get all the awesome feature',
-            buttons:{
-                confirm:'Get the Pro Version',
-                cancel:'Close',
+            title: title + ' is available in Pro version',
+            text: 'Please upgrade to the Pro version to get all the awesome feature',
+            buttons: {
+                confirm: 'Get the Pro Version',
+                cancel: 'Close',
             },
         }).then( function( is_confirm ){
             if ( is_confirm ) {
-              window.open('http://www.wedevs.com', '_blank');
+              window.open('https://wedevs.com/woocommerce-conversion-tracking/upgrade-to-pro/?utm_source=wp-admin&utm_medium=pro-upgrade&utm_campaign=wcct_upgrade&utm_content=Pro_Alert', '_blank');
             }
         }, function() {});
     } );

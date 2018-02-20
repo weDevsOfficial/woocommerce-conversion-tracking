@@ -136,13 +136,14 @@
 
         .integration-wrap {
             max-width: @integrationWidth;
-            border: 1px solid #dfdfdf;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 1px 1px rgba(0,0,0,.04);
             margin-top: 20px;
             background: #fff;
 
             .integration-name {
                 background: #ffffff;
-                padding: 21px 15px;
+                padding: 15px 15px;
                 border-bottom: 1px solid #f1f1f1;
             }
 
@@ -168,11 +169,11 @@
                     padding: 10px;
                     margin-right: 25px;
                     margin-bottom: 15px;
-                    margin-top: 15px;
+                    margin-top: 20px;
                 }
 
                 .wcct-border {
-                    border: 1px solid #ddd;
+                    border: 1px solid #e5e5e5;
                 }
             }
 
@@ -181,9 +182,9 @@
                 flex-flow: 1 1 auto;
 
                 img {
-                    height: 35px;
+                    height: 26px;
+                    width: auto;
                     margin-right: 15px;
-                    margin-top: -9px;
                 }
 
                 label,
@@ -196,6 +197,7 @@
                     margin: 0 30px 0 0;
                     max-width: 90%;
                     font-size: 1.2em;
+                    line-height: 26px
                 }
 
                 label {
@@ -204,6 +206,7 @@
                         display: inline-block;
                         max-width: 40px;
                         height: 18px;
+                        margin-top: 5px;
                     }
                 }
             }
@@ -260,7 +263,7 @@
                     font-weight: normal;
                 }
 
-                h3{
+                h3 {
                     color: #444;
                 }
 
@@ -276,9 +279,19 @@
                     font-size: 1.5em;
                 }
 
-                .premium-feature-list li img {
-                    width: 17px;
+                ul.premium-feature-list {
+                    margin-bottom: 15px;
+                }
+
+                .premium-feature-list li:before {
+                    content: "\f147";
+                    font-family: dashicons;
+                    display: inline-block;
+                    background: #64b450;
+                    color: #fff;
+                    padding: 0 3px;
                     margin-right: 10px;
+                    border-radius: 50%;
                 }
             }
 
@@ -293,46 +306,46 @@
                 li {
                     list-style:none;
                     text-align:center;
-                    margin:5px;
-                    flex: 0 1 calc(35.333% - 4px);
+                    margin: 5px;
+                    // width: 45%;
+                    flex: 0 1 100%;
                     box-sizing: border-box;
-                    display:list-item;
+                    display: list-item;
                     box-sizing: border-box;
-                    border:1px solid #ddd;
+                    border: 1px solid #ddd;
+                    border-radius: 3px;
+                    padding: 0 0 15px 0;
 
                     a {
                         text-decoration: none;
                         font-size: 13px;
                         color: #444;
-                        padding: 10px;
-                        display:flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        transition: all ease .3s;
-                        text-decoration:none;
-                        outline: 0 !important;
+                        display: block;
                     }
-                    .doc-list-icon {
-                        width: 25px;
+
+                    img.doc-list-icon {
+                        display: block;
+                        width: 24px;
+                        height: auto;
                         margin: 10px auto;
                     }
                 }
 
-                @media (max-width: 1366px) {
+                @media (min-width: 768px) {
                     li {
-                        flex: 0 1 calc(35% - 5px);
+                        flex: 0 1 100%;
                     }
                 }
 
-                @media (max-width: 1280px) {
+                @media (min-width: 992px) {
                     li {
-                        flex: 0 1 calc(34.5% - 5px);
+                        flex: 0 1 calc(50% - 5px);
                     }
                 }
 
-                @media (max-width: 1024px) {
+                @media (min-width: 1367px) {
                     li {
-                        flex: 0 2 calc(50% - 5px);
+                        flex: 0 1 calc(33% - 5px);
                     }
                 }
             }
