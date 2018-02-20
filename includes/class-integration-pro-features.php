@@ -114,7 +114,7 @@ class WCCT_Pro_Features {
                    <img src="<?php echo plugins_url( 'assets/images/done.png', WCCT_FILE )?>" alt="" class=""> Perfect Audience
                 </li>
             </ul>
-            <a href="https://wedevs.com" target="_blank" class="button button-primary"><?php _e( 'Get Premium', 'woocommerce-conversion-tracking' ) ?></a>
+            <a href="https://wedevs.com/woocommerce-conversion-tracking/upgrade-to-pro/?utm_source=wp-admin&utm_medium=pro-upgrade&utm_campaign=wcct_upgrade&utm_content=Get_Premium" target="_blank" class="button button-primary"><?php _e( 'Get Premium', 'woocommerce-conversion-tracking' ) ?></a>
         </div>
         <?php
     }

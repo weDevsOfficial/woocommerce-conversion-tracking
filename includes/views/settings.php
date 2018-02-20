@@ -144,16 +144,12 @@
             <h3 class="wcct-doc-title"><?php _e( 'Documentation', 'woocommerce-conversion-tracking' )?></h3>
 
             <ul class="wcct-doc-list">
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/get-started/" target="_blank"><img src="<?php echo plugins_url( 'assets/images/getting_started.png', WCCT_FILE )?>" alt="" class="doc-list-icon"><?php _e( 'Getting Started', 'woocommerce-conversion-tracking' ) ?></a></li>
-
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/" target="_blank"><img src="<?php echo plugins_url( 'assets/images/facebook.png', WCCT_FILE )?>" alt="" class="doc-list-icon"><?php _e( 'Facebook', 'woocommerce-conversion-tracking' ) ?></a></li>
-
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/twitter/" target="_blank"><img src="<?php echo plugins_url( 'assets/images/twitter.png', WCCT_FILE )?>" alt="" class="doc-list-icon"><?php _e( 'Twitter', 'woocommerce-conversion-tracking' ) ?></a></li>
-
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/google-adwords/" target="_blank"><img src="<?php echo plugins_url( 'assets/images/adwords.png', WCCT_FILE )?>" alt="" class="doc-list-icon"><?php _e( 'Google Adwords', 'woocommerce-conversion-tracking' ) ?></a></li>
-
-                <li><a href="https://wedevs.com/docs/https://wedevs.com/docs/woocommerce-conversion-tracking/perfect-audience/" target="_blank"><img src="<?php echo plugins_url( 'assets/images/perfect_audience.png', WCCT_FILE )?>" alt="" class="doc-list-icon"><?php _e( 'Perfect Audience', 'woocommerce-conversion-tracking' ) ?></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/custom/" target="_blank"><img src="<?php echo plugins_url( 'assets/images/custom.png', WCCT_FILE )?>" alt="" class="doc-list-icon"><?php _e( 'Custom', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/get-started/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Get_Started" target="_blank"><img src="<?php echo plugins_url( 'assets/images/getting_started.png', WCCT_FILE ); ?>" alt="" class="doc-list-icon"><?php _e( 'Getting Started', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Facebook" target="_blank"><img src="<?php echo plugins_url( 'assets/images/facebook.png', WCCT_FILE ); ?>" alt="" class="doc-list-icon"><?php _e( 'Facebook', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/twitter/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Twitter" target="_blank"><img src="<?php echo plugins_url( 'assets/images/twitter.png', WCCT_FILE ); ?>" alt="" class="doc-list-icon"><?php _e( 'Twitter', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/google-adwords/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Adwords" target="_blank"><img src="<?php echo plugins_url( 'assets/images/adwords.png', WCCT_FILE ); ?>" alt="" class="doc-list-icon"><?php _e( 'Google Adwords', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/perfect-audience/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Perfect_Audience" target="_blank"><img src="<?php echo plugins_url( 'assets/images/perfect_audience.png', WCCT_FILE ); ?>" alt="" class="doc-list-icon"><?php _e( 'Perfect Audience', 'woocommerce-conversion-tracking' ) ?></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/custom/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Custom" target="_blank"><img src="<?php echo plugins_url( 'assets/images/custom.png', WCCT_FILE ); ?>" alt="" class="doc-list-icon"><?php _e( 'Custom', 'woocommerce-conversion-tracking' ) ?></a></li>
             </ul>
         </div>
 
