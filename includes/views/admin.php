@@ -1,5 +1,7 @@
 <div class="wrap wcct-admin">
 
+    <?php do_action( 'wcct_before_nav' ); ?>
+
     <?php
     $this->show_navigation();
     $tab   = isset( $_GET['tab'] ) ? $_GET['tab'] : 'integrations';

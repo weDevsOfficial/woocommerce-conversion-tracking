@@ -22,7 +22,7 @@ class WCCT_Upgrades {
      * @return string
      */
     public function get_version() {
-        return get_option( 'wcct_version' );
+        return get_option( 'wcct_version', false );
     }
 
     /**
@@ -31,13 +31,14 @@ class WCCT_Upgrades {
      * @return boolean
      */
     public function needs_update() {
+        $version = $this->get_version();
 
         // may be it's the first install
-        if ( ! $this->get_version() ) {
+        if ( ! $version ) {
             return false;
         }
 
-        if ( version_compare( $this->get_version(), WCCT_VERSION, '<' ) && in_array( WCCT_VERSION, self::$upgrades ) ) {
+        if ( version_compare( $version, WCCT_VERSION, '<' ) && array_key_exists( WCCT_VERSION, self::$upgrades ) ) {
             return true;
         }
 

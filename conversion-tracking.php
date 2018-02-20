@@ -134,6 +134,7 @@ class WeDevs_WC_Conversion_Tracking {
         require_once WCCT_INCLUDES . '/class-integration-pro-features.php';
         require_once WCCT_INCLUDES . '/class-ajax.php';
         require_once WCCT_INCLUDES . '/class-admin.php';
+        require_once WCCT_INCLUDES . '/class-welcome-20.php';
     }
 
     /**
@@ -193,6 +194,8 @@ class WeDevs_WC_Conversion_Tracking {
         $this->container['event_dispatcher']    = new WCCT_Event_Dispatcher();
         $this->container['admin']               = new WCCT_Admin();
         $this->container['manager']             = new WCCT_Integration_Manager();
+
+        new WCCT_Welcome_20();
 
         if ( ! class_exists( 'WeDevs_WC_Conversion_Tracking_Pro') ) {
             $this->container['pro_feature'] = new WCCT_Pro_Features();
