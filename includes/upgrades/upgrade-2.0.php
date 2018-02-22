@@ -20,6 +20,7 @@ function wcct_upgrade_2_0_change_option_key() {
     );
 
     update_option( 'wcct_settings', $change_settings['custom'] );
+    update_option( '_wcct_20_notice_dismiss', false );
 
     // redirect transient
     set_transient( 'wcct_upgrade_to_20', true, MINUTE_IN_SECONDS );

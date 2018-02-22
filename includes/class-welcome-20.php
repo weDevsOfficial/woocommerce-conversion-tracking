@@ -10,6 +10,8 @@ class WCCT_Welcome_20 {
     function __construct() {
         add_action( 'admin_init', array( $this, 'redirect_to_page' ), 9999 );
         add_action( 'wcct_before_nav', array( $this, 'show_notice' ) );
+
+        add_action( 'wp_ajax_wcct_dismiss_notice', array( $this, 'dismiss_notice' ) );
     }
 
     /**
@@ -34,12 +36,24 @@ class WCCT_Welcome_20 {
     }
 
     /**
+     * Dismiss notice
+     *
+     * @return void
+     */
+    public function dismiss_notice() {
+        update_option( '_wcct_20_notice_dismiss', true );
+        wp_send_json_success();
+    }
+
+    /**
      * Show welcome notice to 2.0
      *
      * @return void
      */
     public function show_notice() {
-        if ( isset( $_GET['notice'] ) && $_GET['notice'] === 'welcome' ) {
+        $dismissed = get_option( '_wcct_20_notice_dismiss', false );
+
+        if ( ! $dismissed ) {
             include WCCT_INCLUDES . '/views/welcome-20.php';
         }
     }
