@@ -16,6 +16,23 @@ When you are integrating any advertising campaigns, they provide various trackin
 
 This plugin inserts those codes on WooCommerce cart page, checkout success page and after user registration. So you can track who are adding your products to cart, who are buying them and who are registering to your site.
 
+= Supported Integrations =
+
+ * [Facebook](https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=facebook)
+ * [Twitter](https://wedevs.com/docs/woocommerce-conversion-tracking/twitter/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=twitter)
+ * [Google Adwords](https://wedevs.com/docs/woocommerce-conversion-tracking/google-adwords/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=google_adwords)
+ * [Custom Tracking](https://wedevs.com/docs/woocommerce-conversion-tracking/custom/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=custom)
+
+= Pro Features =
+
+ * More Facebook Events
+ * Multiple Facebook Pixels
+ * [Facebook Product Catalog](https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/facebook-product-catalog/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=product_catalog)
+ * [Perfect Audience](https://wedevs.com/docs/woocommerce-conversion-tracking/perfect-audience/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=perfect_audience)
+ * More Twitter and Google Adwords Events
+
+[Get Pro Version](https://wedevs.com/woocommerce-conversion-tracking/pricing/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=pricing)
+
 = Contribute =
 [Github](https://github.com/tareq1988/woocommerce-conversion-tracking)
 
@@ -58,7 +75,10 @@ We put the JavaScript scripts provided by you in the page and it fires a convers
 == Screenshots ==
 
 1. Settings Panel
-2. Tracking code on single product.
+2. Facebook Pixel Setup
+3. Google Adwords Conversion Tracking Settings
+4. Twitter Purchase Tracking Setup
+5. Custom Codes
 
 == Changelog ==
 
