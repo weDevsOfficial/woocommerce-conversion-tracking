@@ -34,7 +34,7 @@ module.exports = function(grunt) {
                 options: {
                     exclude: ['build/.*', 'node_modules/*', 'assets/*'],
                     domainPath: '/languages/', // Where to save the POT file.
-                    potFilename: 'plugin.pot', // Name of the POT file.
+                    potFilename: 'woocommerce-conversion-tracking.pot', // Name of the POT file.
                     type: 'wp-plugin', // Type of project (wp-plugin or wp-theme).
                     potHeaders: {
                         'report-msgid-bugs-to': 'https://example.com',

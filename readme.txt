@@ -3,8 +3,8 @@ Contributors: tareq1988
 Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, adwords, tracking-pixel
 Donate link: https://tareq.co/donate/
 Requires at least: 4.0
-Tested up to: 4.9.1
-Stable tag: trunk
+Tested up to: 4.9.4
+Stable tag: 2.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -28,7 +28,7 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 = Minimum Requirements =
 
-* WooCommerce 2.1.0
+* WooCommerce 3.0
 * PHP version 5.2.4 or greater
 * MySQL version 5.0 or greater
 
@@ -61,6 +61,13 @@ We put the JavaScript scripts provided by you in the page and it fires a convers
 2. Tracking code on single product.
 
 == Changelog ==
+
+= Version 2.0 (22-February-2018) =
+
+ * Major version released
+ * Individual gateway integrations
+ * More streamlined and user friendly UI
+
 
 = Version 1.2.5 (28-December-2017) =
 
