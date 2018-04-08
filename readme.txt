@@ -31,7 +31,13 @@ This plugin inserts those codes on WooCommerce cart page, checkout success page 
  * [Perfect Audience](https://wedevs.com/docs/woocommerce-conversion-tracking/perfect-audience/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=perfect_audience)
  * More Twitter and Google Adwords Events
 
-[Get Pro Version](https://wedevs.com/woocommerce-conversion-tracking/pricing/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=pricing)
+[**Get Pro Version**](https://wedevs.com/woocommerce-conversion-tracking/pricing/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=pricing)
+
+= Videos =
+[youtube http://www.youtube.com/watch?v=PZN883xb51c]
+[youtube http://www.youtube.com/watch?v=6QMWzM9decU]
+
+[**All Videos**](https://www.youtube.com/watch?v=b3BHJwQ7Q70&list=PLJorZsV2RVv_7zV2I1_X_xJODZklXHQtS)
 
 = Contribute =
 [Github](https://github.com/tareq1988/woocommerce-conversion-tracking)
