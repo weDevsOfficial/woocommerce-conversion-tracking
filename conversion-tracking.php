@@ -76,7 +76,6 @@ class WeDevs_WC_Conversion_Tracking {
         $this->init_classes();
 
         register_activation_hook( __FILE__, array( $this, 'activate' ) );
-
         do_action( 'wcct_loaded' );
     }
 
@@ -161,6 +160,7 @@ class WeDevs_WC_Conversion_Tracking {
      * @return void
      */
     public function activate() {
+        $this->check_woocommerce_exist();
         $installed = get_option( 'wcct_installed' );
 
         if ( ! $installed ) {
@@ -272,6 +272,18 @@ class WeDevs_WC_Conversion_Tracking {
         $links[] = '<a href="' . admin_url( 'admin.php?page=conversion-tracking' ) . '">' . __( 'Settings', 'woocommerce-conversion-tracking' ) . '</a>';
 
         return $links;
+    }
+    /**
+     * Check Woocommerce exist
+     *
+     * @return void
+     */
+    public function check_woocommerce_exist() {
+        if ( ! function_exists( 'WC' ) ) {
+            require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+            deactivate_plugins( plugin_basename( __FILE__ ) );
+            wp_die( '<div class="error"><p><b>Woocommerce Conversion Tracking</b> requires <a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a> to be installed & activated!</p></div>' );
+        }
     }
 }
 
