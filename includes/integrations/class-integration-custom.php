@@ -32,7 +32,7 @@ class WCCT_Integration_Custom extends WCCT_Integration {
                 'value' => '',
                 'help'  => sprintf( /* translators: %s: dynamic values */
                                    __( 'Put your JavaScript tracking scripts here. You can use dynamic values: %s', 'woocommerce-conversion-tracking' ),
-                    '<code>{customer_id}</code>, <code>{customer_email}</code>, <code>{customer_first_name}</code>, <code>{customer_last_name}</code>, <code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{currency}</code>, <code>{payment_method}</code>'
+                    '<code>{customer_id}</code>, <code>{customer_email}</code>, <code>{customer_first_name}</code>, <code>{customer_last_name}</code>, <code>{order_number}</code>, <code>{order_total}</code>, <code>{order_subtotal}</code>, <code>{order_discount}</code>, <code>{order_shipping}</code>, <code>{currency}</code>, <code>{payment_method}</code>'
                 ),
             ),
             array(
@@ -123,6 +123,9 @@ class WCCT_Integration_Custom extends WCCT_Integration {
         $order_total    = $order->get_total();
         $order_number   = $order->get_order_number();
         $order_subtotal = $order->get_subtotal();
+	$order_discount = $order->get_total_discount();
+	$order_shipping = $order->get_total_shipping();
+
 
         // customer details
         if ( $customer ) {
@@ -139,6 +142,8 @@ class WCCT_Integration_Custom extends WCCT_Integration {
         $code = str_replace( '{order_total}', $order_total, $code );
         $code = str_replace( '{order_number}', $order_number, $code );
         $code = str_replace( '{order_subtotal}', $order_subtotal, $code );
+	$code = str_replace( '{order_discount}', $order_discount, $code );
+	$code = str_replace( '{order_shipping}', $order_shipping, $code );
 
         return $code;
     }
