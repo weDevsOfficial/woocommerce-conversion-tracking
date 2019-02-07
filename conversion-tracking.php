@@ -160,7 +160,6 @@ class WeDevs_WC_Conversion_Tracking {
      * @return void
      */
     public function activate() {
-        $this->check_woocommerce_exist();
         $installed = get_option( 'wcct_installed' );
 
         if ( ! $installed ) {
@@ -180,7 +179,7 @@ class WeDevs_WC_Conversion_Tracking {
         add_action( 'plugins_loaded', array( $this, 'plugin_upgrades' ) );
         add_action( 'init', array( $this, 'localization_setup' ) );
         add_action( 'init', array( $this, 'init_tracker' ) );
-
+        add_action( 'admin_notices', array( $this, 'check_woocommerce_exist' ) );
         add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
     }
 
@@ -280,9 +279,11 @@ class WeDevs_WC_Conversion_Tracking {
      */
     public function check_woocommerce_exist() {
         if ( ! function_exists( 'WC' ) ) {
-            require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-            deactivate_plugins( plugin_basename( __FILE__ ) );
-            wp_die( '<div class="error"><p><b>Woocommerce Conversion Tracking</b> requires <a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a> to be installed & activated!</p></div>' );
+            ?>
+                <div class="error notice is-dismissible">
+                    <p><?php _e( '<b>Woocommerce conversion tracking</b> requires <a target="_blank" href="https://wordpress.org/plugins/woocommerce/">Woocommerce</a>', 'woocommerce-conversion-tracking' );?></p>
+                </div>
+            <?php
         }
     }
 }
