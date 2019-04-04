@@ -3,8 +3,8 @@ Contributors: tareq1988
 Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, adwords, tracking-pixel
 Donate link: https://tareq.co/donate/
 Requires at least: 4.0
-Tested up to: 4.9.4
-Stable tag: 2.0
+Tested up to: 5.1.1
+Stable tag: 2.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -15,6 +15,29 @@ Adds various conversion tracking codes to cart, checkout, registration success a
 When you are integrating any advertising campaigns, they provide various tracking codes (mainly JavaScript) to insert them various pages of your site so that it can track how the conversion is happening.
 
 This plugin inserts those codes on WooCommerce cart page, checkout success page and after user registration. So you can track who are adding your products to cart, who are buying them and who are registering to your site.
+
+= Supported Integrations =
+
+ * [Facebook](https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=facebook)
+ * [Twitter](https://wedevs.com/docs/woocommerce-conversion-tracking/twitter/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=twitter)
+ * [Google Adwords](https://wedevs.com/docs/woocommerce-conversion-tracking/google-adwords/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=google_adwords)
+ * [Custom Tracking](https://wedevs.com/docs/woocommerce-conversion-tracking/custom/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=custom)
+
+= Pro Features =
+
+ * More Facebook Events
+ * Multiple Facebook Pixels
+ * [Facebook Product Catalog](https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/facebook-product-catalog/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=product_catalog)
+ * [Perfect Audience](https://wedevs.com/docs/woocommerce-conversion-tracking/perfect-audience/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=perfect_audience)
+ * More Twitter and Google Adwords Events
+
+[**Get Pro Version**](https://wedevs.com/woocommerce-conversion-tracking/pricing/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=pricing)
+
+= Videos =
+[youtube http://www.youtube.com/watch?v=PZN883xb51c]
+[youtube http://www.youtube.com/watch?v=6QMWzM9decU]
+
+[**All Videos**](https://www.youtube.com/watch?v=b3BHJwQ7Q70&list=PLJorZsV2RVv_7zV2I1_X_xJODZklXHQtS)
 
 = Contribute =
 [Github](https://github.com/tareq1988/woocommerce-conversion-tracking)
@@ -58,9 +81,17 @@ We put the JavaScript scripts provided by you in the page and it fires a convers
 == Screenshots ==
 
 1. Settings Panel
-2. Tracking code on single product.
+2. Facebook Pixel Setup
+3. Google Adwords Conversion Tracking Settings
+4. Twitter Purchase Tracking Setup
+5. Custom Codes
 
 == Changelog ==
+
+= Version 2.0.1 (04-April-2019) =
+
+ * [fix] Added plugin require notice
+
 
 = Version 2.0 (22-February-2018) =
 

@@ -3,12 +3,12 @@
 Plugin Name: WooCommerce Conversion Tracking
 Plugin URI: https://wedevs.com/products/plugins/woocommerce-conversion-tracking/
 Description: Adds various conversion tracking codes to cart, checkout, registration success and product page on WooCommerce
-Version: 2.0
+Version: 2.0.1
 Author: Tareq Hasan
 Author URI: https://tareq.co/
 License: GPL2
 WC requires at least: 2.3
-WC tested up to: 3.2.6
+WC tested up to: 3.5.7
 */
 
 /**
@@ -54,7 +54,7 @@ class WeDevs_WC_Conversion_Tracking {
      *
      * @var string
      */
-    public $version = '2.0';
+    public $version = '2.0.1';
 
     /**
      * Holds various class instances
@@ -76,7 +76,6 @@ class WeDevs_WC_Conversion_Tracking {
         $this->init_classes();
 
         register_activation_hook( __FILE__, array( $this, 'activate' ) );
-
         do_action( 'wcct_loaded' );
     }
 
@@ -180,7 +179,7 @@ class WeDevs_WC_Conversion_Tracking {
         add_action( 'plugins_loaded', array( $this, 'plugin_upgrades' ) );
         add_action( 'init', array( $this, 'localization_setup' ) );
         add_action( 'init', array( $this, 'init_tracker' ) );
-
+        add_action( 'admin_notices', array( $this, 'check_woocommerce_exist' ) );
         add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
     }
 
@@ -272,6 +271,20 @@ class WeDevs_WC_Conversion_Tracking {
         $links[] = '<a href="' . admin_url( 'admin.php?page=conversion-tracking' ) . '">' . __( 'Settings', 'woocommerce-conversion-tracking' ) . '</a>';
 
         return $links;
+    }
+    /**
+     * Check Woocommerce exist
+     *
+     * @return void
+     */
+    public function check_woocommerce_exist() {
+        if ( ! function_exists( 'WC' ) ) {
+            ?>
+                <div class="error notice is-dismissible">
+                    <p><?php _e( '<b>Woocommerce conversion tracking</b> requires <a target="_blank" href="https://wordpress.org/plugins/woocommerce/">Woocommerce</a>', 'woocommerce-conversion-tracking' );?></p>
+                </div>
+            <?php
+        }
     }
 }
 
