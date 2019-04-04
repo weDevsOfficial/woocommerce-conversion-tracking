@@ -3,8 +3,8 @@ Contributors: tareq1988
 Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, adwords, tracking-pixel
 Donate link: https://tareq.co/donate/
 Requires at least: 4.0
-Tested up to: 4.9.4
-Stable tag: 2.0
+Tested up to: 5.1.1
+Stable tag: 2.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -87,6 +87,11 @@ We put the JavaScript scripts provided by you in the page and it fires a convers
 5. Custom Codes
 
 == Changelog ==
+
+= Version 2.0.1 (04-April-2019) =
+
+ * [fix] Added plugin require notice
+
 
 = Version 2.0 (22-February-2018) =
 
