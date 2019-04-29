@@ -132,6 +132,7 @@ class WCCT_Pro_Features {
                 <li>Advanced Google Adwords Events</li>
                 <li>Advanced Twitter Events</li>
                 <li>Perfect Audience Integration</li>
+                <li>Bing Ads</li>
             </ul>
 
             <a href="https://wedevs.com/woocommerce-conversion-tracking/upgrade-to-pro/?utm_source=wp-admin&utm_medium=pro-upgrade&utm_campaign=wcct_upgrade&utm_content=Get_Premium" target="_blank" class="button button-primary"><?php _e( 'Get Premium', 'woocommerce-conversion-tracking' ) ?></a>

@@ -115,7 +115,7 @@ class WCCT_Integration_Google extends WCCT_Integration {
         $code = $this->build_event( 'conversion', array(
             'send_to'        => sprintf( "%s/%s", $account_id, $label ),
             'transaction_id' => $order_id,
-            'value'          => $order->get_total(),
+            'value'          => $order->get_total() ? $order->get_total() : 0,
             'currency'       => get_woocommerce_currency()
         ) );
 
