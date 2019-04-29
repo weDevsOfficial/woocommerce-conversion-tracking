@@ -114,7 +114,7 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
         $code = $this->build_event( 'Purchase', array(
             'content_ids'  => json_encode($product_ids),
             'content_type' => $content_type,
-            'value'        => $order->get_total(),
+            'value'        => $order->get_total() ? $order->get_total() : 0,
             'currency'     => get_woocommerce_currency()
         ) );
 

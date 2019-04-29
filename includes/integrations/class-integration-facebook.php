@@ -123,7 +123,7 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
         $code = $this->build_event( 'AddToCart', array(
             'content_ids'  => json_encode( $product_ids ),
             'content_type' => 'product',
-            'value'        => WC()->cart->total,
+            'value'        => WC()->cart->total ? WC()->cart->total : 0,
             'currency'     => get_woocommerce_currency()
         ) );
 
@@ -169,7 +169,7 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
             'num_items'    => WC()->cart->get_cart_contents_count(),
             'content_ids'  => json_encode( $product_ids ),
             'content_type' => 'product',
-            'value'        => WC()->cart->total,
+            'value'        => WC()->cart->total ? WC()->cart->total : 0,
             'currency'     => get_woocommerce_currency()
         ) );
 
@@ -205,7 +205,7 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
         $code = $this->build_event( 'Purchase', array(
             'content_ids'  => json_encode($product_ids),
             'content_type' => $content_type,
-            'value'        => $order->get_total(),
+            'value'        => $order->get_total() ? $order->get_total() : 0,
             'currency'     => get_woocommerce_currency()
         ) );
 

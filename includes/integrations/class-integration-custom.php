@@ -120,11 +120,11 @@ class WCCT_Integration_Custom extends WCCT_Integration {
         $customer       = $order->get_user();
         $used_coupons   = $order->get_used_coupons() ? implode( ',', $order->get_used_coupons() ) : '';
         $order_currency = $order_currency;
-        $order_total    = $order->get_total();
+        $order_total    = $order->get_total() ? $order->get_total() : 0;
         $order_number   = $order->get_order_number();
         $order_subtotal = $order->get_subtotal();
-	$order_discount = $order->get_total_discount();
-	$order_shipping = $order->get_total_shipping();
+	    $order_discount = $order->get_total_discount();
+	    $order_shipping = $order->get_total_shipping();
 
 
         // customer details
@@ -142,8 +142,8 @@ class WCCT_Integration_Custom extends WCCT_Integration {
         $code = str_replace( '{order_total}', $order_total, $code );
         $code = str_replace( '{order_number}', $order_number, $code );
         $code = str_replace( '{order_subtotal}', $order_subtotal, $code );
-	$code = str_replace( '{order_discount}', $order_discount, $code );
-	$code = str_replace( '{order_shipping}', $order_shipping, $code );
+	    $code = str_replace( '{order_discount}', $order_discount, $code );
+	    $code = str_replace( '{order_shipping}', $order_shipping, $code );
 
         return $code;
     }
