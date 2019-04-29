@@ -4,7 +4,7 @@ Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, 
 Donate link: https://tareq.co/donate/
 Requires at least: 4.0
 Tested up to: 5.1.1
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -29,6 +29,7 @@ This plugin inserts those codes on WooCommerce cart page, checkout success page 
  * Multiple Facebook Pixels
  * [Facebook Product Catalog](https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/facebook-product-catalog/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=product_catalog)
  * [Perfect Audience](https://wedevs.com/docs/woocommerce-conversion-tracking/perfect-audience/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=perfect_audience)
+ * [Bing Ads](https://wedevs.com/docs/woocommerce-conversion-tracking/bing-ads)
  * More Twitter and Google Adwords Events
 
 [**Get Pro Version**](https://wedevs.com/woocommerce-conversion-tracking/pricing/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=pricing)
@@ -87,6 +88,10 @@ We put the JavaScript scripts provided by you in the page and it fires a convers
 5. Custom Codes
 
 == Changelog ==
+
+= Version 2.0.2 (29-April-2019)
+
+* [fix] Missing value of product price
 
 = Version 2.0.1 (04-April-2019) =
 
