@@ -98,13 +98,13 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
             echo $this->build_event( 'PageView', array() );
             ?>
         </script>
-
-        <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=<?php echo $facebook_pixel_id; ?>&ev=PageView&noscript=1"
-        /></noscript>
         <?php
 
-        $this->add_to_cart_ajax();
+        $this->print_event_script();
+
+        if ( ! class_exists( 'WeDevs_WC_Conversion_Tracking_Pro' ) ) {
+            $this->add_to_cart_ajax();
+        }
     }
 
     /**
@@ -139,13 +139,17 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
         if ( ! $this->event_enabled( 'AddToCart' ) ) {
             return;
         }
+
+        $integration_settins    = $this->get_integration_settings();
+        $facebook_pixel_id      = ! empty( $integration_settins[0]['pixel_id'] ) ? $integration_settins[0]['pixel_id'] : '';
         ?>
         <script type="text/javascript">
             jQuery(function($) {
-                $(document).on('added_to_cart', function (event, fragments, hash, button) {
-                    fbq('track', 'AddToCart', {
-                       content_ids: [ $(button).data('product_id') ],
-                       content_type: 'product',
+                $(document).on('added_to_cart', function (event, fragments, dhash, button) {
+                    wcfbq('<?php echo $facebook_pixel_id ?>', 'AddToCart', {
+                        content_ids: [ $(button).data('product_id') ],
+                        content_type: 'product',
+                        currency: '<?php echo get_woocommerce_currency()?>'
                     });
                 });
             });
@@ -246,6 +250,73 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
             'name'       => array_pop( $content_category_slice ),
             'categories' => $categories
         );
+    }
+
+    public function print_event_script() {
+        ?>
+        <script>
+            (function (window, document) {
+                if (window.wcfbq) return;
+                window.wcfbq = (function () {
+                    if (arguments.length > 0) {
+                        var pixelId, trackType, contentObj;
+
+                        if (typeof arguments[0] == 'string') pixelId = arguments[0];
+                        if (typeof arguments[1] == 'string') trackType = arguments[1];
+                        if (typeof arguments[2] == 'object') contentObj = arguments[2];
+
+                        var params = [];
+                        if (typeof pixelId === 'string' && pixelId.replace(/\s+/gi, '') != '' &&
+                        typeof trackType === 'string' && trackType.replace(/\s+/gi, '')) {
+                            params.push('id=' + encodeURIComponent(pixelId));
+                            switch (trackType) {
+                                case 'PageView':
+                                case 'ViewContent':
+                                case 'Search':
+                                case 'AddToCart':
+                                case 'InitiateCheckout':
+                                case 'AddPaymentInfo':
+                                case 'Lead':
+                                case 'CompleteRegistration':
+                                case 'Purchase':
+                                case 'AddToWishlist':
+                                    params.push('ev=' + encodeURIComponent(trackType));
+                                    break;
+                                default:
+                                    return;
+                            }
+
+                            params.push('dl=' + encodeURIComponent(document.location.href));
+                            if (document.referrer) params.push('rl=' + encodeURIComponent(document.referrer));
+                            params.push('if=false');
+                            params.push('ts=' + new Date().getTime());
+
+                            if (typeof contentObj == 'object') {
+                                for (var u in contentObj) {
+                                    if (typeof contentObj[u] == 'object' && contentObj[u] instanceof Array) {
+                                        if (contentObj[u].length > 0) {
+                                            for (var y = 0; y < contentObj[u].length; y++) { contentObj[u][y] = (contentObj[u][y] + '').replace(/^\s+|\s+$/gi, '').replace(/\s+/gi, ' ').replace(/,/gi, '§'); }
+                                            params.push('cd[' + u + ']=' + encodeURIComponent(contentObj[u].join(',').replace(/^/gi, '[\'').replace(/$/gi, '\']').replace(/,/gi, '\',\'').replace(/§/gi, '\,')));
+                                        }
+                                    }
+                                    else if (typeof contentObj[u] == 'string')
+                                        params.push('cd[' + u + ']=' + encodeURIComponent(contentObj[u]));
+                                }
+                            }
+
+                            params.push('v=' + encodeURIComponent('2.7.19'));
+
+                            var imgId = new Date().getTime();
+                            var img = document.createElement('img');
+                            img.id = 'fb_' + imgId, img.src = 'https://www.facebook.com/tr/?' + params.join('&'), img.width = 1, img.height = 1, img.style = 'display:none;';
+                            document.body.appendChild(img);
+                            window.setTimeout(function () { var t = document.getElementById('fb_' + imgId); t.parentElement.removeChild(t); }, 1000);
+                        }
+                    }
+                });
+            })(window, document);
+        </script>
+        <?php
     }
 }
 
