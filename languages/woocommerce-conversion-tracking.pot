@@ -1,28 +1,34 @@
-# Copyright (C) 2018 Tareq Hasan
+# Copyright (C) 2019 Tareq Hasan
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Conversion Tracking 2.0\n"
+"Project-Id-Version: WooCommerce Conversion Tracking 2.0.2\n"
 "Report-Msgid-Bugs-To: https://example.com\n"
-"POT-Creation-Date: 2018-02-22 11:39:03+00:00\n"
+"POT-Creation-Date: 2019-04-29 05:55:29+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "X-Generator: grunt-wp-i18n 0.5.4\n"
 
-#: conversion-tracking.php:268
+#: conversion-tracking.php:267
 msgid "Get PRO"
 msgstr ""
 
-#: conversion-tracking.php:271
+#: conversion-tracking.php:270
 msgid "Docs"
 msgstr ""
 
-#: conversion-tracking.php:272
+#: conversion-tracking.php:271
 msgid "Settings"
+msgstr ""
+
+#: conversion-tracking.php:284
+msgid ""
+"<b>Woocommerce conversion tracking</b> requires <a target=\"_blank\" "
+"href=\"https://wordpress.org/plugins/woocommerce/\">Woocommerce</a>"
 msgstr ""
 
 #: includes/class-admin.php:49
@@ -75,7 +81,7 @@ msgstr ""
 msgid "Premium Features"
 msgstr ""
 
-#: includes/class-integration-pro-features.php:137
+#: includes/class-integration-pro-features.php:138
 msgid "Get Premium"
 msgstr ""
 
@@ -185,7 +191,7 @@ msgid "Insert conversion tracking code for this product."
 msgstr ""
 
 #: includes/integrations/class-integration-custom.php:13
-#: includes/views/settings.php:154
+#: includes/views/settings.php:155
 msgid "Custom"
 msgstr ""
 
@@ -277,6 +283,10 @@ msgstr ""
 
 #: includes/views/settings.php:153
 msgid "Perfect Audience"
+msgstr ""
+
+#: includes/views/settings.php:154
+msgid "Bing Ads"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
