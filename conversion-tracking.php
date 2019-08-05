@@ -181,6 +181,7 @@ class WeDevs_WC_Conversion_Tracking {
         add_action( 'init', array( $this, 'init_tracker' ) );
         add_action( 'admin_notices', array( $this, 'check_woocommerce_exist' ) );
         add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
+        add_action( 'admin_notices', array( $this, 'happy_addons_ads_banner' ) );
     }
 
     /**
@@ -285,6 +286,40 @@ class WeDevs_WC_Conversion_Tracking {
                 </div>
             <?php
         }
+    }
+
+    /**
+     * Add happy addons ads banner
+     *
+     * @return void
+     */
+    public function happy_addons_ads_banner() {
+        if ( ! class_exists( '\Elementor\Plugin' ) ) {
+            return;
+        }
+
+        if ( class_exists( '\Happy_Addons\Elementor\Base' ) ) {
+            return;
+        }
+
+        ?>
+            <div id="wcct_remote_notice" class="notice notice-success">
+            </div>
+            <div class="notice wcct-notice-wrap">
+                <div class="wcct-message-icon">
+                    <img src="<?php echo WCCT_ASSETS . '/images/happy-addons.png'?>" alt="">
+                </div>
+                <div class="wcct-message-content">
+                    <p><?php _e( 'Reach beyond your imagination in creating web pages. <strong> Try Happy Addons for Elementor to shape your dream.</strong> 😊') ?></p>
+                </div>
+                <div class="wcct-message-action">
+                    <a href="" id="wcct-install-happ-addons" class="button button-primary"> <i class="dashicons dashicons-update wcct-update-icon"></i> Install Now For FREE</a>
+                    <p></strong><a target="_blank" href="https://wordpress.org/plugins/happy-elementor-addons/">Read more details ➔</a>
+                    </p>
+                </div>
+            </div>
+
+        <?php
     }
 }
 

@@ -88,4 +88,27 @@
         $( tooltipText ).text( newText );
     } );
 
+    // Install and activate happy addons
+    $( '#wcct-install-happ-addons' ).on( 'click', function( e ) {
+        e.preventDefault();
+        var loader = $( '#wcct-preloader' );
+        $('.wcct-update-icon').remove();
+        $(this).text('Installing...');
+        $(this).addClass( 'updating-message' );
+        loader.show();
+        var remote_message = $( '#wcct_remote_notice' );
+        wp.ajax.send( 'activate_happy_addons', {
+            success: function( response ) {
+                $('.wcct-notice-wrap').hide();
+                loader.hide();
+                remote_message.show();
+                remote_message.html('<p><strong>' + response.message + 'Happy Addons !</strong></p>');
+            },
+            error: function( error ) {
+                loader.hide();
+                remote_message.html('<p><strong>' + response.message + '</strong></p>');
+            }
+        } );
+    } );
+
 })( jQuery );

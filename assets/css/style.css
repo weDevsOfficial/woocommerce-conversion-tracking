@@ -326,3 +326,56 @@ PLEASE DO NOT MODIFY*/
   visibility: visible;
   opacity: 1;
 }
+.wcct-notice-wrap {
+  overflow: hidden;
+  padding: 22px 15px;
+}
+.wcct-message-icon {
+  width: 10%;
+  float: left;
+}
+.wcct-message-icon img {
+  height: 50px;
+}
+.wcct-message-content {
+  width: 70%;
+  float: left;
+  margin-top: 20px;
+}
+.wcct-message-content p {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+}
+.wcct-message-action {
+  width: 16.5%;
+  float: right;
+  text-align: center;
+  margin-right: 1.2%;
+}
+#wcct_remote_notice {
+  display: none;
+}
+#wcct-install-happ-addons {
+  background: #5c41d2 !important;
+  border-color: #5c41d2 !important;
+  box-shadow: 0 1px 0 #5c41d2;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #5c41d2, 1px 0 1px #5c41d2, 0 1px 1px #5c41d2, -1px 0 1px #5c41d2;
+  height: inherit;
+  padding: 4px 20px;
+  display: flex;
+  align-items: center;
+}
+#wcct-install-happ-addons i {
+  margin-right: 7px;
+}
+#wcct-install-happ-addons:hover {
+  background: #150654 !important;
+  border-color: #150654 !important;
+  box-shadow: 0 1px 0 #150654;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #150654, 1px 0 1px #150654, 0 1px 1px #150654, -1px 0 1px #150654;
+}

@@ -10,6 +10,7 @@ class WCCT_Ajax {
      */
     public function __construct() {
         add_action( 'wp_ajax_wcct_save_settings', array( $this, 'wcct_save_settings' ) );
+        add_action( 'wp_ajax_activate_happy_addons', array( $this, 'wcct_install_happy_addons' ) );
     }
 
     /**
@@ -42,4 +43,50 @@ class WCCT_Ajax {
         ) );
 
     }
+    /**
+     * Install the Happy addons via ajax
+     *
+     * @return json
+     */
+    public function wcct_install_happy_addons() {
+
+        include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
+        include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+
+        $upgrader = new Plugin_Upgrader( new WP_Ajax_Upgrader_Skin() );
+
+        $plugin = 'happy-elementor-addons';
+        $api    = plugins_api( 'plugin_information', array( 'slug' => $plugin, 'fields' => array( 'sections' => false ) ) );
+
+
+        if (is_wp_error($api)) {
+            die(sprintf(__('ERROR: Error fetching plugin information: %s', 'woocommerce-conversion-tracking'), $api->get_error_message()));
+        }
+
+        add_filter( 'upgrader_package_options', function ( $options ) {
+            $options['clear_destination'] = true;
+            $options['hook_extra'] = [
+                'type' => 'plugin',
+                'action' => 'install',
+                'plugin'  => 'happy-elementor-addons/plugin.php',
+            ];
+            return  $options;
+        });
+
+        $result   = $upgrader->install( $api->download_link );
+
+        if ( is_wp_error( $result ) ) {
+            wp_send_json_error( $result );
+        }
+
+        $result = activate_plugin( 'happy-elementor-addons/plugin.php' );
+
+        if ( is_wp_error( $result ) ) {
+            wp_send_json_error( $result );
+        }
+        wp_send_json_success([
+            'message' => __( 'Successfully installed and activate,', 'woocommerce-conversion-tracking' )
+        ]);
+    }
+
 }
