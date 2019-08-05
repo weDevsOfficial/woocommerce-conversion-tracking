@@ -88,8 +88,11 @@ We put the JavaScript scripts provided by you in the page and it fires a convers
 5. Custom Codes
 
 == Changelog ==
+= Version 2.0.3 (05-August-2019) =
+* [fix] AddToCart Event doesn't work for ajax
+* [new] Add happy addons banner
 
-= Version 2.0.2 (29-April-2019)
+= Version 2.0.2 (29-April-2019) =
 
 * [fix] Missing value of product price
 
