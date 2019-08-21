@@ -301,11 +301,16 @@ class WeDevs_WC_Conversion_Tracking {
         if ( class_exists( '\Happy_Addons\Elementor\Base' ) ) {
             return;
         }
+        $dismissable = get_option( 'wcct_dismissable_notice' );
+
+        if ( $dismissable == 'closed' ) {
+            return;
+        }
 
         ?>
             <div id="wcct_remote_notice" class="notice notice-success">
             </div>
-            <div class="notice wcct-notice-wrap">
+            <div class="notice is-dismissible wcct-notice-wrap">
                 <div class="wcct-message-icon">
                     <img src="<?php echo WCCT_ASSETS . '/images/happy-addons.png'?>" alt="">
                 </div>

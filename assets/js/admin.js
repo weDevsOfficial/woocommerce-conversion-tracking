@@ -111,4 +111,13 @@
         } );
     } );
 
+    // Dismiss notice
+    $('.wcct-notice-wrap').on( 'click', function() {
+        wp.ajax.send( 'wcct_dismissable_notice', {
+            success: function( response ) {
+                console.log( 'Success' );
+            }
+        } );
+    } );
+
 })( jQuery );
