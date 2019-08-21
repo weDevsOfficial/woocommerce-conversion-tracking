@@ -3,12 +3,12 @@
 Plugin Name: WooCommerce Conversion Tracking
 Plugin URI: https://wedevs.com/products/plugins/woocommerce-conversion-tracking/
 Description: Adds various conversion tracking codes to cart, checkout, registration success and product page on WooCommerce
-Version: 2.0.3
+Version: 2.0.4
 Author: Tareq Hasan
 Author URI: https://tareq.co/
 License: GPL2
 WC requires at least: 2.3
-WC tested up to: 3.6.2
+WC tested up to: 3.7.0
 */
 
 /**
@@ -54,7 +54,7 @@ class WeDevs_WC_Conversion_Tracking {
      *
      * @var string
      */
-    public $version = '2.0.3';
+    public $version = '2.0.4';
 
     /**
      * Holds various class instances
@@ -301,11 +301,16 @@ class WeDevs_WC_Conversion_Tracking {
         if ( class_exists( '\Happy_Addons\Elementor\Base' ) ) {
             return;
         }
+        $dismissable = get_option( 'wcct_dismissable_notice' );
+
+        if ( $dismissable == 'closed' ) {
+            return;
+        }
 
         ?>
             <div id="wcct_remote_notice" class="notice notice-success">
             </div>
-            <div class="notice wcct-notice-wrap">
+            <div class="notice is-dismissible wcct-notice-wrap">
                 <div class="wcct-message-icon">
                     <img src="<?php echo WCCT_ASSETS . '/images/happy-addons.png'?>" alt="">
                 </div>

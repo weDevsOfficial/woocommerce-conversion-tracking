@@ -11,6 +11,7 @@ class WCCT_Ajax {
     public function __construct() {
         add_action( 'wp_ajax_wcct_save_settings', array( $this, 'wcct_save_settings' ) );
         add_action( 'wp_ajax_activate_happy_addons', array( $this, 'wcct_install_happy_addons' ) );
+        add_action( 'wp_ajax_wcct_dismissable_notice', array( $this, 'wcct_dismissable_notice' ) );
     }
 
     /**
@@ -89,4 +90,18 @@ class WCCT_Ajax {
         ]);
     }
 
+    /**
+     * Dismissable notice
+     *
+     * @return object
+     */
+    public function wcct_dismissable_notice() {
+        if ( ! current_user_can( 'manage_options' ) ) {
+            return;
+        }
+
+        update_option( 'wcct_dismissable_notice', 'closed' );
+
+        wp_send_json_success();
+    }
 }
