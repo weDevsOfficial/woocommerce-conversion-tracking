@@ -146,9 +146,16 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
         <script type="text/javascript">
             jQuery(function($) {
                 $(document).on('added_to_cart', function (event, fragments, dhash, button) {
+                    var currencySymbol = $($(button.get()[0]).closest('.product')
+                        .find('.woocommerce-Price-currencySymbol').get()[0]).text();
+
+                    var price = $(button.get()[0]).closest('.product').find('.amount').text();
+                    var originalPrice = price.split(currencySymbol).slice(-1).pop();
+
                     wcfbq('<?php echo $facebook_pixel_id ?>', 'AddToCart', {
                         content_ids: [ $(button).data('product_id') ],
                         content_type: 'product',
+                        value: originalPrice,
                         currency: '<?php echo get_woocommerce_currency()?>'
                     });
                 });
