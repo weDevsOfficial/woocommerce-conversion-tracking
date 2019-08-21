@@ -4,7 +4,7 @@ Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, 
 Donate link: https://tareq.co/donate/
 Requires at least: 4.0
 Tested up to: 5.1.1
-Stable tag: 2.0.2
+Stable tag: 2.0.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -88,6 +88,11 @@ We put the JavaScript scripts provided by you in the page and it fires a convers
 5. Custom Codes
 
 == Changelog ==
+= Version 2.0.4 (21-August-2019) =
+* [fix] Happyaddons dismissable banner
+* [fix] Getting started link doesn't work
+* [tweak] Change from Google Adwords to Google Ads
+
 = Version 2.0.3 (05-August-2019) =
 * [fix] AddToCart Event doesn't work for ajax
 * [new] Add happy addons banner
