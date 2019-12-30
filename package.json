@@ -22,6 +22,7 @@
     "jshint-stylish": "^2.2.1"
   },
   "dependencies": {
-    "cli": "^1.0.1"
+    "cli": "^1.0.1",
+    "g": "^2.0.1"
   }
 }

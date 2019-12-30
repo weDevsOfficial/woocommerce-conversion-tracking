@@ -81,13 +81,13 @@ class WCCT_Integration_Google extends WCCT_Integration {
             return;
         }
         ?>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $account_id; ?>"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $account_id ); ?>"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments)};
             gtag('js', new Date());
 
-            gtag('config', '<?php echo $account_id; ?>');
+            gtag('config', '<?php echo esc_attr( $account_id ); ?>');
         </script>
         <?php
     }

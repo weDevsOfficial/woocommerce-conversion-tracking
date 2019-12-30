@@ -69,7 +69,7 @@ class WCCT_Integration_Custom extends WCCT_Integration {
         $code = $this->get_integration_settings();
 
         if ( isset( $code['checkout'] ) && ! empty( $code['checkout'] ) ) {
-            echo $this->process_order_markdown( $code['checkout'], $order_id );
+            echo wp_kses_post( $this->process_order_markdown( $code['checkout'], $order_id ) );
         }
     }
 
@@ -84,7 +84,7 @@ class WCCT_Integration_Custom extends WCCT_Integration {
             $code = $this->get_integration_settings();
 
             if ( isset( $code['registration'] ) && ! empty( $code['registration'] ) ) {
-                echo $code['registration'] ;
+                echo wp_kses_post( $code['registration'] ) ;
             }
         }
     }

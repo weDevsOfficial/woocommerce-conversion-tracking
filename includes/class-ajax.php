@@ -23,19 +23,29 @@ class WCCT_Ajax {
         if ( ! current_user_can( wcct_manage_cap() ) ) {
             return;
         }
+        $nonce = isset( $_REQUEST['_wpnonce'] ) ? sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ) : '';
+
+        if ( ! wp_verify_nonce( $nonce, 'wcct-settings' ) ) {
+            die( 'wcct-settings !' );
+        }
 
         if ( ! isset( $_POST['settings'] ) ) {
             wp_send_json_error();
         }
 
         $integration_settings = array();
+        $post_data = isset( $_POST['settings'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['settings'] ) ) : [];
 
-        foreach ( $_POST['settings'] as $field_id => $settings ) {
-            $is_enabled = isset( $settings['enabled'] ) ? true : false;
+        if ( ! empty( $post_data ) ) {
 
-            $settings = array_merge( $settings, array( 'enabled' => $is_enabled ) );
-            $integration_settings[ $field_id ] = $settings;
+            foreach ( $post_data as $field_id => $settings ) {
+                $is_enabled = isset( $settings['enabled'] ) ? true : false;
+
+                $settings = array_merge( $settings, array( 'enabled' => $is_enabled ) );
+                $integration_settings[ $field_id ] = $settings;
+            }
         }
+
 
         $integration_settings = apply_filters( 'wcct_save_integrations_settings', $integration_settings );
         update_option( 'wcct_settings', stripslashes_deep( $integration_settings ) );
@@ -61,7 +71,7 @@ class WCCT_Ajax {
 
 
         if (is_wp_error($api)) {
-            die(sprintf(__('ERROR: Error fetching plugin information: %s', 'woocommerce-conversion-tracking'), $api->get_error_message()));
+            die(sprintf(__('ERROR: Error fetching plugin information: %s', 'woocommerce-conversion-tracking'), esc_attr( $api->get_error_message() )));
         }
 
         add_filter( 'upgrader_package_options', function ( $options ) {

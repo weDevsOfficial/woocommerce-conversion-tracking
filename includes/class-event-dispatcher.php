@@ -20,7 +20,7 @@ class WCCT_Event_Dispatcher {
         add_action( 'wp_head', array( $this, 'enqueue_scripts' ) );
 
         // purchase events
-        add_action( 'woocommerce_add_to_cart', array( $this, 'added_to_cart' ), 10, 4 );
+        add_action( 'woocommerce_add_to_cart', array( $this, 'added_to_cart' ), 9999, 4 );
         add_action( 'woocommerce_after_checkout_form', array( $this, 'initiate_checkout' ) );
         add_action( 'woocommerce_thankyou', array( $this, 'checkout_complete' ) );
 

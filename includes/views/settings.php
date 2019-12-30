@@ -2,7 +2,7 @@
 
     <div class="settings-wrap">
 
-        <h2><?php _e( 'Integration Settings', 'woocommerce-conversion-tracking' ); ?></h2>
+        <h2><?php esc_html_e( 'Integration Settings', 'woocommerce-conversion-tracking' ); ?></h2>
 
         <form action="" method="POST" id="integration-form">
             <?php
@@ -17,31 +17,31 @@
                 <div class="integration-wrap">
                     <div class="integration-name">
                         <div class="gateway">
-                           <img src="<?php echo plugins_url( 'assets/images/'. $id .'.png', WCCT_FILE )?>" alt="" class="doc-list-icon">
+                           <img src="<?php echo esc_attr( plugins_url( 'assets/images/'. $id .'.png', WCCT_FILE ) )?>" alt="" class="doc-list-icon">
 
-                            <h3 class="gateway-text"><?php echo $name; ?></h3>
+                            <h3 class="gateway-text"><?php echo esc_attr( $name ); ?></h3>
 
                             <label class="switch" title="" data-original-title="Make Inactive">
-                                <input type="checkbox" class="toogle-seller" name="settings[<?php echo $id; ?>][enabled]" id="integration-<?php echo $id; ?>" data-id="<?php echo $id; ?>" value="1" <?php checked( true, $integration->is_enabled() ); ?> >
-                                <span class="slider round wcct-tooltip" data-id="<?php echo $id; ?>">
-                                    <span class="wcct-tooltiptext integration-tooltip"><?php echo $active; ?> </span>
+                                <input type="checkbox" class="toogle-seller" name="settings[<?php echo esc_attr( $id ); ?>][enabled]" id="integration-<?php echo esc_attr( $id ); ?>" data-id="<?php echo esc_attr( $id ); ?>" value="1" <?php checked( true, $integration->is_enabled() ); ?> >
+                                <span class="slider round wcct-tooltip" data-id="<?php echo esc_attr( $id ); ?>">
+                                    <span class="wcct-tooltiptext integration-tooltip"><?php echo esc_attr( $active ); ?> </span>
                                 </span>
                             </label>
                         </div>
                     </div>
 
-                    <div class="integration-settings" id="setting-<?php echo $id; ?>">
+                    <div class="integration-settings" id="setting-<?php echo esc_attr( $id ); ?>">
                         <?php
                         if ( ! $settings_fields ) {
                             continue;
                         }
                         ?>
-                        <div class="wc-ct-form-group <?php echo $border ?>">
+                        <div class="wc-ct-form-group <?php echo esc_attr( $border ) ?>">
                             <table class="form-table custom-table" style="display: inline;">
                                 <?php foreach ( $settings_fields as $key => $field ) {?>
                                     <tr>
                                         <th>
-                                            <label for="<?php echo $id . '-' . $field['label']; ?>"><?php echo $field['label']; ?></label>
+                                            <label for="<?php echo esc_attr( $id . '-' . $field['label'] ) ; ?>"><?php echo esc_attr( $field['label'] ); ?></label>
                                         </th>
                                         <td>
                                             <?php
@@ -50,17 +50,17 @@
                                             switch ( $field['type'] ) {
                                                 case 'text':
                                                     $value = isset( $settings[0][ $field['name'] ] ) ? $settings[0][ $field['name'] ] : '';
-                                                    printf( '<input type="text" name="settings[%s][%d][%s]" placeholder="%s" value="%s" id="%s" required >', $id,0, $field['name'], $placeholder, $value, $id . '-' . $field['name'] );
+                                                    printf( '<input type="text" name="settings[%s][%d][%s]" placeholder="%s" value="%s" id="%s" required >', esc_attr( $id ),0, esc_attr( $field['name'] ), esc_attr( $placeholder ), esc_attr( $value ), esc_attr( $id ) . '-' . esc_attr( $field['name'] ) );
                                                     break;
 
                                                 case 'textarea':
                                                     $value = isset( $settings[ $field['name'] ] ) ? $settings[ $field['name'] ] : '';
-                                                    printf( '<textarea type="text" name="settings[%s][%s]" placeholder="%s" id="%s" cols="30" rows="3">%s</textarea>', $id, $field['name'], $placeholder, $id . '-' . $field['name'], $value );
+                                                    printf( '<textarea type="text" name="settings[%s][%s]" placeholder="%s" id="%s" cols="30" rows="3">%s</textarea>', esc_attr( $id ), esc_attr( $field['name'] ), esc_attr( $placeholder ), esc_attr( $id ) . '-' . esc_attr( $field['name'] ), esc_attr( $value ) );
                                                     break;
 
                                                 case 'checkbox':
                                                     $value = isset( $settings[ $field['name'] ] ) ? $settings[ $field['name'] ] : 'off';
-                                                    printf( '<label for="%5$s"><input type="checkbox" name="settings[%1$s][%2$s]" %3$s id="%5$s" value="on"> %4$s</label>', $id, $field['name'], checked( 'on', $value, false ), $field['description'], $id . '-' . $field['name'] );
+                                                    printf( '<label for="%5$s"><input type="checkbox" name="settings[%1$s][%2$s]" %3$s id="%5$s" value="on"> %4$s</label>', esc_attr( $id ), esc_attr( $field['name'] ), checked( 'on', $value, false ),esc_attr(  $field['description'] ), esc_attr( $id ) . '-' . esc_attr( $field['name'] ) );
                                                     break;
 
                                                 case 'multicheck':
@@ -75,12 +75,12 @@
                                                             $class  = isset( $option['profeature'] ) ? 'disabled-class' : '';
                                                             $feature = isset( $option['profeature'] ) ? ' (Pro-feature)' : '';
                                                             ?>
-                                                                <label for="<?php echo $id . '-' . $key; ?>" class="<?php echo $class?>">
-                                                                    <input type="checkbox" name="settings[<?php echo $id; ?>][0][<?php echo $field_name; ?>][<?php echo $key; ?>]" <?php checked( 'on', $checked ); ?> id="<?php echo $id . '-' . $key; ?>" class="event <?php echo $class;?>" <?php echo $disabled ?>>
+                                                                <label for="<?php echo esc_attr( $id . '-' . $key ); ?>" class="<?php echo esc_attr( $class )?>">
+                                                                    <input type="checkbox" name="settings[<?php echo esc_attr( $id ); ?>][0][<?php echo esc_attr( $field_name ); ?>][<?php echo esc_attr( $key ); ?>]" <?php checked( 'on', $checked ); ?> id="<?php echo esc_attr( $id . '-' . $key ); ?>" class="event <?php echo esc_attr( $class );?>" <?php echo esc_attr( $disabled ) ?>>
                                                                 <?php
 
                                                                     $label  = isset( $option['label'] ) ? $option['label'] : $option;
-                                                                    echo $label . $feature;
+                                                                    echo esc_attr( $label . $feature );
 
                                                                     $input_box  = isset( $option['event_label_box'] ) ?: false;
 
@@ -91,11 +91,11 @@
                                                                     if ( $input_box ) {
                                                                        ?>
                                                                         <div class="event-label-box">
-                                                                        <input type="text" name="settings[<?php echo $id; ?>][0][<?php echo $field_name; ?>][<?php echo $name; ?>]"  class="" placeholder="<?php echo $placeholder; ?>" value="<?php echo $value ?>">
+                                                                        <input type="text" name="settings[<?php echo esc_attr( $id ); ?>][0][<?php echo esc_attr( $field_name ); ?>][<?php echo esc_attr( $name ); ?>]"  class="" placeholder="<?php echo esc_attr( $placeholder ); ?>" value="<?php echo esc_attr( $value ) ?>">
                                                                         <?php
 
                                                                         if ( isset( $option['help'] ) && ! empty( $option['help'] ) ) {
-                                                                            echo '<p class="help">' . $option['help'] . '</p>';
+                                                                            echo wp_kses_post( '<p class="help">' . $option['help'] . '</p>' );
                                                                         }
                                                                         ?>
                                                                         </div>
@@ -114,7 +114,7 @@
                                             }
 
                                             if ( isset( $field['help'] ) && ! empty( $field['help'] ) ) {
-                                                echo '<p class="help">' . $field['help'] . '</p>';
+                                                echo wp_kses_post( '<p class="help">' . $field['help'] . '</p>' );
                                             }
                                             ?>
                                         </td>
@@ -143,16 +143,16 @@
 
     <div class="sidebar-wrap">
         <div class="premium-box box-green">
-            <h3 class="wcct-doc-title"><?php _e( 'Documentation', 'woocommerce-conversion-tracking' )?></h3>
+            <h3 class="wcct-doc-title"><?php esc_html_e( 'Documentation', 'woocommerce-conversion-tracking' )?></h3>
 
             <ul class="wcct-doc-list">
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/getting-started/installation/" target="_blank"><img src="<?php echo plugins_url( 'assets/images/getting_started.png', WCCT_FILE ); ?>" alt="" class="doc-list-icon"><span><?php _e( 'Getting Started', 'woocommerce-conversion-tracking' ) ?></span></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Facebook" target="_blank"><img src="<?php echo plugins_url( 'assets/images/facebook.png', WCCT_FILE ); ?>" alt="" class="doc-list-icon"><span><?php _e( 'Facebook', 'woocommerce-conversion-tracking' ) ?></span></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/twitter/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Twitter" target="_blank"><img src="<?php echo plugins_url( 'assets/images/twitter.png', WCCT_FILE ); ?>" alt="" class="doc-list-icon"><span><?php _e( 'Twitter', 'woocommerce-conversion-tracking' ) ?></span></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/google-adwords/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Adwords" target="_blank"><img src="<?php echo plugins_url( 'assets/images/adwords.png', WCCT_FILE ); ?>" alt="" class="doc-list-icon"><span><?php _e( 'Google Ads', 'woocommerce-conversion-tracking' ) ?></span></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/perfect-audience/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Perfect_Audience" target="_blank"><img src="<?php echo plugins_url( 'assets/images/perfect_audience.png', WCCT_FILE ); ?>" alt="" class="doc-list-icon"><span><?php _e( 'Perfect Audience', 'woocommerce-conversion-tracking' ) ?></span></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/bing-ads" target="_blank"><img src="<?php echo plugins_url( 'assets/images/bing_ads.png', WCCT_FILE ); ?>" alt="" class="doc-list-icon"><span><?php _e( 'Microsoft Advertising', 'woocommerce-conversion-tracking' ) ?></span></a></li>
-                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/custom/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Custom" target="_blank"><img src="<?php echo plugins_url( 'assets/images/custom.png', WCCT_FILE ); ?>" alt="" class="doc-list-icon"><span><?php _e( 'Custom', 'woocommerce-conversion-tracking' ) ?></span></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/getting-started/installation/" target="_blank"><img src="<?php echo esc_attr( plugins_url( 'assets/images/getting_started.png', WCCT_FILE ) ); ?>" alt="" class="doc-list-icon"><span><?php esc_html_e( 'Getting Started', 'woocommerce-conversion-tracking' ) ?></span></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Facebook" target="_blank"><img src="<?php echo esc_attr( plugins_url( 'assets/images/facebook.png', WCCT_FILE ) ); ?>" alt="" class="doc-list-icon"><span><?php esc_html_e( 'Facebook', 'woocommerce-conversion-tracking' ) ?></span></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/twitter/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Twitter" target="_blank"><img src="<?php echo esc_attr( plugins_url( 'assets/images/twitter.png', WCCT_FILE ) ); ?>" alt="" class="doc-list-icon"><span><?php esc_html_e( 'Twitter', 'woocommerce-conversion-tracking' ) ?></span></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/google-adwords/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Adwords" target="_blank"><img src="<?php echo esc_attr( plugins_url( 'assets/images/adwords.png', WCCT_FILE ) ); ?>" alt="" class="doc-list-icon"><span><?php esc_html_e( 'Google Ads', 'woocommerce-conversion-tracking' ) ?></span></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/perfect-audience/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Perfect_Audience" target="_blank"><img src="<?php echo esc_attr( plugins_url( 'assets/images/perfect_audience.png', WCCT_FILE ) ); ?>" alt="" class="doc-list-icon"><span><?php esc_html_e( 'Perfect Audience', 'woocommerce-conversion-tracking' ) ?></span></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/bing-ads" target="_blank"><img src="<?php echo esc_attr( plugins_url( 'assets/images/bing_ads.png', WCCT_FILE ) ); ?>" alt="" class="doc-list-icon"><span><?php esc_html_e( 'Microsoft Advertising', 'woocommerce-conversion-tracking' ) ?></span></a></li>
+                <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/custom/?utm_source=wp-admin&utm_medium=docs-link&utm_campaign=wcct_docs&utm_content=Custom" target="_blank"><img src="<?php echo esc_attr( plugins_url( 'assets/images/custom.png', WCCT_FILE ) ); ?>" alt="" class="doc-list-icon"><span><?php esc_html_e( 'Custom', 'woocommerce-conversion-tracking' ) ?></span></a></li>
             </ul>
         </div>
 
