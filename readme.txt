@@ -87,6 +87,18 @@ We put the JavaScript scripts provided by you in the page and it fires a convers
 4. Twitter Purchase Tracking Setup
 5. Custom Codes
 
+## Privacy Policy
+woocommerce-conversion-tracking uses [Appsero](https://appsero.com) SDK to collect some telemetry data upon user's confirmation. This helps us to troubleshoot problems faster & make product improvements.
+
+Appsero SDK **does not gather any data by default.** The SDK only starts gathering basic telemetry data **when a user allows it via the admin notice**. We collect the data to ensure great user experience for all our users.
+
+Integrating Appsero SDK **DOES NOT IMMEDIATELY** start gathering data, **without confirmation from users in any case.**
+
+Learn more how [Appsero collects and uses this data](https://appsero.com/privacy-policy/).
+
+Additionally, read weDevs [privacy policy](https://wedevs.com/privacy-policy/) for more.
+
+
 == Changelog ==
 = Version 2.0.4 (21-August-2019) =
 * [fix] Happyaddons dismissable banner
