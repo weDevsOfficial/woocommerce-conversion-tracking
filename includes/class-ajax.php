@@ -34,11 +34,11 @@ class WCCT_Ajax {
         }
 
         $integration_settings = array();
-        $post_data = isset( $_POST['settings'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['settings'] ) ) : [];
+        // $post_data = isset( $_POST['settings'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['settings'] ) ) : [];
 
-        if ( ! empty( $post_data ) ) {
+        if ( ! empty( $_POST['settings'] ) ) {
 
-            foreach ( $post_data as $field_id => $settings ) {
+            foreach ( $_POST['settings'] as $field_id => $settings ) {
                 $is_enabled = isset( $settings['enabled'] ) ? true : false;
 
                 $settings = array_merge( $settings, array( 'enabled' => $is_enabled ) );
