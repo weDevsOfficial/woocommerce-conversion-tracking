@@ -1,37 +1,37 @@
-# Copyright (C) 2019 Tareq Hasan
+# Copyright (C) 2020 Tareq Hasan
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Conversion Tracking 2.0.4\n"
+"Project-Id-Version: WooCommerce Conversion Tracking 2.0.6\n"
 "Report-Msgid-Bugs-To: https://example.com\n"
-"POT-Creation-Date: 2019-08-21 06:56:44+00:00\n"
+"POT-Creation-Date: 2020-01-02 06:28:00+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "X-Generator: grunt-wp-i18n 0.5.4\n"
 
-#: conversion-tracking.php:268
+#: conversion-tracking.php:279
 msgid "Get PRO"
 msgstr ""
 
-#: conversion-tracking.php:271
+#: conversion-tracking.php:282
 msgid "Docs"
 msgstr ""
 
-#: conversion-tracking.php:272
+#: conversion-tracking.php:283
 msgid "Settings"
 msgstr ""
 
-#: conversion-tracking.php:285
+#: conversion-tracking.php:296
 msgid ""
 "<b>Woocommerce conversion tracking</b> requires <a target=\"_blank\" "
 "href=\"https://wordpress.org/plugins/woocommerce/\">Woocommerce</a>"
 msgstr ""
 
-#: conversion-tracking.php:318
+#: conversion-tracking.php:329
 msgid ""
 "Reach beyond your imagination in creating web pages. <strong> Try Happy "
 "Addons for Elementor to shape your dream.</strong> 😊"
@@ -45,15 +45,15 @@ msgstr ""
 msgid "Integrations"
 msgstr ""
 
-#: includes/class-ajax.php:43
+#: includes/class-ajax.php:53
 msgid "Settings has been saved successfully!"
 msgstr ""
 
-#: includes/class-ajax.php:64
+#: includes/class-ajax.php:74
 msgid "ERROR: Error fetching plugin information: %s"
 msgstr ""
 
-#: includes/class-ajax.php:89
+#: includes/class-ajax.php:99
 msgid "Successfully installed and activate,"
 msgstr ""
 
@@ -99,41 +99,41 @@ msgstr ""
 msgid "Get Premium"
 msgstr ""
 
-#: includes/class-wedevs-insights.php:282
+#: includes/class-wedevs-insights.php:284
 msgid ""
 "Want to help make <strong>%s</strong> even more awesome? Allow weDevs to "
 "collect non-sensitive diagnostic data and usage information."
 msgstr ""
 
-#: includes/class-wedevs-insights.php:287
+#: includes/class-wedevs-insights.php:289 lib/appsero/Insights.php:374
 msgid "what we collect"
 msgstr ""
 
-#: includes/class-wedevs-insights.php:293
+#: includes/class-wedevs-insights.php:295 lib/appsero/Insights.php:381
 msgid "Allow"
 msgstr ""
 
-#: includes/class-wedevs-insights.php:294
+#: includes/class-wedevs-insights.php:297 lib/appsero/Insights.php:382
 msgid "No thanks"
 msgstr ""
 
-#: includes/class-wedevs-insights.php:471
+#: includes/class-wedevs-insights.php:480
 msgid "Once Weekly"
 msgstr ""
 
-#: includes/class-wedevs-insights.php:607
+#: includes/class-wedevs-insights.php:616 lib/appsero/Insights.php:747
 msgid "If you have a moment, please let us know why you are deactivating:"
 msgstr ""
 
-#: includes/class-wedevs-insights.php:621
+#: includes/class-wedevs-insights.php:630 lib/appsero/Insights.php:762
 msgid "I rather wouldn't say"
 msgstr ""
 
-#: includes/class-wedevs-insights.php:622
+#: includes/class-wedevs-insights.php:631 lib/appsero/Insights.php:763
 msgid "Submit & Deactivate"
 msgstr ""
 
-#: includes/class-wedevs-insights.php:623
+#: includes/class-wedevs-insights.php:632 lib/appsero/Insights.php:764
 msgid "Cancel"
 msgstr ""
 
@@ -183,7 +183,7 @@ msgstr ""
 msgid "Adds script on the purchase success page"
 msgstr ""
 
-#: includes/integration.php:72 includes/integration.php:137
+#: includes/integration.php:72 includes/integration.php:139
 #. translators: %s: dynamic values
 msgid "You can use dynamic values: %s"
 msgstr ""
@@ -196,11 +196,11 @@ msgstr ""
 msgid "Adds script on the successful registraion page"
 msgstr ""
 
-#: includes/integration.php:132
+#: includes/integration.php:134
 msgid "Conversion Tracking Code"
 msgstr ""
 
-#: includes/integration.php:134
+#: includes/integration.php:136
 msgid "Insert conversion tracking code for this product."
 msgstr ""
 
@@ -301,6 +301,12 @@ msgstr ""
 
 #: includes/views/settings.php:154
 msgid "Microsoft Advertising"
+msgstr ""
+
+#: lib/appsero/Insights.php:369
+msgid ""
+"Want to help make <strong>%1$s</strong> even more awesome? Allow %1$s to "
+"collect non-sensitive diagnostic data and usage information."
 msgstr ""
 
 #. Plugin Name of the plugin/theme

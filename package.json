@@ -1,6 +1,6 @@
 {
   "name": "Woocommerce-Conversion-Tracking",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Conversion tracking plugin for WooCommerce",
   "author": "Tareq Hasan",
   "license": "GPL",
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "cli": "^1.0.1",
-    "g": "^2.0.1"
+    "g": "^2.0.1",
+    "grunt-cli": "^1.3.2"
   }
 }

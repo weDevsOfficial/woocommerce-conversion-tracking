@@ -111,7 +111,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
     function product_options_save( $post_id ) {
 
         if ( isset( $_POST['_wc_conv_track'] ) ) {
-            $value = trim( sanitize_text_field( wp_unslash( $_POST['_wc_conv_track'] ) ) ) );
+            $value = trim( sanitize_text_field( wp_unslash( $_POST['_wc_conv_track'] ) ) );
             update_post_meta( $post_id, '_wc_conv_track', $value );
         }
     }
