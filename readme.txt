@@ -100,7 +100,7 @@ Additionally, read weDevs [privacy policy](https://wedevs.com/privacy-policy/) f
 
 
 == Changelog ==
-= Version 2.0.5 (02-January-2020) =
+= Version 2.0.6 (02-January-2020) =
 * [fix] Missing  ajax addToCart value of facebook
 * [fix] php-cs-fixer: Sanitization and nonce verification
 
