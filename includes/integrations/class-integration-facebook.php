@@ -90,12 +90,12 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
             if ( is_user_logged_in() ) {
                 $user_email = wp_get_current_user()->user_email;
 
-                echo $this->build_event( $facebook_pixel_id, array( 'em' => $user_email ), 'init' );
+                echo wp_kses_post( $this->build_event( $facebook_pixel_id, array( 'em' => $user_email ), 'init' ) );
             } else {
-                echo $this->build_event( $facebook_pixel_id, array(), 'init' );
+                echo wp_kses_post( $this->build_event( $facebook_pixel_id, array(), 'init' ) );
             }
 
-            echo $this->build_event( 'PageView', array() );
+            echo wp_kses_post( $this->build_event( 'PageView', array() ) );
             ?>
         </script>
         <?php
@@ -146,10 +146,17 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
         <script type="text/javascript">
             jQuery(function($) {
                 $(document).on('added_to_cart', function (event, fragments, dhash, button) {
-                    wcfbq('<?php echo $facebook_pixel_id ?>', 'AddToCart', {
+                    var currencySymbol = $($(button.get()[0]).closest('.product')
+                        .find('.woocommerce-Price-currencySymbol').get()[0]).text();
+
+                    var price = $(button.get()[0]).closest('.product').find('.amount').text();
+                    var originalPrice = price.split(currencySymbol).slice(-1).pop();
+
+                    wcfbq('<?php echo esc_attr( $facebook_pixel_id ) ?>', 'AddToCart', {
                         content_ids: [ $(button).data('product_id') ],
                         content_type: 'product',
-                        currency: '<?php echo get_woocommerce_currency()?>'
+                        value: originalPrice,
+                        currency: '<?php echo esc_attr( get_woocommerce_currency() ) ?>'
                     });
                 });
             });

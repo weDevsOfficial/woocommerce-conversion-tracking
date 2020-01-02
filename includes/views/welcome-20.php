@@ -1,6 +1,6 @@
 <div class="wcct-welcome">
     <div class="icon-wrap">
-        <img src="<?php echo WCCT_ASSETS; ?>/images/screenshot.png" alt="Conversion Tracking Logo">
+        <img src="<?php echo esc_attr( WCCT_ASSETS ); ?>/images/screenshot.png" alt="Conversion Tracking Logo">
     </div>
 
     <button type="button" class="notice-dismiss" id="dismiss-wcct-20">
@@ -20,7 +20,7 @@
         </p>
 
         <span class="bottom-logo">
-            <img src="<?php echo WCCT_ASSETS; ?>/images/logo-full.png" width="125" alt="Conversion Tracking Logo">
+            <img src="<?php echo esc_attr( WCCT_ASSETS ); ?>/images/logo-full.png" width="125" alt="Conversion Tracking Logo">
         </span>
     </div>
 </div>

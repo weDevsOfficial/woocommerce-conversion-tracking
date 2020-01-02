@@ -3,8 +3,8 @@ Contributors: tareq1988
 Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, adwords, tracking-pixel
 Donate link: https://tareq.co/donate/
 Requires at least: 4.0
-Tested up to: 5.1.1
-Stable tag: 2.0.4
+Tested up to: 5.3.2
+Stable tag: 2.0.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -87,7 +87,23 @@ We put the JavaScript scripts provided by you in the page and it fires a convers
 4. Twitter Purchase Tracking Setup
 5. Custom Codes
 
+## Privacy Policy
+woocommerce-conversion-tracking uses [Appsero](https://appsero.com) SDK to collect some telemetry data upon user's confirmation. This helps us to troubleshoot problems faster & make product improvements.
+
+Appsero SDK **does not gather any data by default.** The SDK only starts gathering basic telemetry data **when a user allows it via the admin notice**. We collect the data to ensure great user experience for all our users.
+
+Integrating Appsero SDK **DOES NOT IMMEDIATELY** start gathering data, **without confirmation from users in any case.**
+
+Learn more how [Appsero collects and uses this data](https://appsero.com/privacy-policy/).
+
+Additionally, read weDevs [privacy policy](https://wedevs.com/privacy-policy/) for more.
+
+
 == Changelog ==
+= Version 2.0.5 (02-January-2020) =
+* [fix] Missing  ajax addToCart value of facebook
+* [fix] php-cs-fixer: Sanitization and nonce verification
+
 = Version 2.0.4 (21-August-2019) =
 * [fix] Happyaddons dismissable banner
 * [fix] Getting started link doesn't work

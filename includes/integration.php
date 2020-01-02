@@ -95,7 +95,9 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
      * @return string
      */
     function validate_textarea_field( $key, $value ) {
-        $text = trim( stripslashes( $_POST[ $this->plugin_id . $this->id . '_' . $key ] ) );
+        $field = isset( $_POST[ $this->plugin_id . $this->id . '_' . $key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $this->plugin_id . $this->id . '_' . $key ] ) ) : '';
+
+        $text = trim( stripslashes( $field ) );
 
         return $text;
     }
@@ -109,7 +111,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
     function product_options_save( $post_id ) {
 
         if ( isset( $_POST['_wc_conv_track'] ) ) {
-            $value = trim( $_POST['_wc_conv_track'] );
+            $value = trim( sanitize_text_field( wp_unslash( $_POST['_wc_conv_track'] ) ) ) );
             update_post_meta( $post_id, '_wc_conv_track', $value );
         }
     }
@@ -124,7 +126,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
      */
     function product_options() {
 
-        echo '<div class="options_group">';
+        echo wp_kses_post( '<div class="options_group">' );
 
         woocommerce_wp_textarea_input(
             array(
@@ -140,7 +142,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
             )
         );
 
-        echo '</div>';
+        echo wp_kses_post( '</div>' );
     }
 
     /**
@@ -150,7 +152,9 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
      * @return void
      */
     function track_registration() {
-        if ( isset( $_GET['_wc_user_reg'] ) && $_GET['_wc_user_reg'] == 'true' ) {
+        $wc_user_reg = isset( $_GET['_wc_user_reg'] ) ? sanitize_text_field( wp_unslash( $_GET['_wc_user_reg'] ) ) : '';
+
+        if ( $wc_user_reg == 'true' ) {
             add_action( 'wp_head', array( $this, 'print_reg_code' ) );
         }
     }
@@ -201,11 +205,11 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
         if ( is_cart() ) {
 
-            echo $this->print_conversion_code( $this->get_option( 'cart' ) );
+            echo wp_kses_post( $this->print_conversion_code( $this->get_option( 'cart' ) ) );
 
         } elseif ( is_order_received_page() ) {
 
-            echo $this->print_conversion_code( $this->process_order_markdown( $this->get_option( 'checkout' ) ) );
+            echo wp_kses_post( $this->print_conversion_code( $this->process_order_markdown( $this->get_option( 'checkout' ) ) ) );
         }
     }
 
@@ -235,7 +239,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
                     continue;
                 }
 
-                echo $this->print_conversion_code( $this->process_product_markdown( $code, $product ) );
+                echo wp_kses_post( $this->print_conversion_code( $this->process_product_markdown( $code, $product ) ) );
             }
         }
     }
@@ -246,7 +250,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
      * @return void
      */
     function print_reg_code() {
-        echo $this->print_conversion_code( $this->get_option( 'reg' ) );
+        echo wp_kses_post( $this->print_conversion_code( $this->get_option( 'reg' ) ) );
     }
 
     /**
@@ -261,9 +265,9 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
             return;
         }
 
-        echo "<!-- Tracking pixel by WooCommerce Conversion Tracking plugin by Tareq Hasan -->\n";
-        echo $code;
-        echo "\n<!-- Tracking pixel by WooCommerce Conversion Tracking plugin -->\n";
+        echo wp_kses_post( "<!-- Tracking pixel by WooCommerce Conversion Tracking plugin by Tareq Hasan -->\n" );
+        echo wp_kses_post( $code );
+        echo wp_kses_post( "\n<!-- Tracking pixel by WooCommerce Conversion Tracking plugin -->\n" );
     }
 
     /**

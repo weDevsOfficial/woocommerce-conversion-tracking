@@ -85,7 +85,7 @@ class WCCT_Admin {
     public function show_navigation() {
         $count  = count( $this->wcct_get_tab() );
         $tabs   = $this->wcct_get_tab();
-        $active = isset( $_GET['tab'] ) ? $_GET['tab'] : 'integrations';
+        $active = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'integrations';
 
         if ( $count == 0 ) {
             return;
@@ -104,6 +104,6 @@ class WCCT_Admin {
 
         $html   .= '</h2>';
 
-        echo $html;
+        echo wp_kses_post( $html );
     }
 }

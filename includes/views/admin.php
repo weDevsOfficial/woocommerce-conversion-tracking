@@ -4,7 +4,7 @@
 
     <?php
     $this->show_navigation();
-    $tab   = isset( $_GET['tab'] ) ? $_GET['tab'] : 'integrations';
+    $tab   = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'integrations';
     ?>
     <div id="ajax-message" class="updated inline" style="display: none; margin-bottom:35px"></div>
     <?php

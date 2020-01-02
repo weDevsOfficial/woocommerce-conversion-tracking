@@ -3,12 +3,12 @@
 Plugin Name: WooCommerce Conversion Tracking
 Plugin URI: https://wedevs.com/products/plugins/woocommerce-conversion-tracking/
 Description: Adds various conversion tracking codes to cart, checkout, registration success and product page on WooCommerce
-Version: 2.0.4
+Version: 2.0.5
 Author: Tareq Hasan
 Author URI: https://tareq.co/
 License: GPL2
 WC requires at least: 2.3
-WC tested up to: 3.7.0
+WC tested up to: 3.8.1
 */
 
 /**
@@ -54,7 +54,7 @@ class WeDevs_WC_Conversion_Tracking {
      *
      * @var string
      */
-    public $version = '2.0.4';
+    public $version = '2.0.5';
 
     /**
      * Holds various class instances
@@ -178,10 +178,12 @@ class WeDevs_WC_Conversion_Tracking {
 
         add_action( 'plugins_loaded', array( $this, 'plugin_upgrades' ) );
         add_action( 'init', array( $this, 'localization_setup' ) );
-        add_action( 'init', array( $this, 'init_tracker' ) );
+
         add_action( 'admin_notices', array( $this, 'check_woocommerce_exist' ) );
         add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
         add_action( 'admin_notices', array( $this, 'happy_addons_ads_banner' ) );
+
+        $this->init_tracker();
     }
 
     /**
@@ -239,9 +241,18 @@ class WeDevs_WC_Conversion_Tracking {
      * @return void
      */
     public function init_tracker() {
-        require_once dirname( __FILE__ ) . '/includes/class-wedevs-insights.php';
+        if ( ! class_exists( 'Appsero\Client' ) ) {
+            require_once __DIR__ . '/lib/appsero/Client.php';
+        }
 
-        new WeDevs_Insights( 'woocommerce-conversion-tracking', 'WooCommerce Conversion Tracking', __FILE__ );
+        $client = new Appsero\Client(
+            '6816029d-7d48-4ed3-8ae4-aeb6a9496f21',
+            'WooCommerce Conversion Tracking',
+            __FILE__
+        );
+
+        // Active insights
+        $client->insights()->init();
     }
 
     /**
@@ -282,7 +293,7 @@ class WeDevs_WC_Conversion_Tracking {
         if ( ! function_exists( 'WC' ) ) {
             ?>
                 <div class="error notice is-dismissible">
-                    <p><?php _e( '<b>Woocommerce conversion tracking</b> requires <a target="_blank" href="https://wordpress.org/plugins/woocommerce/">Woocommerce</a>', 'woocommerce-conversion-tracking' );?></p>
+                    <p><?php echo wp_kses_post( __( '<b>Woocommerce conversion tracking</b> requires <a target="_blank" href="https://wordpress.org/plugins/woocommerce/">Woocommerce</a>', 'woocommerce-conversion-tracking' ) );?></p>
                 </div>
             <?php
         }
@@ -312,10 +323,10 @@ class WeDevs_WC_Conversion_Tracking {
             </div>
             <div class="notice is-dismissible wcct-notice-wrap">
                 <div class="wcct-message-icon">
-                    <img src="<?php echo WCCT_ASSETS . '/images/happy-addons.png'?>" alt="">
+                    <img src="<?php echo esc_attr( WCCT_ASSETS . '/images/happy-addons.png' )?>" alt="">
                 </div>
                 <div class="wcct-message-content">
-                    <p><?php _e( 'Reach beyond your imagination in creating web pages. <strong> Try Happy Addons for Elementor to shape your dream.</strong> 😊') ?></p>
+                    <p><?php echo wp_kses_post( __( 'Reach beyond your imagination in creating web pages. <strong> Try Happy Addons for Elementor to shape your dream.</strong> 😊') ) ?></p>
                 </div>
                 <div class="wcct-message-action">
                     <a href="" id="wcct-install-happ-addons" class="button button-primary"> <i class="dashicons dashicons-update wcct-update-icon"></i> Install Now For FREE</a>

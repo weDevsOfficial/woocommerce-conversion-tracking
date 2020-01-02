@@ -123,7 +123,7 @@ class WCCT_Pro_Features {
     public function profeature_ad() {
         ?>
         <div class="premium-box box-blue">
-            <h3><?php _e( 'Premium Features', 'woocommerce-conversion-tracking' ) ?></h3>
+            <h3><?php esc_html_e( 'Premium Features', 'woocommerce-conversion-tracking' ) ?></h3>
 
             <ul class="premium-feature-list">
                 <li>Advanced Facebook Events and Tracking</li>
@@ -135,7 +135,7 @@ class WCCT_Pro_Features {
                 <li>Bing Ads</li>
             </ul>
 
-            <a href="https://wedevs.com/woocommerce-conversion-tracking/upgrade-to-pro/?utm_source=wp-admin&utm_medium=pro-upgrade&utm_campaign=wcct_upgrade&utm_content=Get_Premium" target="_blank" class="button button-primary"><?php _e( 'Get Premium', 'woocommerce-conversion-tracking' ) ?></a>
+            <a href="https://wedevs.com/woocommerce-conversion-tracking/upgrade-to-pro/?utm_source=wp-admin&utm_medium=pro-upgrade&utm_campaign=wcct_upgrade&utm_content=Get_Premium" target="_blank" class="button button-primary"><?php esc_html_e( 'Get Premium', 'woocommerce-conversion-tracking' ) ?></a>
 
             <p style="margin-bottom: 0" class="help">
                 Get <strong>50% Discount</strong> on pro upgrade for a limited time.
