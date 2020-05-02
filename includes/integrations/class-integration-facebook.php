@@ -90,12 +90,12 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
             if ( is_user_logged_in() ) {
                 $user_email = wp_get_current_user()->user_email;
 
-                echo wp_kses_post( $this->build_event( $facebook_pixel_id, array( 'em' => $user_email ), 'init' ) );
+                echo $this->build_event( $facebook_pixel_id, array( 'em' => $user_email ), 'init' );
             } else {
-                echo wp_kses_post( $this->build_event( $facebook_pixel_id, array(), 'init' ) );
+                echo $this->build_event( $facebook_pixel_id, array(), 'init' );
             }
 
-            echo wp_kses_post( $this->build_event( 'PageView', array() ) );
+            echo $this->build_event( 'PageView', array() );
             ?>
         </script>
         <?php

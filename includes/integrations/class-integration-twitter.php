@@ -75,8 +75,8 @@ class WCCT_Integration_Twitter extends WCCT_Integration {
         <script type="text/javascript">
             !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
 
-            <?php echo wp_kses_post( $this->build_event( $universal_tag_id, array(), 'init' ) ); ?>
-            <?php echo wp_kses_post( $this->build_event( 'PageView' ) ); ?>
+            <?php echo $this->build_event( $universal_tag_id, array(), 'init' ); ?>
+            <?php echo $this->build_event( 'PageView' ); ?>
         </script>
 
         <?php if ( $advance_event ): ?>
