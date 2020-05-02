@@ -1,10 +1,10 @@
-# Copyright (C) 2020 Tareq Hasan
+# Copyright (C) 2020 weDevs
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Conversion Tracking 2.0.6\n"
+"Project-Id-Version: WooCommerce Conversion Tracking 2.0.7\n"
 "Report-Msgid-Bugs-To: https://example.com\n"
-"POT-Creation-Date: 2020-01-02 06:28:00+00:00\n"
+"POT-Creation-Date: 2020-05-02 07:11:26+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -45,15 +45,15 @@ msgstr ""
 msgid "Integrations"
 msgstr ""
 
-#: includes/class-ajax.php:53
+#: includes/class-ajax.php:52
 msgid "Settings has been saved successfully!"
 msgstr ""
 
-#: includes/class-ajax.php:74
+#: includes/class-ajax.php:73
 msgid "ERROR: Error fetching plugin information: %s"
 msgstr ""
 
-#: includes/class-ajax.php:99
+#: includes/class-ajax.php:98
 msgid "Successfully installed and activate,"
 msgstr ""
 
@@ -97,44 +97,6 @@ msgstr ""
 
 #: includes/class-integration-pro-features.php:138
 msgid "Get Premium"
-msgstr ""
-
-#: includes/class-wedevs-insights.php:284
-msgid ""
-"Want to help make <strong>%s</strong> even more awesome? Allow weDevs to "
-"collect non-sensitive diagnostic data and usage information."
-msgstr ""
-
-#: includes/class-wedevs-insights.php:289 lib/appsero/Insights.php:374
-msgid "what we collect"
-msgstr ""
-
-#: includes/class-wedevs-insights.php:295 lib/appsero/Insights.php:381
-msgid "Allow"
-msgstr ""
-
-#: includes/class-wedevs-insights.php:297 lib/appsero/Insights.php:382
-msgid "No thanks"
-msgstr ""
-
-#: includes/class-wedevs-insights.php:480
-msgid "Once Weekly"
-msgstr ""
-
-#: includes/class-wedevs-insights.php:616 lib/appsero/Insights.php:747
-msgid "If you have a moment, please let us know why you are deactivating:"
-msgstr ""
-
-#: includes/class-wedevs-insights.php:630 lib/appsero/Insights.php:762
-msgid "I rather wouldn't say"
-msgstr ""
-
-#: includes/class-wedevs-insights.php:631 lib/appsero/Insights.php:763
-msgid "Submit & Deactivate"
-msgstr ""
-
-#: includes/class-wedevs-insights.php:632 lib/appsero/Insights.php:764
-msgid "Cancel"
 msgstr ""
 
 #: includes/integration.php:13
@@ -287,6 +249,10 @@ msgstr ""
 msgid "Integration Settings"
 msgstr ""
 
+#: includes/views/settings.php:139
+msgid "Save Changes"
+msgstr ""
+
 #: includes/views/settings.php:146
 msgid "Documentation"
 msgstr ""
@@ -309,12 +275,40 @@ msgid ""
 "collect non-sensitive diagnostic data and usage information."
 msgstr ""
 
+#: lib/appsero/Insights.php:374
+msgid "what we collect"
+msgstr ""
+
+#: lib/appsero/Insights.php:381
+msgid "Allow"
+msgstr ""
+
+#: lib/appsero/Insights.php:382
+msgid "No thanks"
+msgstr ""
+
+#: lib/appsero/Insights.php:747
+msgid "If you have a moment, please let us know why you are deactivating:"
+msgstr ""
+
+#: lib/appsero/Insights.php:762
+msgid "I rather wouldn't say"
+msgstr ""
+
+#: lib/appsero/Insights.php:763
+msgid "Submit & Deactivate"
+msgstr ""
+
+#: lib/appsero/Insights.php:764
+msgid "Cancel"
+msgstr ""
+
 #. Plugin Name of the plugin/theme
 msgid "WooCommerce Conversion Tracking"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://wedevs.com/products/plugins/woocommerce-conversion-tracking/"
+msgid "https://wedevs.com/woocommerce-conversion-tracking/"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -324,9 +318,9 @@ msgid ""
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "Tareq Hasan"
+msgid "weDevs"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://tareq.co/"
+msgid "https://wedevs.com/?utm_source=ORG_Author_URI_WCCT"
 msgstr ""

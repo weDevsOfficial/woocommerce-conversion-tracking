@@ -1,10 +1,10 @@
 === WooCommerce Conversion Tracking ===
-Contributors: tareq1988
+Contributors: tareq1988, wedevs
 Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, adwords, tracking-pixel
 Donate link: https://tareq.co/donate/
 Requires at least: 4.0
-Tested up to: 5.3.2
-Stable tag: 2.0.5
+Tested up to: 5.4
+Stable tag: 2.0.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -100,11 +100,21 @@ Additionally, read weDevs [privacy policy](https://wedevs.com/privacy-policy/) f
 
 
 == Changelog ==
+
+= Version 2.0.7 (2 May, 2020) =
+
+ * **Fix:** Removed unnecessary usage of `wp_kses_post()`, which was breaking the plugin.
+ * **Improved:** Added WordPress 5.4 compatibility.
+ * **Improved:** Added WooCommerce 4.0 compatibility.
+ * **Improved:** Removed the v2.0 welcome notice, which isn't relevant anymore.
+
 = Version 2.0.6 (02-January-2020) =
+
 * [fix] Missing  ajax addToCart value of facebook
 * [fix] php-cs-fixer: Sanitization and nonce verification
 
 = Version 2.0.4 (21-August-2019) =
+
 * [fix] Happyaddons dismissable banner
 * [fix] Getting started link doesn't work
 * [tweak] Change from Google Adwords to Google Ads
