@@ -95,7 +95,7 @@
                                                                         <?php
 
                                                                         if ( isset( $option['help'] ) && ! empty( $option['help'] ) ) {
-                                                                            echo wp_kses_post( '<p class="help">' . $option['help'] . '</p>' );
+                                                                            echo '<p class="help">' . $option['help'] . '</p>';
                                                                         }
                                                                         ?>
                                                                         </div>
@@ -114,7 +114,7 @@
                                             }
 
                                             if ( isset( $field['help'] ) && ! empty( $field['help'] ) ) {
-                                                echo wp_kses_post( '<p class="help">' . $field['help'] . '</p>' );
+                                                echo '<p class="help">' . $field['help'] . '</p>';
                                             }
                                             ?>
                                         </td>
@@ -136,14 +136,14 @@
                 <?php wp_nonce_field( 'wcct-settings' ); ?>
                 <input type="hidden" name="action" value="wcct_save_settings">
 
-                <button class="button button-primary" id="wcct-submit">Save Changes</button>
+                <button class="button button-primary" id="wcct-submit"><?php esc_html_e( 'Save Changes', 'woocommerce-conversion-tracking' ); ?></button>
             </div>
         </form>
     </div>
 
     <div class="sidebar-wrap">
         <div class="premium-box box-green">
-            <h3 class="wcct-doc-title"><?php esc_html_e( 'Documentation', 'woocommerce-conversion-tracking' )?></h3>
+            <h3 class="wcct-doc-title"><?php esc_html_e( 'Documentation', 'woocommerce-conversion-tracking' ); ?></h3>
 
             <ul class="wcct-doc-list">
                 <li><a href="https://wedevs.com/docs/woocommerce-conversion-tracking/getting-started/installation/" target="_blank"><img src="<?php echo esc_attr( plugins_url( 'assets/images/getting_started.png', WCCT_FILE ) ); ?>" alt="" class="doc-list-icon"><span><?php esc_html_e( 'Getting Started', 'woocommerce-conversion-tracking' ) ?></span></a></li>

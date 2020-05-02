@@ -104,6 +104,6 @@ class WCCT_Admin {
 
         $html   .= '</h2>';
 
-        echo wp_kses_post( $html );
+        echo $html;
     }
 }

@@ -293,7 +293,7 @@ class WeDevs_WC_Conversion_Tracking {
         if ( ! function_exists( 'WC' ) ) {
             ?>
                 <div class="error notice is-dismissible">
-                    <p><?php echo wp_kses_post( __( '<b>Woocommerce conversion tracking</b> requires <a target="_blank" href="https://wordpress.org/plugins/woocommerce/">Woocommerce</a>', 'woocommerce-conversion-tracking' ) );?></p>
+                    <p><?php echo __( '<b>Woocommerce conversion tracking</b> requires <a target="_blank" href="https://wordpress.org/plugins/woocommerce/">Woocommerce</a>', 'woocommerce-conversion-tracking' ); ?></p>
                 </div>
             <?php
         }
@@ -326,7 +326,7 @@ class WeDevs_WC_Conversion_Tracking {
                     <img src="<?php echo esc_attr( WCCT_ASSETS . '/images/happy-addons.png' )?>" alt="">
                 </div>
                 <div class="wcct-message-content">
-                    <p><?php echo wp_kses_post( __( 'Reach beyond your imagination in creating web pages. <strong> Try Happy Addons for Elementor to shape your dream.</strong> 😊') ) ?></p>
+                    <p><?php echo __( 'Reach beyond your imagination in creating web pages. <strong> Try Happy Addons for Elementor to shape your dream.</strong> 😊' ); ?></p>
                 </div>
                 <div class="wcct-message-action">
                     <a href="" id="wcct-install-happ-addons" class="button button-primary"> <i class="dashicons dashicons-update wcct-update-icon"></i> Install Now For FREE</a>

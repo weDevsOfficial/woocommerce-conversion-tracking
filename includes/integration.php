@@ -126,7 +126,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
      */
     function product_options() {
 
-        echo wp_kses_post( '<div class="options_group">' );
+        echo '<div class="options_group">';
 
         woocommerce_wp_textarea_input(
             array(
@@ -142,7 +142,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
             )
         );
 
-        echo wp_kses_post( '</div>' );
+        echo '</div>';
     }
 
     /**
@@ -205,11 +205,11 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
 
         if ( is_cart() ) {
 
-            echo wp_kses_post( $this->print_conversion_code( $this->get_option( 'cart' ) ) );
+            echo $this->print_conversion_code( $this->get_option( 'cart' ) );
 
         } elseif ( is_order_received_page() ) {
 
-            echo wp_kses_post( $this->print_conversion_code( $this->process_order_markdown( $this->get_option( 'checkout' ) ) ) );
+            echo $this->print_conversion_code( $this->process_order_markdown( $this->get_option( 'checkout' ) ) );
         }
     }
 
@@ -239,7 +239,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
                     continue;
                 }
 
-                echo wp_kses_post( $this->print_conversion_code( $this->process_product_markdown( $code, $product ) ) );
+                echo $this->print_conversion_code( $this->process_product_markdown( $code, $product ) );
             }
         }
     }
@@ -250,7 +250,7 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
      * @return void
      */
     function print_reg_code() {
-        echo wp_kses_post( $this->print_conversion_code( $this->get_option( 'reg' ) ) );
+        echo $this->print_conversion_code( $this->get_option( 'reg' ) );
     }
 
     /**
@@ -265,9 +265,9 @@ class WeDevs_WC_Tracking_Integration extends WC_Integration {
             return;
         }
 
-        echo wp_kses_post( "<!-- Tracking pixel by WooCommerce Conversion Tracking plugin by Tareq Hasan -->\n" );
-        echo wp_kses_post( $code );
-        echo wp_kses_post( "\n<!-- Tracking pixel by WooCommerce Conversion Tracking plugin -->\n" );
+        echo "<!-- Tracking pixel by WooCommerce Conversion Tracking plugin by Tareq Hasan -->\n";
+        echo $code;
+        echo "\n<!-- Tracking pixel by WooCommerce Conversion Tracking plugin -->\n";
     }
 
     /**
