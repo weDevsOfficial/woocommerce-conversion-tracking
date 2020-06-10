@@ -135,11 +135,7 @@ class WCCT_Pro_Features {
                 <li>Bing Ads</li>
             </ul>
 
-            <a href="https://wedevs.com/woocommerce-conversion-tracking/upgrade-to-pro/?utm_source=wp-admin&utm_medium=pro-upgrade&utm_campaign=wcct_upgrade&utm_content=Get_Premium" target="_blank" class="button button-primary"><?php esc_html_e( 'Get Premium', 'woocommerce-conversion-tracking' ) ?></a>
-
-            <p style="margin-bottom: 0" class="help">
-                Get <strong>50% Discount</strong> on pro upgrade for a limited time.
-            </p>
+            <a href="https://woocommerce.com/products/woocommerce-conversion-tracking-pro/" target="_blank" class="button button-primary"><?php esc_html_e( 'Get Premium', 'woocommerce-conversion-tracking' ) ?></a>
         </div>
         <?php
     }
