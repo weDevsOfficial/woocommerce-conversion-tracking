@@ -4,7 +4,7 @@ Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, 
 Donate link: https://tareq.co/donate/
 Requires at least: 4.0
 Tested up to: 5.4
-Stable tag: 2.0.7
+Stable tag: 2.0.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -100,6 +100,11 @@ Additionally, read weDevs [privacy policy](https://wedevs.com/privacy-policy/) f
 
 
 == Changelog ==
+
+= Version 2.0.8 (10 June, 2020) =
+
+ * **Fix:** Dismissable HA notice, was introduced in v2.0.7.
+ * **Fix:** Removed discount notice as it was deprecated.
 
 = Version 2.0.7 (2 May, 2020) =
 
