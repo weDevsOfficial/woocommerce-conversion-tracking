@@ -2,7 +2,7 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Conversion Tracking 2.0.8\n"
+"Project-Id-Version: WooCommerce Conversion Tracking 2.0.9\n"
 "Report-Msgid-Bugs-To: https://example.com\n"
 "POT-Creation-Date: 2020-06-10 06:53:08+00:00\n"
 "MIME-Version: 1.0\n"

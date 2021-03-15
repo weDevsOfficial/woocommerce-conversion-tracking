@@ -1,10 +1,10 @@
 === WooCommerce Conversion Tracking ===
 Contributors: tareq1988, wedevs
-Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, adwords, tracking-pixel
+Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, adwords, tracking-pixel, modalova
 Donate link: https://tareq.co/donate/
 Requires at least: 4.0
 Tested up to: 5.4
-Stable tag: 2.0.8
+Stable tag: 2.0.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,6 +21,7 @@ This plugin inserts those codes on WooCommerce cart page, checkout success page 
  * [Facebook](https://wedevs.com/docs/woocommerce-conversion-tracking/facebook/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=facebook)
  * [Twitter](https://wedevs.com/docs/woocommerce-conversion-tracking/twitter/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=twitter)
  * [Google Adwords](https://wedevs.com/docs/woocommerce-conversion-tracking/google-adwords/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=google_adwords)
+ * [Modalova](https://wedevs.com/docs/woocommerce-conversion-tracking/custom/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=modalova)
  * [Custom Tracking](https://wedevs.com/docs/woocommerce-conversion-tracking/custom/?utm_source=wporg&utm_medium=Readme&utm_campaign=wcct-lite&utm_content=custom)
 
 = Pro Features =
@@ -101,6 +102,10 @@ Additionally, read weDevs [privacy policy](https://wedevs.com/privacy-policy/) f
 
 == Changelog ==
 
+= Version 2.0.9 (15 March, 2021) =
+
+ * [new] Add support for Modalova
+
 = Version 2.0.8 (10 June, 2020) =
 
  * **Fix:** Dismissable HA notice, was introduced in v2.0.7.
@@ -136,13 +141,11 @@ Additionally, read weDevs [privacy policy](https://wedevs.com/privacy-policy/) f
 
  * [fix] Added plugin require notice
 
-
 = Version 2.0 (22-February-2018) =
 
  * Major version released
  * Individual gateway integrations
  * More streamlined and user friendly UI
-
 
 = Version 1.2.5 (28-December-2017) =
 

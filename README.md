@@ -15,3 +15,7 @@ This plugin inserts those codes on WooCommerce cart page, checkout success page 
 Author
 ---
 [Tareq Hasan](http://tareq.weDevs.com)
+
+Contributors
+---
+[Gabriel Kaam](https://knr.paris)
