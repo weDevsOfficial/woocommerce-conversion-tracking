@@ -8,7 +8,7 @@ Author: weDevs
 Author URI: https://wedevs.com/?utm_source=ORG_Author_URI_WCCT
 License: GPL2
 WC requires at least: 2.3
-WC tested up to: 4.0.1
+WC tested up to: 5.2
 */
 
 /**
