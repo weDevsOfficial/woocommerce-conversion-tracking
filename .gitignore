@@ -4,3 +4,4 @@ node_modules
 build
 phpcs-report.txt
 vendor
+.DS_Store
