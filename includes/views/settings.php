@@ -80,7 +80,7 @@
                                                                 <?php
 
                                                                     $label  = isset( $option['label'] ) ? $option['label'] : $option;
-                                                                    echo esc_attr( $label . $feature );
+                                                                    echo wp_kses_post( $label . $feature );
 
                                                                     $input_box  = isset( $option['event_label_box'] ) ?: false;
 
