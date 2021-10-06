@@ -3,8 +3,10 @@ Contributors: tareq1988, wedevs
 Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, adwords, tracking-pixel
 Donate link: https://tareq.co/donate/
 Requires at least: 4.0
-Tested up to: 5.7
-Stable tag: 2.0.8
+Tested up to: 5.8
+WC requires at least: 3.0
+WC tested up to: 5.7.1
+Stable tag: 2.0.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -100,6 +102,12 @@ Additionally, read weDevs [privacy policy](https://wedevs.com/privacy-policy/) f
 
 
 == Changelog ==
+
+= Version 2.0.9 (6 October, 2021) =
+
+ * **Fix:** Perfect Audience breaking checkbox section issue.
+ * **Fix:** WordPress 5.8 compatibility
+ * **Fix:** Latest WooCommerce 5.7 compatibility
 
 = Version 2.0.8 (10 June, 2020) =
 
