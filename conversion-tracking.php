@@ -3,12 +3,12 @@
 Plugin Name: WooCommerce Conversion Tracking
 Plugin URI: https://wedevs.com/woocommerce-conversion-tracking/
 Description: Adds various conversion tracking codes to cart, checkout, registration success and product page on WooCommerce
-Version: 2.0.10
+Version: 2.0.11
 Author: weDevs
 Author URI: https://wedevs.com/?utm_source=ORG_Author_URI_WCCT
 License: GPL2
-WC requires at least: 2.3
-WC tested up to: 5.2
+WC requires at least: 5.0.0
+WC tested up to: 8.1.0
 */
 
 /**
@@ -54,7 +54,7 @@ class WeDevs_WC_Conversion_Tracking {
      *
      * @var string
      */
-    public $version = '2.0.10';
+    public $version = '2.0.11';
 
     /**
      * Holds various class instances
@@ -70,12 +70,17 @@ class WeDevs_WC_Conversion_Tracking {
      * within our plugin.
      */
     public function __construct() {
+	    require_once __DIR__ . '/vendor/autoload.php';
+
         $this->define_constants();
         $this->init_hooks();
         $this->includes();
         $this->init_classes();
 
         register_activation_hook( __FILE__, array( $this, 'activate' ) );
+        // hpos support
+	    add_action( 'before_woocommerce_init', [ $this, 'add_hpos_support' ] );
+
         do_action( 'wcct_loaded' );
     }
 
@@ -241,10 +246,6 @@ class WeDevs_WC_Conversion_Tracking {
      * @return void
      */
     public function init_tracker() {
-        if ( ! class_exists( 'Appsero\Client' ) ) {
-            require_once __DIR__ . '/lib/appsero/Client.php';
-        }
-
         $client = new Appsero\Client(
             '6816029d-7d48-4ed3-8ae4-aeb6a9496f21',
             'WooCommerce Conversion Tracking',
@@ -254,6 +255,19 @@ class WeDevs_WC_Conversion_Tracking {
         // Active insights
         $client->insights()->init();
     }
+
+	/**
+	 * Add High Performance Order Storage Support
+	 *
+	 * @since 2.0.11
+	 *
+	 * @return void
+	 */
+	public function add_hpos_support() {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+		}
+	}
 
     /**
      * Check the pro version

@@ -3,10 +3,10 @@ Contributors: tareq1988, wedevs
 Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, adwords, tracking-pixel
 Donate link: https://tareq.co/donate/
 Requires at least: 5.4
-Tested up to: 6.0
-WC requires at least: 3.0
-WC tested up to: 6.5
-Stable tag: 2.0.10
+Tested up to: 6.3.1
+WC requires at least: 5.0.0
+WC tested up to: 8.1.0
+Stable tag: 2.0.11
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -102,6 +102,12 @@ Additionally, read weDevs [privacy policy](https://wedevs.com/privacy-policy/) f
 
 
 == Changelog ==
+
+= Version 2.0.11 (15 Sep, 2023) =
+
+- **Update:** WordPress 6.3.1 compatibility
+- **Fix:** Updated Appsero Client Library to the latest version which will fix a security issue
+- **Update:** Added HPOS (High Performance Order Storage) support
 
 = Version 2.0.10 (2 June, 2022) =
 
