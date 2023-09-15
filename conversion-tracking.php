@@ -70,6 +70,8 @@ class WeDevs_WC_Conversion_Tracking {
      * within our plugin.
      */
     public function __construct() {
+	    require_once __DIR__ . '/vendor/autoload.php';
+
         $this->define_constants();
         $this->init_hooks();
         $this->includes();
@@ -241,10 +243,6 @@ class WeDevs_WC_Conversion_Tracking {
      * @return void
      */
     public function init_tracker() {
-        if ( ! class_exists( 'Appsero\Client' ) ) {
-            require_once __DIR__ . '/lib/appsero/Client.php';
-        }
-
         $client = new Appsero\Client(
             '6816029d-7d48-4ed3-8ae4-aeb6a9496f21',
             'WooCommerce Conversion Tracking',
