@@ -199,7 +199,7 @@ class WCCT_Integration_Facebook extends WCCT_Integration {
             return;
         }
 
-        $order        = new WC_Order( $order_id );
+        $order        = wc_get_order( $order_id );
         $content_type = 'product';
         $product_ids  = array();
 
