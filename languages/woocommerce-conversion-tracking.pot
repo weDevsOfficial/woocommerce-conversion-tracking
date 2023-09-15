@@ -1,37 +1,37 @@
-# Copyright (C) 2021 weDevs
+# Copyright (C) 2023 weDevs
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Conversion Tracking 2.0.9\n"
+"Project-Id-Version: WooCommerce Conversion Tracking 2.0.11\n"
 "Report-Msgid-Bugs-To: https://example.com\n"
-"POT-Creation-Date: 2021-10-06 11:06:18+00:00\n"
+"POT-Creation-Date: 2023-09-15 11:33:43+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "X-Generator: grunt-wp-i18n 0.5.4\n"
 
-#: conversion-tracking.php:279
+#: conversion-tracking.php:293
 msgid "Get PRO"
 msgstr ""
 
-#: conversion-tracking.php:282
+#: conversion-tracking.php:296
 msgid "Docs"
 msgstr ""
 
-#: conversion-tracking.php:283
+#: conversion-tracking.php:297
 msgid "Settings"
 msgstr ""
 
-#: conversion-tracking.php:296
+#: conversion-tracking.php:310
 msgid ""
 "<b>Woocommerce conversion tracking</b> requires <a target=\"_blank\" "
 "href=\"https://wordpress.org/plugins/woocommerce/\">Woocommerce</a>"
 msgstr ""
 
-#: conversion-tracking.php:329
+#: conversion-tracking.php:343
 msgid ""
 "Reach beyond your imagination in creating web pages. <strong> Try Happy "
 "Addons for Elementor to shape your dream.</strong> 😊"
@@ -267,40 +267,6 @@ msgstr ""
 
 #: includes/views/settings.php:154
 msgid "Microsoft Advertising"
-msgstr ""
-
-#: lib/appsero/Insights.php:369
-msgid ""
-"Want to help make <strong>%1$s</strong> even more awesome? Allow %1$s to "
-"collect non-sensitive diagnostic data and usage information."
-msgstr ""
-
-#: lib/appsero/Insights.php:374
-msgid "what we collect"
-msgstr ""
-
-#: lib/appsero/Insights.php:381
-msgid "Allow"
-msgstr ""
-
-#: lib/appsero/Insights.php:382
-msgid "No thanks"
-msgstr ""
-
-#: lib/appsero/Insights.php:747
-msgid "If you have a moment, please let us know why you are deactivating:"
-msgstr ""
-
-#: lib/appsero/Insights.php:762
-msgid "I rather wouldn't say"
-msgstr ""
-
-#: lib/appsero/Insights.php:763
-msgid "Submit & Deactivate"
-msgstr ""
-
-#: lib/appsero/Insights.php:764
-msgid "Cancel"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

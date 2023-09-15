@@ -110,7 +110,7 @@ class WCCT_Integration_Google extends WCCT_Integration {
             return;
         }
 
-        $order = new WC_Order( $order_id );
+        $order = wc_get_order( $order_id );
 
         $code = $this->build_event( 'conversion', array(
             'send_to'        => sprintf( "%s/%s", $account_id, $label ),
