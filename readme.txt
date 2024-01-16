@@ -3,10 +3,10 @@ Contributors: tareq1988, wedevs
 Tags: ecommerce, e-commerce, commerce, woocommerce, tracking, facebook, google, adwords, tracking-pixel
 Donate link: https://tareq.co/donate/
 Requires at least: 5.4
-Tested up to: 6.3.1
+Tested up to: 6.4.2
 WC requires at least: 5.0.0
-WC tested up to: 8.1.0
-Stable tag: 2.0.11
+WC tested up to: 8.5.1
+Stable tag: 2.0.12
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -102,6 +102,12 @@ Additionally, read weDevs [privacy policy](https://wedevs.com/privacy-policy/) f
 
 
 == Changelog ==
+
+= Version 2.0.12 (16 Jan, 2024) =
+
+- **Update:** WordPress 6.4.2 compatibility
+- **Fix:** Updated Appsero Client Library to the latest version which will fix a security issue
+- **Fix:** Fixed a Broken Access Control vulnerability in WooCommerce Conversion Tracking Plugin that allowed lower privileged users to install and activate a new plugin via an ajax action without a nonce parameter.
 
 = Version 2.0.11 (15 Sep, 2023) =
 

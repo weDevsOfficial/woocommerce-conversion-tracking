@@ -13,7 +13,7 @@
     "require": {
         "php": ">=7.0",
         "composer/installers": "^1.9",
-        "appsero/client": "dev-develop"
+        "appsero/client": "^2.0"
     },
 
     "require-dev": {
