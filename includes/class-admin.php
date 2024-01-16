@@ -33,6 +33,7 @@ class WCCT_Admin {
         wp_localize_script(
             'wcct-admin', 'wc_tracking', array(
                 'ajaxurl' => admin_url( 'admin-ajax.php' ),
+                'nonce'   => wp_create_nonce( 'wcct-settings' ),
             )
         );
     }

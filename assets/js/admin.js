@@ -98,6 +98,9 @@
         loader.show();
         var remote_message = $( '#wcct_remote_notice' );
         wp.ajax.send( 'activate_happy_addons', {
+            data: {
+                _wpnonce: wc_tracking.nonce,
+            },
             success: function( response ) {
                 $('.wcct-notice-wrap').hide();
                 loader.hide();
@@ -114,6 +117,9 @@
     // Dismiss notice
     $('.wcct-notice-wrap').on( 'click', function() {
         wp.ajax.send( 'wcct_dismissable_notice', {
+            data: {
+                _wpnonce: wc_tracking.nonce,
+            },
             success: function( response ) {
                 console.log( 'Success' );
             }

@@ -21,13 +21,16 @@ class WCCT_Ajax {
      * @return void
      */
     public function wcct_save_settings() {
-        if ( ! current_user_can( wcct_manage_cap() ) ) {
+        if ( ! current_user_can( 'manage_options' ) ) {
             return;
         }
-        $nonce = isset( $_REQUEST['_wpnonce'] ) ? sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ) : '';
 
-        if ( ! wp_verify_nonce( $nonce, 'wcct-settings' ) ) {
-            die( 'wcct-settings !' );
+        if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'wcct-settings' ) ) {
+            wp_send_json_error(
+                [
+                    'message' => __( 'nonce verification failed', 'woocommerce-conversion-tracking' )
+                ]
+            );
         }
 
         if ( ! isset( $_POST['settings'] ) ) {
@@ -35,7 +38,6 @@ class WCCT_Ajax {
         }
 
         $integration_settings = array();
-        // $post_data = isset( $_POST['settings'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['settings'] ) ) : [];
 
         if ( ! empty( $_POST['settings'] ) ) {
 
@@ -61,6 +63,21 @@ class WCCT_Ajax {
      * @return json
      */
     public function wcct_install_happy_addons() {
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_send_json_error(
+                [
+                    'message' => __( 'You do not have permission to install Happy Addons', 'woocommerce-conversion-tracking' )
+                ]
+            );
+        }
+
+        if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'wcct-settings' ) ) {
+            wp_send_json_error(
+                [
+                    'message' => __( 'nonce verification failed', 'woocommerce-conversion-tracking' )
+                ]
+            );
+        }
 
         include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
         include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
@@ -108,7 +125,19 @@ class WCCT_Ajax {
      */
     public function wcct_dismissable_notice() {
         if ( ! current_user_can( 'manage_options' ) ) {
-            return;
+            wp_send_json_error(
+                [
+                    'message' => __( 'You do not have permission to install Happy Addons', 'woocommerce-conversion-tracking' )
+                ]
+            );
+        }
+
+        if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'wcct-settings' ) ) {
+            wp_send_json_error(
+                [
+                    'message' => __( 'nonce verification failed', 'woocommerce-conversion-tracking' )
+                ]
+            );
         }
 
         update_option( 'wcct_dismissable_notice', 'closed' );
