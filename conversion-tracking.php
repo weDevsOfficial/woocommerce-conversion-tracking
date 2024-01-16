@@ -3,12 +3,12 @@
 Plugin Name: WooCommerce Conversion Tracking
 Plugin URI: https://wedevs.com/woocommerce-conversion-tracking/
 Description: Adds various conversion tracking codes to cart, checkout, registration success and product page on WooCommerce
-Version: 2.0.11
+Version: 2.0.12
 Author: weDevs
 Author URI: https://wedevs.com/?utm_source=ORG_Author_URI_WCCT
 License: GPL2
 WC requires at least: 5.0.0
-WC tested up to: 8.1.0
+WC tested up to: 8.5.1
 */
 
 /**
@@ -54,7 +54,7 @@ class WeDevs_WC_Conversion_Tracking {
      *
      * @var string
      */
-    public $version = '2.0.11';
+    public $version = '2.0.12';
 
     /**
      * Holds various class instances
@@ -266,6 +266,7 @@ class WeDevs_WC_Conversion_Tracking {
 	public function add_hpos_support() {
 		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
 			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+            \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__, true );
 		}
 	}
 
